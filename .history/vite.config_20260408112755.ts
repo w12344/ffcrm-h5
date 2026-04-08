@@ -5,7 +5,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'gh-pages' ? '/ffcrm-h5/' : '/',
+  base: '/',
   plugins: [react()],
   server: {
     host: '0.0.0.0', // 允许外部访问

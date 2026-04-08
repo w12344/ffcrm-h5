@@ -36,7 +36,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm build --mode gh-pages
+        run: pnpm build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -256,6 +256,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
 
     console.log("[AuthContext] 组件初始化，开始检查登录状态...");
 
+    // 优先检查环境变量中的 VITE_TOKEN
+    const envToken = import.meta.env.VITE_TOKEN;
+    if (envToken) {
+      console.log("[AuthContext] ✅ 检测到环境变量 VITE_TOKEN，跳过登录流程");
+      const tokenUserInfo = {
+        token: envToken,
+        access_token: envToken,
+        accessToken: envToken,
+        name: "用户",
+      };
+      feishuAuth.saveUserInfoToSession(tokenUserInfo, false);
+      setHasInitialized(true);
+      fetchUserInfo();
+      return;
+    }
+
     // 先检查URL中是否有token参数
     setHasInitialized(true);
     handleUrlToken().then((hasToken) => {

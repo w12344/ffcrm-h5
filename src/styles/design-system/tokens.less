@@ -1,0 +1,213 @@
+/**
+ * Design System - Design Tokens
+ * Centralized design tokens for consistent styling across all pages
+ * 
+ * Usage: @import '@/styles/design-system/tokens.less';
+ */
+
+/* ========================================
+   FONTS
+   ======================================== */
+
+/* Font Imports - Already imported in index.html, no need to import here */
+/* Fonts are loaded via <link> tags in index.html for better performance */
+
+/* Font Families */
+@font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+@font-family-numeric: 'Rajdhani', sans-serif;
+@font-family-heading: 'Inter', 'Helvetica Neue', sans-serif;
+
+/* ========================================
+   TYPOGRAPHY SCALE
+   ======================================== */
+
+/* Font Sizes - Consistent Scale */
+@font-size-xs: 11px;      // Small labels, captions
+@font-size-sm: 12px;      // Secondary text, subtitles
+@font-size-base: 14px;    // Body text, default
+@font-size-md: 16px;      // Emphasized body text
+@font-size-lg: 18px;      // Section headings
+@font-size-xl: 20px;      // Card titles
+@font-size-2xl: 24px;     // Page section titles
+@font-size-3xl: 28px;     // Page titles
+@font-size-4xl: 34px;     // Hero titles
+
+/* Font Weights */
+@font-weight-normal: 400;
+@font-weight-medium: 500;
+@font-weight-semibold: 600;
+@font-weight-bold: 700;
+@font-weight-extrabold: 800;
+@font-weight-black: 900;
+
+/* Line Heights */
+@line-height-tight: 1;
+@line-height-snug: 1.2;
+@line-height-normal: 1.5;
+@line-height-relaxed: 1.75;
+
+/* Letter Spacing */
+@letter-spacing-tight: -1px;
+@letter-spacing-normal: 0;
+@letter-spacing-wide: 1.5px;
+@letter-spacing-wider: 2px;
+
+/* ========================================
+   COLORS - LIGHT THEME
+   ======================================== */
+
+/* Primary Colors */
+@color-primary: #2563EB;
+@color-primary-light: #3B82F6;
+@color-primary-dark: #1E40AF;
+@color-primary-bg: rgba(37, 99, 235, 0.1);
+
+/* Neutral Colors */
+@color-bg-base: #F8FAFC;
+@color-bg-elevated: #FFFFFF;
+@color-bg-subtle: #F1F5F9;
+@color-bg-muted: #E2E8F0;
+
+/* Text Colors */
+@color-text-primary: #0F172A;
+@color-text-secondary: #475569;
+@color-text-tertiary: #64748B;
+@color-text-quaternary: #94A3B8;
+@color-text-disabled: #CBD5E1;
+
+/* Border Colors */
+@color-border-light: #F1F5F9;
+@color-border-base: #E2E8F0;
+@color-border-strong: #CBD5E1;
+
+/* Status Colors */
+@color-success: #10B981;
+@color-success-light: #34D399;
+@color-success-bg: rgba(16, 185, 129, 0.1);
+
+@color-warning: #F59E0B;
+@color-warning-light: #FBBF24;
+@color-warning-bg: rgba(245, 158, 11, 0.1);
+
+@color-error: #EF4444;
+@color-error-light: #F87171;
+@color-error-bg: rgba(239, 68, 68, 0.1);
+
+@color-info: #3B82F6;
+@color-info-light: #60A5FA;
+@color-info-bg: rgba(59, 130, 246, 0.1);
+
+/* ========================================
+   COLORS - DARK THEME
+   ======================================== */
+
+@color-dark-bg-base: #0F172A;
+@color-dark-bg-elevated: #1E293B;
+@color-dark-bg-subtle: #334155;
+@color-dark-text-primary: #F8FAFC;
+@color-dark-text-secondary: #E2E8F0;
+@color-dark-text-tertiary: #CBD5E1;
+@color-dark-border: rgba(255, 255, 255, 0.1);
+
+/* ========================================
+   SPACING SCALE
+   ======================================== */
+
+@spacing-xs: 4px;
+@spacing-sm: 8px;
+@spacing-md: 12px;
+@spacing-base: 16px;
+@spacing-lg: 20px;
+@spacing-xl: 24px;
+@spacing-2xl: 32px;
+@spacing-3xl: 40px;
+@spacing-4xl: 48px;
+@spacing-5xl: 64px;
+
+/* ========================================
+   BORDER RADIUS
+   ======================================== */
+
+@radius-sm: 8px;
+@radius-base: 12px;
+@radius-md: 14px;
+@radius-lg: 16px;
+@radius-xl: 20px;
+@radius-2xl: 24px;
+@radius-3xl: 32px;
+@radius-full: 9999px;
+
+/* ========================================
+   SHADOWS
+   ======================================== */
+
+@shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+@shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+@shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+@shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+@shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+@shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+/* Colored Shadows */
+@shadow-primary: 0 10px 20px rgba(37, 99, 235, 0.25);
+@shadow-primary-lg: 0 15px 30px -8px rgba(37, 99, 235, 0.3);
+@shadow-success: 0 0 0 4px rgba(16, 185, 129, 0.15);
+
+/* ========================================
+   TRANSITIONS
+   ======================================== */
+
+@transition-fast: 0.15s ease;
+@transition-base: 0.2s ease;
+@transition-slow: 0.3s ease;
+@transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+/* ========================================
+   Z-INDEX SCALE
+   ======================================== */
+
+@z-index-dropdown: 1000;
+@z-index-sticky: 1020;
+@z-index-fixed: 1030;
+@z-index-modal-backdrop: 1040;
+@z-index-modal: 1050;
+@z-index-popover: 1060;
+@z-index-tooltip: 1070;
+
+/* ========================================
+   COMPONENT SPECIFIC
+   ======================================== */
+
+/* Header */
+@header-height: 100px;
+@header-padding-x: 40px;
+
+/* Logo */
+@logo-size-sm: 56px;
+@logo-size-base: 64px;
+@logo-border-radius: 10px;
+
+/* Card */
+@card-padding: 32px 40px;
+@card-border-radius: @radius-3xl;
+@card-shadow: @shadow-lg;
+
+/* Input */
+@input-height: 52px;
+@input-padding-x: 16px;
+@input-border-radius: @radius-base;
+@input-border-color: transparent;
+@input-bg: @color-bg-subtle;
+@input-focus-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+
+/* Button */
+@button-height: 44px;
+@button-padding-x: 24px;
+@button-border-radius: @radius-md;
+@button-font-weight: @font-weight-semibold;
+
+/* Avatar */
+@avatar-size-sm: 28px;
+@avatar-size-base: 40px;
+@avatar-size-md: 48px;
+@avatar-size-lg: 64px;

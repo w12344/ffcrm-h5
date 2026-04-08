@@ -1,0 +1,537 @@
+/* PremiumModal - 基于 antd Modal 的样式覆盖 */
+
+.premium-modal-wrapper {
+  // antd Modal 的 centered 属性会自动处理居中
+  // 不要覆盖 display 属性，否则会阻止关闭后的点击事件
+
+  // antd Modal itself
+  .ant-modal {
+    padding-bottom: 0;
+    top: 0;
+    margin: 0;
+    height: auto;
+    max-height: 95vh;
+  }
+
+  // antd Modal 外层毛玻璃容器
+  .premium-modal-outer-container {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 32px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    :global(.dark-theme) & {
+      background: rgba(30, 41, 59, 0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  // antd Modal 内容区样式 (内层主体)
+  .ant-modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+  }
+
+  // 暗色模式下的内容区
+  &.dark-theme .ant-modal-content {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 1) 100%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  // antd Modal 头部样式
+  .ant-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: transparent;
+    margin-bottom: 0;
+  }
+
+  // 标题组
+  .premium-modal-title-group {
+    .premium-modal-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary, #1f2937);
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+    .premium-modal-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-tertiary, #9ca3af);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+  }
+
+  // 关闭按钮
+  .ant-modal-close {
+    top: 20px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-secondary, #6b7280);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.08);
+      color: var(--text-primary, #1f2937);
+      transform: rotate(90deg);
+    }
+
+    .ant-modal-close-x {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 14px;
+    }
+  }
+
+  // 内容区
+  .ant-modal-body {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .premium-modal-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .premium-modal-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background: var(--bg-container, #ffffff);
+  }
+
+  // ========== Modal Footer ==========
+  .premium-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    flex-shrink: 0; /* 保证底部不会被压缩 */
+
+    :global(.dark-theme) & {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 1) 100%);
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+
+    &-extra {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+  }
+
+  // ========== Dark Theme ==========
+  &.dark-theme {
+    .ant-modal-content {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .ant-modal-header {
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .premium-modal-title-group {
+      .premium-modal-title {
+        color: #fff;
+      }
+      .premium-modal-subtitle {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .ant-modal-close {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.6);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+    }
+
+    .premium-modal-content {
+      background: #141414;
+    }
+  }
+
+  // ========== Light Theme ==========
+  &.light-theme {
+    .premium-modal-content {
+      background: #ffffff;
+    }
+  }
+
+  /* =========================================
+     Universal Component Styling inside PremiumModal
+     ========================================= */
+
+  /* --- 1. Form Styling --- */
+  .ant-form {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 0 16px 0 !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+
+    .ant-form-item {
+      margin-bottom: 12px !important;
+      margin-right: 12px !important;
+    }
+
+    /* Remove specific input overrides here so PremiumForm styles take precedence */
+
+    .ant-btn {
+      height: 36px !important;
+      line-height: 36px !important;
+      border-radius: 8px !important;
+      font-weight: 500;
+      padding: 0 20px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.ant-btn-primary {
+        background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%) !important;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+        }
+      }
+
+      &.ant-btn-default {
+        border-color: #cbd5e1 !important;
+        color: #475569 !important;
+
+        :global(.dark-theme) & {
+          background: transparent !important;
+          border-color: rgba(255, 255, 255, 0.2) !important;
+          color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        &:hover {
+          color: var(--color-purple, #8b5cf6) !important;
+          border-color: var(--color-purple, #8b5cf6) !important;
+        }
+      }
+    }
+  }
+
+  /* --- 2. Table Styling --- */
+  .premium-universal-table {
+    flex: 1;
+    min-height: 0;
+    background: transparent;
+    border-radius: 12px;
+    border: none;
+    box-shadow: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .ant-spin-nested-loading,
+    .ant-spin-container,
+    .ant-table {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ant-table {
+      background: transparent !important;
+
+      .ant-table-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .ant-table-body {
+        flex: 1;
+        overflow-y: auto !important;
+
+        &::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.15);
+          border-radius: 3px;
+        }
+        :global(.dark-theme) &::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      .ant-table-thead > tr > th {
+        background: rgba(0, 0, 0, 0.02) !important;
+        color: #475569;
+        font-weight: 600;
+        font-size: 13px;
+        padding: 14px 16px !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        &::before {
+          display: none !important;
+        }
+
+        :global(.dark-theme) & {
+          background: rgba(255, 255, 255, 0.04) !important;
+          color: rgba(255, 255, 255, 0.7);
+          border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+        }
+      }
+
+      .ant-table-tbody > tr > td {
+        padding: 14px 16px !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+        font-size: 14px;
+        color: #334155;
+        transition: all 0.2s;
+        background: transparent !important;
+
+        :global(.dark-theme) & {
+          border-bottom-color: rgba(255, 255, 255, 0.03) !important;
+          color: rgba(255, 255, 255, 0.85);
+        }
+      }
+
+      .ant-table-tbody > tr:hover > td {
+        background: rgba(0, 0, 0, 0.02) !important;
+
+        :global(.dark-theme) & {
+          background: rgba(255, 255, 255, 0.03) !important;
+        }
+      }
+
+      .ant-table-tbody > tr.ant-table-row-selected > td {
+        background: rgba(139, 92, 246, 0.08) !important;
+
+        :global(.dark-theme) & {
+          background: rgba(139, 92, 246, 0.15) !important;
+        }
+      }
+    }
+
+    /* --- 3. Pagination Styling --- */
+    .ant-pagination {
+      margin: 0 !important;
+      padding: 16px 20px !important;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      background: transparent;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      :global(.dark-theme) & {
+        border-top-color: rgba(255, 255, 255, 0.06);
+      }
+
+      .ant-pagination-total-text {
+        margin-right: auto;
+        color: var(--text-secondary);
+        font-size: 14px;
+      }
+
+      .ant-pagination-item {
+        border-radius: 8px !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+        background: rgba(255, 255, 255, 0.5) !important;
+        min-width: 36px !important;
+        height: 36px !important;
+        line-height: 34px !important;
+        font-size: 14px !important;
+
+        :global(.dark-theme) & {
+          background: rgba(255, 255, 255, 0.05) !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+          a { color: rgba(255, 255, 255, 0.7); }
+        }
+
+        &-active {
+          background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%) !important;
+          border: none !important;
+          box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+          a { color: #fff !important; }
+        }
+      }
+
+      .ant-pagination-prev, .ant-pagination-next {
+        min-width: 36px !important;
+        height: 36px !important;
+        line-height: 34px !important;
+
+        button {
+          border-radius: 8px !important;
+          background: rgba(255, 255, 255, 0.5) !important;
+          border-color: rgba(0, 0, 0, 0.1) !important;
+          width: 100% !important;
+          height: 100% !important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          :global(.dark-theme) & {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+      }
+
+      .ant-pagination-options {
+        .ant-select-selector {
+          border-radius: 8px !important;
+          background: rgba(255, 255, 255, 0.5) !important;
+          border-color: rgba(0, 0, 0, 0.1) !important;
+          height: 36px !important;
+          display: flex;
+          align-items: center;
+
+          :global(.dark-theme) & {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+
+        .ant-select-selection-item {
+          line-height: 34px !important;
+          font-size: 14px;
+        }
+
+        .ant-pagination-options-quick-jumper {
+          height: 36px !important;
+          line-height: 36px !important;
+          font-size: 14px;
+
+          input {
+            height: 36px !important;
+            border-radius: 8px !important;
+            background: rgba(255, 255, 255, 0.5) !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+
+            :global(.dark-theme) & {
+              background: rgba(255, 255, 255, 0.05) !important;
+              border-color: rgba(255, 255, 255, 0.1) !important;
+              color: rgba(255, 255, 255, 0.7);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* --- 4. Chart & Generic Container Styling --- */
+  .premium-chart-container {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    :global(.dark-theme) & {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+  }
+}
+
+/* Global Dropdown Override for Premium Theme */
+:global {
+  .premium-modal-dropdown {
+    .ant-select-dropdown, .ant-picker-dropdown {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(0, 0, 0, 0.05) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+      border-radius: 12px !important;
+
+      .ant-select-item {
+        border-radius: 6px !important;
+        margin: 2px 4px !important;
+        color: #334155 !important;
+
+        &:hover { background: rgba(0, 0, 0, 0.02) !important; }
+        &-option-selected {
+          background: rgba(139, 92, 246, 0.1) !important;
+          color: var(--color-purple, #8b5cf6) !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+  }
+
+  .dark-theme .premium-modal-dropdown {
+    .ant-select-dropdown, .ant-picker-dropdown {
+      background: rgba(25, 25, 30, 0.95) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+
+      .ant-select-item {
+        color: rgba(255, 255, 255, 0.8) !important;
+        &:hover { background: rgba(255, 255, 255, 0.08) !important; }
+        &-option-selected { background: rgba(139, 92, 246, 0.2) !important; color: #fff !important; }
+      }
+
+      .ant-picker-panel-container {
+        background: transparent !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
+
+      .ant-picker-header, .ant-picker-content th { color: rgba(255, 255, 255, 0.9) !important; }
+      .ant-picker-cell:not(.ant-picker-cell-in-view) { opacity: 0.3; }
+      .ant-picker-cell-inner { color: rgba(255, 255, 255, 0.8) !important; }
+    }
+  }
+}

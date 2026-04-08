@@ -1,0 +1,126 @@
+
+
+.transaction-enrollment-pool {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+
+  .chart-header {
+    display: flex;
+    height: 1.81rem;
+    line-height: 1.81rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.48rem;
+    z-index: 10;
+
+    .chart-header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .back-to-carousel-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+          transform: translateX(-3px);
+        }
+      }
+
+      .chart-title {
+        h3 {
+          margin: 0;
+          font-family: PingFang SC, PingFang SC;
+          font-weight: 600;
+          font-size: 18px;
+          color: var(--text-primary);
+          line-height: 25px;
+        }
+      }
+
+      .color-bar {
+        display: flex;
+        width: 160px;
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0 16px;
+        position: relative;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3) 50%, transparent);
+          animation: transactionShine 3s ease-in-out infinite;
+        }
+
+        .color-segment {
+          height: 100%;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          
+          &:hover {
+            filter: brightness(1.2);
+            transform: scaleY(1.2);
+          }
+        }
+      }
+
+      .customer-count {
+        font-family: PingFang SC, PingFang SC;
+        font-size: 15px;
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .chart-area-container {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* Theme adjustments */
+  &.light-theme {
+    .chart-header .chart-header-left {
+      .back-to-carousel-btn { background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.1); }
+      .color-bar { background: rgba(0, 0, 0, 0.05); }
+      .customer-count { color: rgba(0, 0, 0, 0.85); }
+    }
+  }
+}
+
+/* Animations matching CustomerUpgradePool */
+@keyframes transactionShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+// Tooltip matching
+.color-bar-tooltip-content {
+  .tooltip-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .tooltip-info { font-size: 12px; div { line-height: 1.8; display: flex; align-items: center; gap: 6px; } }
+}

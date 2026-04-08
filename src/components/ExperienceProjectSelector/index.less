@@ -1,0 +1,277 @@
+.experience-project-selector {
+    .selected-projects {
+      margin-bottom: 16px;
+      
+      .selected-project-item {
+        margin-bottom: 12px;
+        border: 1px solid #d9d9d9;
+        border-radius: 8px;
+        background: #ffffff;
+        overflow: hidden;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s ease;
+        
+        &:hover {
+          border-color: #ffd700;
+          background: #fffbf0;
+        }
+        .project-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 14px 16px;
+          background: #ffffff;
+          border-bottom: 1px solid #e5e5e5;
+          
+          .project-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+          }
+          
+          .remove-project-btn {
+            color: #999;
+            font-size: 14px;
+            padding: 6px;
+            min-width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            border: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            &:hover {
+              color: #fff;
+              background: #ff4d4f;
+              transform: scale(1.1);
+              box-shadow: 0 2px 8px rgba(255, 77, 79, 0.3);
+            }
+          }
+        }
+        
+        .selected-subjects {
+          padding: 14px 16px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          
+          .subject-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: #fffbe6;
+            border: 1px solid #ffd700;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #8b4513;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            
+            &:hover {
+              background: #fff8dc;
+              border-color: #f39c12;
+            }
+            
+            .remove-subject-btn {
+              background: rgba(139, 69, 19, 0.1);
+              border: none;
+              color: #8b4513;
+              cursor: pointer;
+              font-size: 10px;
+              padding: 0;
+              width: 18px;
+              height: 18px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.3s ease;
+              font-weight: bold;
+              
+              &:hover {
+                background: #ff4d4f;
+                color: #fff;
+                transform: scale(1.2);
+                box-shadow: 0 2px 6px rgba(255, 77, 79, 0.3);
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .add-selection-container {
+      margin-bottom: 16px;
+      
+      .add-selection-cell {
+        background: linear-gradient(135deg, #f8fafc, #ffffff);
+        border: 2px dashed #cbd5e1;
+        border-radius: 12px;
+        margin: 0;
+        padding: 0 10px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        &:hover {
+          border-color: #667eea;
+          background: linear-gradient(135deg, #e0e7ff, #f1f5f9);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .arco-cell-body {
+          padding: 16px 20px;
+          font-size: 16px;
+          font-weight: 500;
+          color: #64748b;
+        }
+        
+        .arco-cell-label {
+          font-weight: 600;
+          color: #1a202c;
+        }
+      }
+    }
+    
+    // 自定义 Picker 样式
+    .arco-picker {
+      .arco-picker-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #ffffff;
+        
+        .arco-picker-header-title {
+          font-weight: 700;
+          font-size: 18px;
+        }
+        
+        .arco-btn-text {
+          color: #ffffff;
+          font-weight: 600;
+          
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+      
+      .arco-picker-content {
+        .arco-picker-view-column-item {
+          font-size: 16px;
+          color: #64748b;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            color: #667eea;
+            background: #f1f5f9;
+          }
+          
+          &.arco-picker-view-column-item-selected {
+            color: #667eea;
+            font-weight: 600;
+            background: #e0e7ff;
+          }
+        }
+      }
+    }
+    
+    .error-hint {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #ff4d4f;
+    }
+  }
+  
+  // 响应式适配
+  @media (max-width: 768px) {
+    .experience-project-selector {
+      .selected-projects {
+        .selected-project-item {
+          .selected-subjects {
+            .subject-tag {
+              font-size: 13px;
+              padding: 5px 10px;
+              
+              .remove-subject-btn {
+                width: 16px;
+                height: 16px;
+                font-size: 9px;
+              }
+            }
+          }
+          
+          .project-header {
+            .remove-project-btn {
+              width: 24px;
+              height: 24px;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      
+      .picker-overlay {
+        padding: 16px;
+        
+        .picker-container {
+          max-width: 100%;
+          border-radius: 16px;
+          
+          .picker-header {
+            padding: 20px 24px;
+            
+            .picker-title {
+              font-size: 18px;
+              margin: 0 16px;
+              
+              &::before,
+              &::after {
+                display: none;
+              }
+            }
+            
+            .arco-btn-text {
+              padding: 10px 16px;
+              font-size: 14px;
+            }
+            
+            .arco-btn-primary {
+              padding: 12px 20px;
+              font-size: 14px;
+            }
+          }
+          
+          .picker-content {
+            height: 260px;
+            padding: 16px 12px;
+            
+            .arco-picker-view {
+              .arco-picker-view-column {
+                .arco-picker-view-column-item {
+                  height: 44px;
+                  line-height: 44px;
+                  font-size: 15px;
+                  margin: 1px 0;
+                  
+                  &:hover {
+                    transform: translateX(2px);
+                  }
+                  
+                  &.arco-picker-view-column-item-selected {
+                    transform: translateX(3px);
+                    
+                    &::before {
+                      left: -6px;
+                      height: 16px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

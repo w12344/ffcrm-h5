@@ -1,0 +1,305 @@
+.thinking-box {
+  margin: 12px 0;
+  margin-top: 0px;
+  border-radius: 12px;
+  background: var(--message-bg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  max-width: 600px; /* 限制最大宽度 */
+
+  &.thinking {
+    background: linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.12) 0%, 
+      rgba(147, 51, 234, 0.12) 100%);
+    border-color: rgba(59, 130, 246, 0.25);
+    
+    .thinking-header {
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+      
+      .thinking-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .thinking-icon {
+          font-size: 16px;
+          animation: thinking-pulse 2s ease-in-out infinite;
+        }
+        
+        .thinking-text {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--text-primary);
+          
+          .thinking-dots {
+            animation: thinking-text-dots 1.5s ease-in-out infinite;
+            display: inline-block;
+            width: 20px;
+          }
+        }
+      }
+    }
+    
+    .thinking-content {
+      padding: 16px 20px;
+      background: var(--content-bg);
+      max-height: 10.667rem; /* 设置最大高度，约400px */
+      overflow-y: auto; /* 内容超出时显示垂直滚动条 */
+      overflow-x: hidden; /* 防止水平滚动条 */
+      
+      .content-text {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        
+        p {
+          margin: 0 0 8px 0;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      /* 滚动条样式 */
+      &::-webkit-scrollbar {
+        width: 0.107rem; /* 2px */
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 0.8rem;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 0.8rem;
+        
+        &:hover {
+          background: var(--scrollbar-thumb-hover);
+        }
+      }
+
+      /* 针对 Firefox 的滚动条样式 */
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
+  }
+
+  &.completed {
+    background: rgba(59, 130, 246, 0.06);
+    border-color: rgba(59, 130, 246, 0.15);
+    
+    .thinking-header {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      
+      &.clickable {
+        cursor: pointer;
+        
+        &:hover {
+          background: rgba(59, 130, 246, 0.08);
+        }
+      }
+      
+      .thinking-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .completed-icon {
+          width: 16px;
+          height: 16px;
+          background: #10b981;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 10px;
+          font-weight: bold;
+        }
+        
+        .completed-text {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--text-primary);
+        }
+      }
+      
+      .expand-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        opacity: 0.6;
+        transition: all 0.3s ease;
+        
+        &.expanded {
+          transform: rotate(180deg);
+        }
+        
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    
+    .thinking-content.expanded {
+      padding: 16px 20px;
+      background: var(--content-bg);
+      border-top: 1px solid rgba(59, 130, 246, 0.1);
+      animation: expandContent 0.3s ease-out;
+      max-height: 10.667rem; /* 设置最大高度，约400px */
+      overflow-y: auto; /* 内容超出时显示垂直滚动条 */
+      overflow-x: hidden; /* 防止水平滚动条 */
+      
+      .content-text {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        
+        p {
+          margin: 0 0 8px 0;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      /* 滚动条样式 */
+      &::-webkit-scrollbar {
+        width: 0.107rem; /* 2px */
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 0.8rem;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 0.8rem;
+        
+        &:hover {
+          background: var(--scrollbar-thumb-hover);
+        }
+      }
+
+      /* 针对 Firefox 的滚动条样式 */
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
+  }
+}
+
+// 思考脉冲动画
+@keyframes thinking-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+// 文字点点动画
+@keyframes thinking-text-dots {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  33% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  66% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+// 内容展开动画
+@keyframes expand-content {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 已完成思考内容展开动画
+@keyframes expandContent {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+
+// 暗色主题适配
+[data-theme="dark"] .thinking-box {
+  &.thinking {
+    background: linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.15) 0%, 
+      rgba(147, 51, 234, 0.15) 100%);
+    border-color: rgba(59, 130, 246, 0.35);
+  }
+  
+  &.completed {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.2);
+    
+    .thinking-header.clickable:hover {
+      background: rgba(59, 130, 246, 0.12);
+    }
+    
+    .thinking-content.expanded {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+}
+
+// 亮色主题适配
+[data-theme="light"] .thinking-box {
+  &.thinking {
+    background: linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.08) 0%, 
+      rgba(147, 51, 234, 0.08) 100%);
+    border-color: rgba(59, 130, 246, 0.2);
+  }
+  
+  &.completed {
+    background: rgba(59, 130, 246, 0.04);
+    border-color: rgba(59, 130, 246, 0.12);
+    
+    .thinking-header.clickable:hover {
+      background: rgba(59, 130, 246, 0.08);
+    }
+    
+    .thinking-content.expanded {
+      background: rgba(0, 0, 0, 0.01);
+    }
+  }
+}

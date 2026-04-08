@@ -1,0 +1,505 @@
+/**
+ * Design System - Component Styles
+ * Reusable component classes for consistent UI elements
+ * 
+ * Usage: @import '@/styles/design-system/components.less';
+ */
+
+@import './tokens.less';
+@import './mixins.less';
+
+/* ========================================
+   PAGE HEADER COMPONENT
+   ======================================== */
+
+.ds-page-header {
+  height: @header-height;
+  padding: 0 @header-padding-x;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  flex-shrink: 0;
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: @spacing-xl;
+  }
+  
+  .header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: @spacing-xl;
+  }
+}
+
+/* ========================================
+   LOGO COMPONENT
+   ======================================== */
+
+.ds-logo {
+  width: @logo-size-base;
+  height: @logo-size-base;
+  border-radius: @logo-border-radius;
+  .flex-center();
+  box-shadow: @shadow-primary-lg;
+  flex-shrink: 0;
+  transition: transform @transition-bounce;
+  
+  &:hover {
+    transform: scale(1.05) rotate(-3deg);
+  }
+  
+  &.ds-logo-sm {
+    width: @logo-size-sm;
+    height: @logo-size-sm;
+    border-radius: @radius-lg;
+  }
+  
+  .logo-shape {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    
+    .shape-top {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 14px;
+      height: 10px;
+      background: #fff;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
+      opacity: 1;
+    }
+    
+    .shape-bottom {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+      opacity: 0.9;
+    }
+  }
+}
+
+/* ========================================
+   TITLE GROUP COMPONENT
+   ======================================== */
+
+.ds-title-group {
+  .flex-column();
+  justify-content: center;
+  gap: 6px;
+  
+  .main-title {
+    .text-page-title();
+    
+    :global(.dark-theme) & {
+      color: @color-dark-text-primary;
+    }
+  }
+  
+  .sub-title {
+    .text-subtitle();
+    display: flex;
+    align-items: center;
+    gap: @spacing-md;
+    
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: @color-success-light;
+      box-shadow: @shadow-success;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background: @color-success-light;
+        .animation-pulse();
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+/* ========================================
+   SWITCHER/TOGGLE COMPONENT
+   ======================================== */
+
+.ds-switcher {
+  background: @color-bg-subtle;
+  padding: 5px;
+  border-radius: @radius-md;
+  display: flex;
+  gap: 6px;
+  
+  :global(.dark-theme) & {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .switch-item {
+    padding: @spacing-md @spacing-2xl;
+    border-radius: @spacing-md;
+    font-size: @font-size-base;
+    font-weight: @font-weight-medium;
+    color: @color-text-tertiary;
+    cursor: pointer;
+    transition: all @transition-base;
+    white-space: nowrap;
+    
+    &.active {
+      background: @color-bg-elevated;
+      color: @color-primary;
+      font-weight: @font-weight-semibold;
+      box-shadow: @shadow-sm;
+      
+      :global(.dark-theme) & {
+        background: rgba(255, 255, 255, 0.15);
+      }
+    }
+    
+    &:hover:not(.active) {
+      color: @color-text-secondary;
+    }
+    
+    :global(.dark-theme) & {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+/* ========================================
+   FILTER PILL COMPONENT
+   ======================================== */
+
+.ds-filter-pill {
+  .pill-filter();
+  
+  .icon {
+    font-size: 15px;
+    color: @color-primary;
+  }
+}
+
+/* ========================================
+   USER PROFILE COMPONENT
+   ======================================== */
+
+.ds-user-profile {
+  display: flex;
+  align-items: center;
+  gap: @spacing-md;
+  padding: 4px @spacing-base 4px 4px;
+  background: @color-bg-elevated;
+  border-radius: @radius-full;
+  box-shadow: @shadow-sm;
+  border: 1px solid @color-border-light;
+  
+  :global(.dark-theme) & {
+    background: @color-dark-bg-elevated;
+    border-color: transparent;
+  }
+  
+  .info {
+    .flex-column();
+    gap: 2px;
+    
+    .name {
+      font-size: @font-size-sm;
+      font-weight: @font-weight-semibold;
+      color: @color-text-primary;
+      line-height: @line-height-tight;
+    }
+    
+    .role {
+      font-size: @font-size-xs;
+      font-weight: @font-weight-medium;
+      color: @color-text-quaternary;
+      line-height: @line-height-tight;
+    }
+  }
+}
+
+/* ========================================
+   CARD COMPONENT
+   ======================================== */
+
+.ds-card {
+  .card-base();
+  
+  &.ds-card-hover {
+    .card-hover();
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: @spacing-xl;
+    
+    .store-tag {
+      .flex-center();
+      gap: @spacing-sm;
+      font-size: @font-size-sm;
+      font-weight: @font-weight-semibold;
+      color: @color-primary;
+      
+      :global(.anticon) {
+        font-size: @font-size-base;
+      }
+    }
+    
+    .time-tag {
+      font-size: @font-size-xs;
+      font-weight: @font-weight-medium;
+      color: @color-text-quaternary;
+      
+      span {
+        color: @color-text-secondary;
+        font-weight: @font-weight-semibold;
+      }
+    }
+  }
+  
+  .card-title {
+    .text-card-title();
+    margin-bottom: @spacing-xl;
+  }
+}
+
+/* ========================================
+   METRIC DISPLAY COMPONENT
+   ======================================== */
+
+.ds-metric {
+  .flex-column();
+  gap: @spacing-md;
+  
+  .label {
+    .text-label();
+  }
+  
+  .value-group {
+    display: flex;
+    align-items: baseline;
+    gap: @spacing-sm;
+    
+    .currency {
+      font-size: @font-size-xl;
+      font-weight: @font-weight-bold;
+      color: @color-text-tertiary;
+    }
+    
+    .number {
+      .text-numeric-large();
+      color: @color-text-primary;
+    }
+  }
+  
+  .status-text {
+    font-size: @font-size-sm;
+    font-weight: @font-weight-medium;
+    color: @color-text-tertiary;
+    
+    .highlight {
+      color: @color-primary;
+      font-weight: @font-weight-semibold;
+    }
+    
+    &.warning {
+      color: @color-error;
+    }
+  }
+  
+  .action-link {
+    .flex-center();
+    gap: @spacing-sm;
+    font-size: @font-size-sm;
+    font-weight: @font-weight-semibold;
+    color: @color-primary;
+    cursor: pointer;
+    transition: all @transition-base;
+    
+    &:hover {
+      color: @color-primary-light;
+    }
+  }
+}
+
+/* ========================================
+   TABLE COMPONENT
+   ======================================== */
+
+.ds-table {
+  background: @color-bg-elevated;
+  border-radius: @card-border-radius;
+  padding: @spacing-2xl @spacing-3xl;
+  box-shadow: @card-shadow;
+  
+  .table-header {
+    padding: @spacing-lg 0;
+    border-bottom: 1px solid @color-border-light;
+    margin-bottom: @spacing-md;
+    
+    .col {
+      .text-label();
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+  
+  .table-body {
+    .table-row {
+      padding: @spacing-xl 0;
+      border-bottom: 1px solid @color-bg-subtle;
+      transition: all @transition-base;
+      
+      &:hover {
+        background: @color-bg-subtle;
+        border-radius: @radius-base;
+        padding-left: @spacing-base;
+        padding-right: @spacing-base;
+      }
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+/* ========================================
+   INPUT COMPONENT
+   ======================================== */
+
+.ds-input {
+  .input-base();
+}
+
+/* ========================================
+   BUTTON COMPONENTS
+   ======================================== */
+
+.ds-btn-primary {
+  .button-primary();
+}
+
+.ds-btn-secondary {
+  .button-secondary();
+}
+
+/* ========================================
+   SECTION DIVIDER
+   ======================================== */
+
+.ds-section-divider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: @spacing-3xl 0 @spacing-xl 0;
+  
+  .left-info {
+    .flex-column();
+    gap: @spacing-xs;
+    
+    .section-title {
+      .text-section-title();
+      font-size: @font-size-2xl;
+    }
+    
+    .section-subtitle {
+      .text-subtitle();
+      font-size: @font-size-xs;
+    }
+  }
+  
+  .right-actions {
+    display: flex;
+    gap: @spacing-md;
+  }
+}
+
+/* ========================================
+   ROLE TAG
+   ======================================== */
+
+.ds-role-tag {
+  padding: @spacing-xs @spacing-md;
+  border-radius: @radius-sm;
+  background: @color-primary-bg;
+  color: @color-primary;
+  font-size: @font-size-xs;
+  font-weight: @font-weight-semibold;
+  white-space: nowrap;
+}
+
+/* ========================================
+   AVATAR GROUP
+   ======================================== */
+
+.ds-avatar-group {
+  display: flex;
+  align-items: center;
+  gap: @spacing-md;
+  
+  .user-details {
+    .flex-column();
+    gap: 4px;
+    
+    .name {
+      font-size: @font-size-base;
+      font-weight: @font-weight-semibold;
+      color: @color-text-primary;
+      line-height: @line-height-tight;
+    }
+    
+    .auth-id {
+      font-size: @font-size-xs;
+      font-weight: @font-weight-medium;
+      color: @color-text-quaternary;
+      line-height: @line-height-tight;
+    }
+  }
+}
+
+/* ========================================
+   WEIGHT DISPLAY
+   ======================================== */
+
+.ds-weight {
+  .text-numeric-small();
+  color: @color-primary;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.ds-truncate {
+  .truncate();
+}
+
+.ds-line-clamp-2 {
+  .line-clamp(2);
+}
+
+.ds-scrollbar {
+  .scrollbar-custom();
+}

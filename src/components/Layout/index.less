@@ -1,0 +1,357 @@
+@import "../../styles/variables.css";
+
+.layout {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-page);
+  color: var(--color-text-primary);
+}
+
+.layout-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-index-popup);
+  background: var(--color-background);
+  box-shadow: var(--shadow-medium);
+  border-bottom: 1px solid var(--color-border-light);
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-small) var(--spacing-medium);
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 64px;
+
+    @media (max-width: 768px) {
+      padding: var(--spacing-small) var(--spacing-small);
+      height: 56px;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    font-size: var(--font-size-xl);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+
+    .logo-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--color-primary);
+      border-radius: var(--border-radius-medium);
+      color: white;
+      transition: background 0.3s ease;
+
+      svg {
+        fill: currentColor;
+      }
+
+      @media (max-width: 768px) {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    &:hover .logo-icon {
+      background: var(--color-primary-hover);
+    }
+
+    .logo-text {
+      @media (max-width: 480px) {
+        display: none;
+      }
+    }
+  }
+
+  .theme-controls {
+    display: flex;
+    align-items: center;
+    margin-right: var(--spacing-medium);
+
+    @media (max-width: 768px) {
+      margin-right: var(--spacing-small);
+    }
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+
+    @media (max-width: 768px) {
+      gap: 2px;
+    }
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-regular);
+    border-radius: var(--border-radius-large);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      padding: 8px 12px;
+      font-size: var(--font-size-mini);
+      gap: 6px;
+    }
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      padding: 6px 8px;
+      min-width: 52px;
+      border-radius: var(--border-radius-medium);
+
+      .nav-text {
+        font-size: 10px;
+        line-height: 1;
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--color-primary);
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+      color: var(--color-primary);
+      transform: translateY(-1px);
+      background: var(--color-background-container);
+      box-shadow: var(--shadow-light);
+
+      &::before {
+        opacity: 0.1;
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &.active {
+      color: var(--color-primary);
+      background: var(--color-background-container);
+      box-shadow: var(--shadow-light);
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 22px;
+        height: 2px;
+        background: var(--color-primary);
+        border-radius: 1px;
+
+        @media (max-width: 480px) {
+          width: 14px;
+          height: 1.5px;
+        }
+      }
+    }
+
+    .nav-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        fill: currentColor;
+        transition: transform 0.3s ease;
+
+        @media (max-width: 768px) {
+          width: 20px;
+          height: 20px;
+        }
+
+        @media (max-width: 480px) {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+
+    .nav-text {
+      white-space: nowrap;
+
+      @media (max-width: 360px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.layout-content {
+  flex: 1;
+}
+
+/* 响应式优化 */
+@media (max-width: 320px) {
+  .layout-header .header-content {
+    padding: var(--spacing-mini);
+  }
+
+  .layout-header .logo {
+    font-size: var(--font-size-medium);
+
+    .logo-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .layout-header .nav-item {
+    padding: 2px 4px;
+    min-width: 40px;
+  }
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .layout {
+    background-color: var(--bg-color-page);
+  }
+
+  .layout-header {
+    background: linear-gradient(135deg, #3b2a16 0%, #4b361c 100%);
+
+    .logo {
+      color: #e8d8b0;
+    }
+
+    .nav-item {
+      color: #d2b48c;
+
+      &:hover {
+        color: #e8d8b0;
+        background: rgba(255, 215, 0, 0.12);
+      }
+
+      &.active {
+        color: #e8d8b0;
+        background: rgba(255, 215, 0, 0.2);
+      }
+    }
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .layout-header {
+    display: none;
+  }
+
+  .layout-content {
+    padding-top: 0;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  .layout-header {
+    background: rgba(255, 255, 255, 1);
+    border-bottom: 2px solid #ffd700;
+  }
+
+  .layout-header .nav-item {
+    border: 1px solid rgba(255, 215, 0, 0.5);
+
+    &.active {
+      border-color: #ffd700;
+      background: rgba(255, 215, 0, 0.3);
+    }
+  }
+}
+
+/* 减少动画效果（用户偏好设置） */
+@media (prefers-reduced-motion: reduce) {
+  .layout-header .nav-item {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+
+  .layout-header .nav-item .nav-icon svg {
+    transition: none;
+  }
+
+  .layout-header .logo {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    .logo-icon {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}
+
+/* 为页面内容添加温暖的背景渐变 */
+.layout-content {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 254, 247, 0.3) 0%,
+      rgba(255, 248, 220, 0.2) 25%,
+      rgba(255, 250, 205, 0.1) 50%,
+      rgba(255, 255, 224, 0.2) 75%,
+      rgba(255, 250, 205, 0.3) 100%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+}

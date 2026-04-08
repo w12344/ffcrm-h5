@@ -1,0 +1,113 @@
+.ceo-dashboard-container {
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-color, #f0f2f5);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .ceo-dashboard-content {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1920px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Layer 1: Global KPI (60% of viewport height) */
+  .layer-1-global-kpi {
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg, #fff);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Layer 2: Org Bubble (40% of viewport height) */
+  .layer-2-org-bubble {
+    height: 420px;
+    background: var(--card-bg, #fff);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+  }
+
+  /* Layer 3: Workload Forecast */
+  .layer-3-workload {
+    display: flex;
+    gap: 24px;
+    min-height: 400px;
+
+    .workload-left {
+      flex: 6;
+      background: var(--card-bg, #fff);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 24px;
+    }
+
+    .workload-right {
+      flex: 4;
+      background: var(--card-bg, #fff);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 24px;
+    }
+  }
+
+  /* Layer 4: Management Whip */
+  .layer-4-whip {
+    display: flex;
+    gap: 24px;
+    min-height: 400px;
+
+    .rank-list-area {
+      flex: 1;
+      background: var(--card-bg, #fff);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 24px;
+    }
+
+    .ai-whip-area {
+      flex: 1;
+      background: var(--card-bg, #fff);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 24px;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1440px) {
+  .ceo-dashboard-container {
+    .layer-1-global-kpi {
+      height: 55vh;
+    }
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .ceo-dashboard-container {
+    .layer-1-global-kpi {
+      height: 50vh;
+    }
+    
+    .layer-3-workload, .layer-4-whip {
+      flex-direction: column;
+      
+      > div {
+        width: 100%;
+      }
+    }
+  }
+}

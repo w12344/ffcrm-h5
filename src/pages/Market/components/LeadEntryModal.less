@@ -1,0 +1,202 @@
+/* LeadEntryModal Premium Styles */
+.lead-entry-modal-premium {
+  .premium-modal-content {
+    padding: 0 !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Add relative positioning for absolute footer */
+  }
+
+  /* --- Tabs Styling --- */
+  .lead-entry-tabs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+
+    .ant-tabs-nav {
+      margin-bottom: 0;
+      padding: 16px 32px 0;
+      background: transparent;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+      :global(.dark-theme) & {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+
+      &::before { display: none; }
+    }
+
+    .ant-tabs-nav-list {
+      background: rgba(0, 0, 0, 0.04);
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+
+      :global(.dark-theme) & {
+        background: rgba(255, 255, 255, 0.04);
+      }
+    }
+
+    .ant-tabs-tab {
+      padding: 8px 24px;
+      margin: 0 !important;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--text-secondary);
+
+      &:hover {
+        color: var(--text-primary);
+      }
+
+      &.ant-tabs-tab-active {
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+        .ant-tabs-tab-btn {
+          color: var(--color-purple, #8b5cf6);
+          font-weight: 600;
+        }
+
+        :global(.dark-theme) & {
+          background: rgba(255, 255, 255, 0.1);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    .ant-tabs-ink-bar {
+      display: none !important;
+    }
+  }
+
+  .tab-content-wrapper {
+    padding: 24px 32px;
+    background: transparent;
+  }
+
+  /* --- Manual Entry Form Styles --- */
+  .manual-entry-form {
+    /* Removed the hardcoded grid layout because we are using Ant Design Row/Col */
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 32px; */
+
+    .ant-form-item {
+      margin-bottom: 24px !important;
+
+      &.full-width {
+        /* grid-column: 1 / span 2; */
+      }
+
+      .ant-form-item-label {
+        padding-bottom: 8px;
+        label {
+          font-size: 13px;
+          font-weight: 600;
+          color: #475569;
+
+          :global(.dark-theme) & {
+            color: rgba(255, 255, 255, 0.85);
+          }
+
+          &.ant-form-item-required::before {
+            color: #ff4d4f;
+            font-size: 12px;
+          }
+        }
+      }
+
+      /* REMOVED .ant-input-affix-wrapper, .ant-input, .ant-select-selector overrides to let PremiumForm handle it */
+
+      .ant-input-affix-wrapper {
+        padding: 0 !important; /* Let PremiumForm handle padding */
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        width: 100% !important;
+
+        .ant-input {
+          height: 100% !important;
+          background: transparent !important;
+          padding: 0 8px !important;
+          border: none !important;
+          width: 100% !important;
+
+          &:focus {
+            box-shadow: none !important;
+          }
+        }
+      }
+
+      .ant-select-selection-item, .ant-select-selection-placeholder {
+        line-height: 42px !important;
+      }
+
+      /* Let PremiumForm handle textarea */
+
+      .ant-input-prefix {
+        margin-right: 8px;
+        color: #94a3b8;
+        font-size: 15px;
+      }
+    }
+  }
+
+  /* Check duplicate button */
+  .btn-check-duplicate {
+    background: rgba(139, 92, 246, 0.1) !important;
+    color: var(--color-purple, #8b5cf6) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    height: 28px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 0 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px;
+    transition: all 0.2s;
+    box-shadow: none !important;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(139, 92, 246, 0.15) !important;
+      color: var(--color-purple, #8b5cf6) !important;
+      transform: scale(1.02);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Make sure tab content has bottom padding and consistent height */
+  .ant-tabs-content-holder {
+    min-height: 680px;
+    overflow-y: visible;
+    padding-bottom: 24px;
+
+    .ant-tabs-content, .ant-tabs-tabpane {
+      height: 100%;
+    }
+  }
+
+  /* Compact History Table Styles */
+  .compact-history-table {
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      padding: 8px 12px !important;
+      font-size: 13px !important;
+    }
+    
+    .ant-table-wrapper .ant-table-container {
+      border-radius: 6px;
+    }
+  }
+}

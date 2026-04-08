@@ -1,0 +1,122 @@
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: transparent;
+  // padding: 8px 16px;
+  transition: all 0.3s ease;
+
+  .legend-items {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .legend-divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    }
+
+    .legend-label {
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 500;
+    }
+
+    .legend-icon {
+      font-size: 13px;
+
+      &.size-icon {
+        color: rgba(0, 0, 0, 0.85);
+        font-weight: bold;
+      }
+      &.alert-icon { opacity: 0.8; }
+      &.opportunity-icon { opacity: 0.8; }
+    }
+
+    &:hover {
+      .legend-label { color: #000; }
+    }
+  }
+
+  .legend-export-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    &:active { transform: scale(0.95); }
+  }
+
+  /* Dark Theme adaptation (if needed) */
+  &.dark-theme {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+
+    .legend-divider { background: rgba(255, 255, 255, 0.1); }
+    .legend-label { color: rgba(255, 255, 255, 0.7); }
+    .legend-icon.size-icon { color: #fff; }
+    .legend-export-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      &:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+    }
+  }
+}
+
+// 适配小屏 (Mobile Safari 优化)
+@media (max-width: 600px) {
+  .chart-header {
+    flex-direction: column;
+    height: auto !important;
+    gap: 12px;
+    padding: 12px !important;
+
+    .chart-header-left {
+      width: 100%;
+      justify-content: space-between;
+      .color-bar { width: 100px; }
+    }
+  }
+
+  .chart-legend {
+    gap: 8px;
+    padding: 4px 8px;
+    width: 100%;
+    justify-content: space-between;
+
+    .legend-items { gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .legend-label { font-size: 11px; }
+  }
+}

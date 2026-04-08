@@ -1,0 +1,85 @@
+@import "@/pages/Dashboard/styles/themes.less";
+
+.glass-date-picker-wrapper {
+  display: inline-block;
+  --current-text: #1e293b;
+  --current-text-secondary: #64748b;
+  
+  :global(.dark-theme) & {
+    --current-text: rgba(255, 255, 255, 0.9);
+    --current-text-secondary: rgba(255, 255, 255, 0.45);
+  }
+
+  .glass-picker-component {
+    background: #f0f2f5 !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 22px;
+    height: 44px;
+    padding: 0 16px;
+    box-shadow:
+      inset 2px 2px 5px rgba(166, 171, 189, 0.4),
+      inset -3px -3px 7px rgba(255, 255, 255, 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.3s ease;
+
+    :global(.dark-theme) & {
+      background: rgba(30, 41, 59, 0.5) !important;
+      border-color: rgba(255, 255, 255, 0.05) !important;
+      box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.3),
+        inset -1px -1px 3px rgba(255, 255, 255, 0.05),
+        0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    &:hover {
+      background: #eef0f3 !important;
+      box-shadow:
+        inset 2px 2px 5px rgba(166, 171, 189, 0.4),
+        inset -3px -3px 7px rgba(255, 255, 255, 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.02) !important;
+        
+      :global(.dark-theme) & {
+        background: rgba(30, 41, 59, 0.6) !important;
+      }
+    }
+
+    &.ant-picker-focused,
+    &.ant-picker-open {
+      background: #f8fafc !important;
+      border-color: rgba(139, 92, 246, 0.4) !important;
+      box-shadow:
+        inset 1px 1px 3px rgba(166, 171, 189, 0.3),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.9),
+        0 0 0 2px rgba(139, 92, 246, 0.15) !important;
+        
+      :global(.dark-theme) & {
+        background: rgba(30, 41, 59, 0.7) !important;
+        box-shadow:
+          inset 1px 1px 3px rgba(0, 0, 0, 0.4),
+          inset -1px -1px 3px rgba(255, 255, 255, 0.05),
+          0 0 0 2px rgba(139, 92, 246, 0.25) !important;
+      }
+    }
+
+    :global(.ant-picker-input > input) {
+      color: var(--current-text);
+      font-weight: 500;
+      &::placeholder {
+        color: var(--current-text-secondary);
+        font-weight: 400;
+      }
+    }
+
+    :global(.ant-picker-separator), :global(.ant-picker-suffix) {
+      color: var(--current-text-secondary);
+    }
+    
+    :global(.ant-picker-clear) {
+      background: transparent;
+      color: var(--current-text-secondary);
+      &:hover {
+        color: var(--current-text);
+      }
+    }
+  }
+}

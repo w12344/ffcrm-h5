@@ -1,0 +1,23 @@
+@import '../Dashboard/index.less';
+
+.market-dashboard {
+  /* No more custom overrides for left/right content.
+     Relying on standard .main-content, .dashboard-content and .chat-section
+     defined in Dashboard/index.less for total visual consistency. */
+
+  /* Override: Remove 3D effect from KPI card chart containers to match Boss page */
+  .kpi-card .chart-container {
+    box-shadow: none;
+    border: none;
+    backdrop-filter: none;
+    animation: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .main-content {
+    /* Ensure the main content area has the same height logic as Dashboard */
+    height: calc(100% - 3.467rem);
+  }
+
+}

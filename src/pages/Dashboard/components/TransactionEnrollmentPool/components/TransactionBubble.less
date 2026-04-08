@@ -1,0 +1,148 @@
+.transaction-bubble-item {
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1;
+  will-change: transform, filter;
+
+  // 基础浮动动画
+  animation: transactionFloatRandom var(--duration, 6s) ease-in-out var(--delay, 0s) infinite alternate;
+
+  // 内层 30% 透明高光 (对齐 CustomerBubble::after)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), rgba(255,255,255,0) 60%);
+    opacity: 0.35;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    will-change: opacity;
+  }
+
+  // 外层发光扩散 (对齐 CustomerBubble::before)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2), rgba(255,255,255,0) 60%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    z-index: 100;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    animation-play-state: paused;
+
+    &::before { opacity: 0.6; }
+    &::after { opacity: 0.5; }
+  }
+
+  /* 感叹号警示 - 1:1 对齐 CustomerBubble */
+  .exclamation-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12%;
+    animation: transactionExclamationPulse 1.5s ease-in-out infinite;
+
+    .exclamation-line {
+      width: 15%; height: 50%; background: #000; border-radius: 10px;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+    .exclamation-dot {
+      width: 15%; height: 15%; background: #000; border-radius: 50%;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  /* 退费重度沉底 */
+  &.refunded-sink {
+    animation: none !important;
+    opacity: 0.6;
+    filter: grayscale(0.5);
+    cursor: default;
+
+    &::after { opacity: 0.1; }
+  }
+
+  /* 机会高频闪烁 */
+  &.blink {
+    animation: transactionBlinkUrgent 0.8s ease-in-out infinite alternate !important;
+  }
+
+  /* 产品徽章 - 居中显示 */
+  .product-badges {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    z-index: 20;
+    width: 90%;
+
+    .product-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 2px 6px;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+/* 动画定义 */
+@keyframes transactionFloatRandom {
+  0% { transform: translate(-50%, -50%) translateX(0) translateY(0) rotate(0deg); }
+  50% {
+    transform: translate(-50%, -50%)
+      translateX(var(--float-x, 10px))
+      translateY(calc(var(--float-y, 10px) * -0.5))
+      rotate(calc(var(--rotate, 3deg) * 0.5));
+  }
+  100% {
+    transform: translate(-50%, -50%)
+      translateX(calc(var(--float-x, 10px) * -0.5))
+      translateY(var(--float-y, 10px))
+      rotate(var(--rotate, 0deg));
+  }
+}
+
+@keyframes transactionBlinkUrgent {
+  0% { transform: translate(-50%, -50%) scale(1); filter: brightness(1); box-shadow: 0 0 0 transparent; }
+  100% { transform: translate(-50%, -50%) scale(1.15); filter: brightness(1.2); box-shadow: 0 0 12px rgba(255,255,255,0.5); }
+}
+
+@keyframes transactionExclamationPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
+  50% { transform: translate(-50%, -50%) scale(1.15); filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); }
+}

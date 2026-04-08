@@ -1,0 +1,50 @@
+@import './styles/responsive.css';
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 基础样式重置 */
+* {
+  box-sizing: border-box;
+}
+
+/* 根字体大小由JavaScript动态设置，无需CSS静态设置 */
+
+html {
+  scrollbar-gutter: stable;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: transparent; /* Allow theme colors from .dark-theme/.light-theme to show */
+  transition: background-color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  font-size: 16px; /* 使用固定px值，让px2rem插件自动转换 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-gutter: stable;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: transparent; /* Background colors come from theme classes applied to html */
+  transition: background-color 0.3s ease;
+}
+
+/* 响应式容器类 */
+.page-container {
+  width: 100%;
+  padding: 16px;
+}
+
+/* 移动端默认样式 */
+@media screen and (max-width: 767px) {
+  .page-container {
+    padding: 16px;
+  }
+}

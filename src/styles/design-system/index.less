@@ -1,0 +1,37 @@
+/**
+ * Design System - Main Entry Point
+ * Import this file to get access to the complete design system
+ * 
+ * Usage: @import '@/styles/design-system/index.less';
+ */
+
+@import './tokens.less';
+@import './mixins.less';
+@import './components.less';
+
+/* ========================================
+   GLOBAL BASE STYLES
+   ======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: @font-family-base;
+  color: @color-text-primary;
+  background: @color-bg-base;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   DARK THEME SUPPORT
+   ======================================== */
+
+.dark-theme {
+  background: @color-dark-bg-base;
+  color: @color-dark-text-primary;
+}

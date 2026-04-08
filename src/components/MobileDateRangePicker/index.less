@@ -1,0 +1,52 @@
+.mobile-date-range-picker {
+  display: contents;  // 让子元素直接参与父级网格布局
+
+  .date-picker-start,
+  .date-picker-end {
+    height: 1.067rem !important;
+
+    .ant-picker-input {
+      input {
+        font-size: 0.373rem !important;
+        
+        &::placeholder {
+          font-size: 0.347rem !important;
+        }
+      }
+    }
+
+    .ant-picker-suffix {
+      font-size: 0.427rem;
+    }
+
+    .ant-picker-clear {
+      font-size: 0.347rem;
+    }
+  }
+
+  .date-separator {
+    display: none;  // 隐藏分隔符，因为两个选择器在不同列
+  }
+}
+
+// 移动端优化
+@media (max-width: 768px) {
+  .mobile-date-range-picker {
+    .date-picker-start,
+    .date-picker-end {
+      .ant-picker-input {
+        input {
+          font-size: 0.347rem !important;
+        }
+      }
+
+      .ant-picker-suffix {
+        font-size: 0.4rem;
+      }
+
+      .ant-picker-clear {
+        font-size: 0.347rem;
+      }
+    }
+  }
+}

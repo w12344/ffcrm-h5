@@ -1,0 +1,69 @@
+.market-header-actions {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+
+  .market-pill-button {
+    height: 32px;
+    padding: 0 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    svg {
+      width: 14px;
+      height: 14px;
+      color: rgba(0, 0, 0, 0.65);
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: var(--color-purple-light);
+      color: var(--color-purple);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+      svg {
+        color: var(--color-purple);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+      background: rgba(255, 255, 255, 1);
+    }
+  }
+}
+
+// Dark Mode Support
+.dark-theme .market-header-actions {
+  .market-pill-button {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+
+    svg {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--color-purple);
+      color: #ffffff;
+
+      svg {
+        color: #ffffff;
+      }
+    }
+  }
+}

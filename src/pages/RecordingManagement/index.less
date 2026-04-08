@@ -1,0 +1,998 @@
+/**
+ * 录音管理页面样式
+ * 复用 Dashboard 的主题变量，保持统一的视觉风格
+ */
+@import "../Dashboard/styles/themes.less";
+
+.recording-management-page {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  padding: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  /* 使用与 Dashboard 一致的背景渐变 */
+  &.dark-theme,
+  &.light-theme {
+    background: linear-gradient(
+      135deg,
+      var(--dashboard-bg-gradient-start) 0%,
+      var(--dashboard-bg-gradient-mid) 50%,
+      var(--dashboard-bg-gradient-end) 100%
+    );
+    color: var(--text-primary);
+  }
+
+  &.light-theme {
+    background: url("@/assets/images/bg.png") center center/cover no-repeat
+      fixed !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 0.533rem;
+    padding-bottom: 0.533rem;
+    border-bottom: 1px solid var(--border-lighter);
+    margin-bottom: 0.8rem;
+
+    h1 {
+      font-size: 0.64rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+  }
+
+  .filter-section {
+    background: var(--kpi-card-bg);
+    backdrop-filter: blur(0.267rem);
+    border-radius: 0.533rem;
+    padding: 0.533rem 0.667rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid var(--border-lighter);
+    transition: all 0.3s ease;
+
+    .filter-row {
+      display: flex;
+      gap: 0.533rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.213rem;
+      min-width: 5.333rem;
+
+      .filter-label {
+        font-size: 0.373rem;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+    }
+
+    .filter-actions {
+      display: flex;
+      gap: 0.32rem;
+      margin-left: auto;
+    }
+
+    // DatePicker 样式
+    .ant-picker {
+      height: 0.853rem;
+      font-size: 0.373rem;
+      border-radius: 0.133rem;
+      border: 1px solid var(--border-lighter);
+      background: rgba(255, 255, 255, 0.05) !important;
+      padding: 0 0.32rem;
+      transition: all 0.2s ease;
+
+      .ant-picker-input > input {
+        color: #ffffff !important;
+        font-size: 0.373rem;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.3) !important;
+        }
+      }
+
+      .ant-picker-suffix,
+      .ant-picker-separator {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
+
+      &:hover {
+        border-color: var(--color-purple-primary);
+        background: rgba(255, 255, 255, 0.08) !important;
+      }
+
+      &.ant-picker-focused {
+        border-color: var(--color-purple-primary);
+        background: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.2);
+      }
+    }
+
+    // Button 样式
+    .ant-btn {
+      height: 0.853rem;
+      padding: 0 0.4rem;
+      font-size: 0.373rem;
+      border-radius: 0.213rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.133rem;
+
+      &.ant-btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--color-purple-primary) 0%,
+          var(--color-purple-gradient-end) 100%
+        );
+        border: 1px solid var(--color-purple-primary);
+        color: #ffffff;
+        box-shadow: 0 0.133rem 0.267rem rgba(139, 92, 246, 0.3);
+
+        &:hover {
+          background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
+          transform: translateY(-1px);
+          box-shadow: 0 0.213rem 0.4rem rgba(139, 92, 246, 0.4);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      &:not(.ant-btn-primary) {
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.3);
+          transform: translateY(-1px);
+          box-shadow: 0 0.133rem 0.267rem rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  // 客户选择按钮样式
+  .customer-btn {
+    padding: 0.16rem 0.32rem !important;
+    height: auto !important;
+    font-size: 0.373rem !important;
+    border-radius: 0.213rem !important;
+    border: 1px solid var(--border-lighter) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-secondary) !important;
+    transition: all 0.2s ease !important;
+
+    &:hover {
+      border-color: var(--color-purple-primary) !important;
+      color: var(--color-purple-primary) !important;
+      background: rgba(139, 92, 246, 0.1) !important;
+    }
+
+    &.has-customer {
+      border-color: var(--color-purple-primary) !important;
+      color: var(--color-purple-primary) !important;
+      background: rgba(139, 92, 246, 0.15) !important;
+      font-weight: 500 !important;
+    }
+  }
+
+  .table-section {
+    background: var(--kpi-card-bg);
+    backdrop-filter: blur(0.267rem);
+    border-radius: 0.533rem;
+    padding: 0.667rem;
+    border: 1px solid var(--border-lighter);
+    transition: all 0.3s ease;
+
+    // Table 样式
+    .ant-table {
+      background: transparent !important;
+      color: var(--text-primary);
+      font-size: 0.373rem;
+      min-height: 400px;
+
+      .ant-table-thead > tr > th {
+        background: var(--kpi-metric-bg) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        border-bottom: 1px solid var(--border-lighter);
+        font-weight: 600;
+        font-size: 0.373rem;
+        padding: 0.4rem 0.427rem;
+      }
+
+      .ant-table-tbody {
+        min-height: 350px;
+      }
+
+      .ant-table-tbody > tr {
+        background: transparent !important;
+
+        &:hover > td {
+          background: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        > td {
+          border-bottom: 1px solid var(--border-lighter);
+          color: var(--text-primary) !important;
+          padding: 0.4rem 0.427rem;
+          font-size: 0.373rem;
+          background: transparent !important;
+        }
+      }
+
+      .ant-table-cell {
+        background: transparent !important;
+      }
+
+      .ant-table-placeholder {
+        background: transparent !important;
+        padding: 3rem 0;
+
+        .ant-empty {
+          .ant-empty-image {
+            height: auto;
+            margin-bottom: 1rem;
+
+            svg,
+            .anticon {
+              color: var(--text-disabled);
+              opacity: 0.6;
+              transition: all 0.3s ease;
+            }
+          }
+
+          .ant-empty-description {
+            color: var(--text-secondary);
+            font-size: 0.373rem;
+          }
+
+          &:hover {
+            .ant-empty-image {
+              svg,
+              .anticon {
+                opacity: 0.8;
+                transform: scale(1.05);
+              }
+            }
+          }
+        }
+      }
+
+      .ant-table-container,
+      .ant-table-content,
+      .ant-table-body {
+        background: transparent !important;
+      }
+    }
+
+    // Pagination 样式
+    .ant-pagination {
+      margin-top: 0.533rem;
+
+      .ant-pagination-total-text {
+        color: var(--text-secondary);
+        font-size: 0.373rem;
+      }
+
+      .ant-pagination-item {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: var(--border-lighter) !important;
+        font-size: 0.373rem;
+        transition: all 0.2s ease;
+
+        a {
+          color: var(--text-primary) !important;
+        }
+
+        &:hover {
+          border-color: var(--color-purple-primary) !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+
+          a {
+            color: var(--color-purple-primary) !important;
+          }
+        }
+
+        &.ant-pagination-item-active {
+          background: linear-gradient(
+            135deg,
+            var(--color-purple-primary) 0%,
+            var(--color-purple-gradient-end) 100%
+          ) !important;
+          border-color: var(--color-purple-primary) !important;
+          box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+
+          a {
+            color: #fff !important;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .ant-pagination-prev,
+      .ant-pagination-next {
+        .ant-pagination-item-link {
+          background: rgba(255, 255, 255, 0.05) !important;
+          border-color: var(--border-lighter) !important;
+          color: var(--text-primary) !important;
+          transition: all 0.2s ease;
+
+          &:hover {
+            border-color: var(--color-purple-primary) !important;
+            color: var(--color-purple-primary) !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+          }
+        }
+
+        &.ant-pagination-disabled {
+          .ant-pagination-item-link {
+            color: var(--text-disabled) !important;
+            border-color: var(--border-lighter) !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .ant-pagination-options {
+        .ant-select {
+          .ant-select-selector {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: var(--border-lighter) !important;
+            color: var(--text-primary) !important;
+            font-size: 0.373rem;
+            transition: all 0.2s ease;
+            display: flex !important;
+            align-items: center !important;
+
+            .ant-select-selection-wrap {
+              display: flex;
+              align-items: center;
+              height: 100%;
+              min-height: auto !important;
+            }
+
+            .ant-select-selection-search {
+              display: flex;
+              align-items: center;
+              height: 100%;
+              margin: 0 !important;
+            }
+
+            .ant-select-selection-item {
+              line-height: normal !important;
+            }
+          }
+
+          .ant-select-arrow {
+            color: rgba(255, 255, 255, 0.6) !important;
+          }
+
+          &:hover .ant-select-selector {
+            border-color: var(--color-purple-primary) !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+          }
+
+          &.ant-select-focused .ant-select-selector {
+            border-color: var(--color-purple-primary) !important;
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+          }
+        }
+
+        .ant-pagination-options-quick-jumper {
+          color: var(--text-secondary);
+          font-size: 0.373rem;
+
+          input {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: var(--border-lighter) !important;
+            color: var(--text-primary) !important;
+            font-size: 0.373rem;
+            transition: all 0.2s ease;
+
+            &:hover {
+              border-color: var(--color-purple-primary) !important;
+              background: rgba(255, 255, 255, 0.1) !important;
+            }
+
+            &:focus {
+              border-color: var(--color-purple-primary) !important;
+              background: rgba(255, 255, 255, 0.1) !important;
+              box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+            }
+          }
+        }
+      }
+    }
+
+    .customer-cell {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .time-cell {
+      font-family: "Courier New", monospace;
+      font-size: 0.347rem;
+      color: var(--text-primary);
+    }
+
+    .duration-cell {
+      font-family: "Courier New", monospace;
+      font-size: 0.347rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.213rem;
+      align-items: center;
+      justify-content: flex-start;
+
+      .ant-btn-link {
+        padding: 0 0.213rem;
+        height: auto;
+        font-size: 0.347rem;
+        color: var(--text-primary);
+
+        &:hover:not(:disabled) {
+          color: var(--color-purple-primary);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          color: var(--text-disabled);
+        }
+      }
+    }
+  }
+
+  // 响应式设计
+  @media (max-width: 1440px) {
+    padding: 0.667rem;
+
+    .filter-section,
+    .table-section {
+      padding: 0.533rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    padding: 0.533rem;
+
+    .filter-section .filter-row {
+      gap: 0.4rem;
+    }
+
+    .ant-table {
+      font-size: 0.347rem;
+
+      .ant-table-thead > tr > th,
+      .ant-table-tbody > tr > td {
+        padding: 0.32rem 0.347rem;
+        font-size: 0.347rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.4rem;
+
+    .filter-section {
+      padding: 0.4rem;
+      margin-bottom: 0.533rem;
+
+      .filter-row {
+        flex-direction: column;
+        gap: 0.32rem;
+
+        .filter-item {
+          width: 100%;
+        }
+
+        .ant-picker {
+          width: 100%;
+        }
+
+        .filter-actions {
+          width: 100%;
+          margin-left: 0;
+
+          .ant-btn {
+            flex: 1;
+          }
+        }
+      }
+    }
+
+    .table-section {
+      padding: 0.4rem;
+      overflow-x: auto;
+
+      .action-buttons {
+        flex-direction: column;
+        gap: 0.107rem;
+      }
+    }
+  }
+}
+
+// ========== 浅色主题优化 ==========
+.light-theme.recording-management-page {
+  .filter-section {
+    // DatePicker 浅色主题
+    .ant-picker {
+      background: rgba(255, 255, 255, 0.7) !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+
+      .ant-picker-input > input {
+        color: rgba(0, 0, 0, 0.88) !important;
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+      }
+
+      .ant-picker-suffix,
+      .ant-picker-separator {
+        color: rgba(0, 0, 0, 0.45) !important;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.85) !important;
+      }
+
+      &.ant-picker-focused {
+        background: rgba(255, 255, 255, 0.95) !important;
+      }
+    }
+
+    // Button 浅色主题
+    .ant-btn {
+      &.ant-btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--color-purple-primary) 0%,
+          var(--color-purple-gradient-end) 100%
+        ) !important;
+        border: 1px solid var(--color-purple-primary) !important;
+        color: #ffffff !important;
+        box-shadow: 0 0.133rem 0.267rem rgba(139, 92, 246, 0.3) !important;
+
+        &:hover {
+          background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%) !important;
+          transform: translateY(-1px);
+          box-shadow: 0 0.213rem 0.4rem rgba(139, 92, 246, 0.4) !important;
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      &:not(.ant-btn-primary) {
+        background: rgba(255, 255, 255, 0.7) !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+        color: rgba(0, 0, 0, 0.88) !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.85) !important;
+          border-color: var(--color-purple-primary) !important;
+          color: var(--color-purple-primary) !important;
+        }
+      }
+    }
+  }
+
+  .table-section {
+    // Table 浅色主题
+    .ant-table {
+      .ant-table-thead > tr > th {
+        background: rgba(255, 255, 255, 0.5) !important;
+        color: rgba(0, 0, 0, 0.85) !important;
+        font-weight: 600;
+      }
+
+      .ant-table-tbody > tr {
+        > td {
+          color: rgba(0, 0, 0, 0.88) !important;
+        }
+
+        &:hover > td {
+          background: rgba(0, 0, 0, 0.04) !important;
+        }
+      }
+    }
+
+    // Pagination 浅色主题
+    .ant-pagination {
+      .ant-pagination-item {
+        background: rgba(255, 255, 255, 0.7) !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+
+        a {
+          color: rgba(0, 0, 0, 0.88) !important;
+        }
+      }
+
+      .ant-pagination-prev,
+      .ant-pagination-next {
+        .ant-pagination-item-link {
+          background: rgba(255, 255, 255, 0.7) !important;
+          border-color: rgba(0, 0, 0, 0.15) !important;
+          color: rgba(0, 0, 0, 0.88) !important;
+        }
+      }
+
+      .ant-pagination-options {
+        .ant-select {
+          .ant-select-selector {
+            background: rgba(255, 255, 255, 0.7) !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+            color: rgba(0, 0, 0, 0.88) !important;
+            display: flex !important;
+            align-items: center !important;
+
+            .ant-select-selection-search {
+              display: flex;
+              align-items: center;
+            }
+
+            .ant-select-selection-item {
+              line-height: normal !important;
+            }
+          }
+
+          .ant-select-arrow {
+            color: rgba(0, 0, 0, 0.45) !important;
+          }
+        }
+
+        .ant-pagination-options-quick-jumper {
+          input {
+            background: rgba(255, 255, 255, 0.7) !important;
+            border-color: rgba(0, 0, 0, 0.15) !important;
+            color: rgba(0, 0, 0, 0.88) !important;
+          }
+        }
+      }
+    }
+
+    .action-buttons {
+      .ant-btn-link {
+        color: rgba(0, 0, 0, 0.88);
+
+        &:hover:not(:disabled) {
+          color: var(--color-purple-primary);
+        }
+
+        &:disabled {
+          color: rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+  }
+}
+
+// ========== 全局下拉组件样式（挂载在body下） ==========
+:global {
+  // DatePicker Dropdown - 深色主题（默认）
+  // 使用更强的选择器确保深色主题生效
+  .dark-theme,
+  body:has(.dark-theme),
+  body:not(:has(.light-theme)) {
+    .ant-picker-dropdown {
+      .ant-picker-panel-container {
+        background: rgba(31, 31, 31, 0.98) !important;
+        backdrop-filter: blur(12px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+        border-radius: 0.267rem;
+      }
+
+    .ant-picker-header {
+      color: #ffffff !important;
+      border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+      padding: 0.267rem 0.4rem;
+
+      button,
+      .ant-picker-header-view button {
+        color: rgba(255, 255, 255, 0.85) !important;
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: var(--color-purple-primary, #8b5cf6) !important;
+          background: rgba(139, 92, 246, 0.15) !important;
+          border-radius: 0.133rem;
+        }
+      }
+
+      .ant-picker-header-view {
+        button {
+          font-weight: 500;
+          font-size: 0.373rem;
+        }
+      }
+    }
+
+    .ant-picker-content {
+      padding: 0.267rem 0.4rem;
+
+      th {
+        color: rgba(255, 255, 255, 0.65) !important;
+        font-weight: 500;
+        font-size: 0.347rem;
+      }
+
+      .ant-picker-cell {
+        .ant-picker-cell-inner {
+          color: rgba(255, 255, 255, 0.88) !important;
+          border-radius: 0.133rem;
+          font-size: 0.373rem;
+          transition: all 0.2s ease;
+        }
+
+        &:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-disabled) {
+          .ant-picker-cell-inner {
+            background: rgba(139, 92, 246, 0.15) !important;
+            color: #ffffff !important;
+          }
+        }
+
+        &.ant-picker-cell-selected {
+          .ant-picker-cell-inner {
+            background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%) !important;
+            color: #fff !important;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+          }
+        }
+
+        &.ant-picker-cell-today {
+          .ant-picker-cell-inner {
+            &::before {
+              border: 1px solid var(--color-purple-primary, #8b5cf6) !important;
+              border-radius: 0.133rem;
+            }
+          }
+
+          &:not(.ant-picker-cell-selected) .ant-picker-cell-inner {
+            color: var(--color-purple-primary, #8b5cf6) !important;
+            font-weight: 500;
+          }
+        }
+
+        &.ant-picker-cell-disabled {
+          .ant-picker-cell-inner {
+            color: rgba(255, 255, 255, 0.25) !important;
+            background: transparent !important;
+          }
+        }
+
+        &.ant-picker-cell-in-view.ant-picker-cell-range-start,
+        &.ant-picker-cell-in-view.ant-picker-cell-range-end {
+          .ant-picker-cell-inner {
+            background: var(--color-purple-primary, #8b5cf6) !important;
+          }
+        }
+      }
+    }
+
+    .ant-picker-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+      background: rgba(0, 0, 0, 0.4) !important;
+      padding: 0.267rem 0.4rem;
+
+      .ant-picker-now-btn,
+      .ant-picker-today-btn {
+        color: var(--color-purple-primary, #8b5cf6) !important;
+        font-weight: 500;
+        font-size: 0.373rem;
+
+        &:hover {
+          color: #7c3aed !important;
+          background: rgba(139, 92, 246, 0.1) !important;
+          border-radius: 0.133rem;
+        }
+      }
+    }
+
+    // 年份/月份选择面板
+    .ant-picker-year-panel,
+    .ant-picker-month-panel,
+    .ant-picker-decade-panel {
+      .ant-picker-content {
+        .ant-picker-cell {
+          .ant-picker-cell-inner {
+            color: rgba(255, 255, 255, 0.88) !important;
+            padding: 0.267rem 0.213rem;
+          }
+
+          &:hover:not(.ant-picker-cell-selected) .ant-picker-cell-inner {
+            background: rgba(139, 92, 246, 0.15) !important;
+          }
+        }
+      }
+    }
+
+    // 时间选择器样式
+    .ant-picker-time-panel {
+      .ant-picker-time-panel-column {
+        &:not(:first-child) {
+          border-left-color: rgba(255, 255, 255, 0.12) !important;
+        }
+
+        > li {
+          &.ant-picker-time-panel-cell {
+            .ant-picker-time-panel-cell-inner {
+              color: rgba(255, 255, 255, 0.88) !important;
+
+              &:hover {
+                background: rgba(139, 92, 246, 0.15) !important;
+              }
+            }
+
+            &.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+              background: var(--color-purple-primary, #8b5cf6) !important;
+              color: #fff !important;
+            }
+          }
+        }
+      }
+    }
+    }
+  }
+
+  // DatePicker Dropdown - 浅色主题覆盖
+  // 使用更强的选择器确保浅色主题生效
+  .light-theme,
+  body:has(.light-theme) {
+    .ant-picker-dropdown {
+      .ant-picker-panel-container {
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(12px) saturate(180%);
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+          0 6px 16px 0 rgba(0, 0, 0, 0.08),
+          0 9px 28px 8px rgba(0, 0, 0, 0.05) !important;
+      }
+
+      .ant-picker-header {
+        color: rgba(0, 0, 0, 0.88) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+
+        button,
+        .ant-picker-header-view button {
+          color: rgba(0, 0, 0, 0.65) !important;
+
+          &:hover {
+            color: var(--color-purple-primary, #8b5cf6) !important;
+            background: rgba(139, 92, 246, 0.08) !important;
+          }
+        }
+      }
+
+      .ant-picker-content {
+        th {
+          color: rgba(0, 0, 0, 0.55) !important;
+        }
+
+        .ant-picker-cell {
+          .ant-picker-cell-inner {
+            color: rgba(0, 0, 0, 0.88) !important;
+          }
+
+          &:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-disabled) {
+            .ant-picker-cell-inner {
+              background: rgba(139, 92, 246, 0.08) !important;
+              color: rgba(0, 0, 0, 0.88) !important;
+            }
+          }
+
+          &.ant-picker-cell-selected {
+            .ant-picker-cell-inner {
+              background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%) !important;
+              color: #fff !important;
+            }
+          }
+
+          &.ant-picker-cell-today {
+            .ant-picker-cell-inner::before {
+              border-color: var(--color-purple-primary, #8b5cf6) !important;
+            }
+
+            &:not(.ant-picker-cell-selected) .ant-picker-cell-inner {
+              color: var(--color-purple-primary, #8b5cf6) !important;
+            }
+          }
+
+          &.ant-picker-cell-disabled {
+            .ant-picker-cell-inner {
+              color: rgba(0, 0, 0, 0.25) !important;
+            }
+          }
+        }
+      }
+
+      .ant-picker-footer {
+        border-top-color: rgba(0, 0, 0, 0.06) !important;
+        background: rgba(0, 0, 0, 0.02) !important;
+
+        .ant-picker-now-btn,
+        .ant-picker-today-btn {
+          color: var(--color-purple-primary, #8b5cf6) !important;
+
+          &:hover {
+            color: #7c3aed !important;
+            background: rgba(139, 92, 246, 0.08) !important;
+          }
+        }
+      }
+
+      // 年份/月份选择面板
+      .ant-picker-year-panel,
+      .ant-picker-month-panel,
+      .ant-picker-decade-panel {
+        .ant-picker-content {
+          .ant-picker-cell {
+            .ant-picker-cell-inner {
+              color: rgba(0, 0, 0, 0.88) !important;
+            }
+
+            &:hover:not(.ant-picker-cell-selected) .ant-picker-cell-inner {
+              background: rgba(139, 92, 246, 0.08) !important;
+            }
+          }
+        }
+      }
+
+      // 时间选择器
+      .ant-picker-time-panel {
+        .ant-picker-time-panel-column {
+          &:not(:first-child) {
+            border-left-color: rgba(0, 0, 0, 0.06) !important;
+          }
+
+          > li {
+            &.ant-picker-time-panel-cell {
+              .ant-picker-time-panel-cell-inner {
+                color: rgba(0, 0, 0, 0.88) !important;
+
+                &:hover {
+                  background: rgba(139, 92, 246, 0.08) !important;
+                }
+              }
+
+              &.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+                background: var(--color-purple-primary, #8b5cf6) !important;
+                color: #fff !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

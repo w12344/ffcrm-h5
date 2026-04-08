@@ -1,0 +1,433 @@
+/**
+ * Design System - Mixins
+ * Reusable LESS mixins for consistent styling patterns
+ * 
+ * Usage: @import '@/styles/design-system/mixins.less';
+ */
+
+@import './tokens.less';
+
+/* ========================================
+   TYPOGRAPHY MIXINS
+   ======================================== */
+
+// Page Title (Hero)
+.text-page-title() {
+  font-size: @font-size-4xl;
+  font-weight: @font-weight-black;
+  color: @color-text-primary;
+  letter-spacing: @letter-spacing-tight;
+  line-height: @line-height-tight;
+  font-family: @font-family-heading;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+// Section Title
+.text-section-title() {
+  font-size: @font-size-3xl;
+  font-weight: @font-weight-extrabold;
+  color: @color-text-primary;
+  letter-spacing: -0.5px;
+  line-height: @line-height-tight;
+  font-family: @font-family-heading;
+  margin: 0;
+}
+
+// Card Title
+.text-card-title() {
+  font-size: @font-size-xl;
+  font-weight: @font-weight-bold;
+  color: @color-text-primary;
+  line-height: @line-height-snug;
+  margin: 0;
+}
+
+// Subtitle
+.text-subtitle() {
+  font-size: @font-size-sm;
+  font-weight: @font-weight-bold;
+  color: @color-text-quaternary;
+  letter-spacing: @letter-spacing-wide;
+  text-transform: uppercase;
+}
+
+// Body Text
+.text-body() {
+  font-size: @font-size-base;
+  font-weight: @font-weight-normal;
+  color: @color-text-secondary;
+  line-height: @line-height-normal;
+}
+
+// Numeric Display (Large)
+.text-numeric-large() {
+  font-size: 48px;
+  font-weight: @font-weight-extrabold;
+  font-family: @font-family-numeric;
+  line-height: @line-height-tight;
+  letter-spacing: -1px;
+}
+
+// Numeric Display (Medium)
+.text-numeric-medium() {
+  font-size: @font-size-3xl;
+  font-weight: @font-weight-extrabold;
+  font-family: @font-family-numeric;
+  line-height: @line-height-tight;
+}
+
+// Numeric Display (Small)
+.text-numeric-small() {
+  font-size: @font-size-lg;
+  font-weight: @font-weight-bold;
+  font-family: @font-family-numeric;
+  line-height: @line-height-tight;
+}
+
+// Label
+.text-label() {
+  font-size: @font-size-sm;
+  font-weight: @font-weight-semibold;
+  color: @color-text-tertiary;
+  line-height: @line-height-normal;
+}
+
+// Caption
+.text-caption() {
+  font-size: @font-size-xs;
+  font-weight: @font-weight-medium;
+  color: @color-text-quaternary;
+  line-height: @line-height-normal;
+}
+
+/* ========================================
+   LAYOUT MIXINS
+   ======================================== */
+
+// Flex Center
+.flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flex Between
+.flex-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Flex Column
+.flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+// Absolute Center
+.absolute-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ========================================
+   CARD MIXINS
+   ======================================== */
+
+// Base Card
+.card-base() {
+  background: @color-bg-elevated;
+  border-radius: @card-border-radius;
+  padding: @card-padding;
+  box-shadow: @card-shadow;
+  transition: all @transition-base;
+}
+
+// Card Hover
+.card-hover() {
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: @shadow-xl;
+  }
+}
+
+// Glass Card (Glassmorphism)
+.card-glass() {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   INPUT MIXINS
+   ======================================== */
+
+// Base Input
+.input-base() {
+  height: @input-height;
+  padding: 0 @input-padding-x;
+  border-radius: @input-border-radius;
+  background: @input-bg;
+  border: 1px solid @input-border-color;
+  font-size: @font-size-base;
+  font-weight: @font-weight-medium;
+  color: @color-text-primary;
+  transition: all @transition-base;
+  
+  &::placeholder {
+    color: @color-text-disabled;
+    font-weight: @font-weight-normal;
+  }
+  
+  &:hover {
+    background: @color-bg-muted;
+  }
+  
+  &:focus {
+    background: @color-bg-elevated;
+    border-color: @color-primary;
+    box-shadow: @input-focus-shadow;
+    outline: none;
+  }
+}
+
+/* ========================================
+   BUTTON MIXINS
+   ======================================== */
+
+// Primary Button
+.button-primary() {
+  height: @button-height;
+  padding: 0 @button-padding-x;
+  border-radius: @button-border-radius;
+  background: @color-primary;
+  color: #fff;
+  font-size: @font-size-base;
+  font-weight: @button-font-weight;
+  border: none;
+  cursor: pointer;
+  transition: all @transition-base;
+  .flex-center();
+  gap: @spacing-sm;
+  
+  &:hover {
+    background: @color-primary-light;
+    transform: translateY(-1px);
+    box-shadow: @shadow-primary;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Secondary Button
+.button-secondary() {
+  height: @button-height;
+  padding: 0 @button-padding-x;
+  border-radius: @button-border-radius;
+  background: @color-bg-elevated;
+  color: @color-text-secondary;
+  font-size: @font-size-base;
+  font-weight: @button-font-weight;
+  border: 1px solid @color-border-base;
+  cursor: pointer;
+  transition: all @transition-base;
+  .flex-center();
+  gap: @spacing-sm;
+  
+  &:hover {
+    background: @color-bg-subtle;
+    border-color: @color-primary;
+    color: @color-primary;
+  }
+}
+
+/* ========================================
+   BADGE/PILL MIXINS
+   ======================================== */
+
+// Filter Pill
+.pill-filter() {
+  padding: @spacing-md @spacing-lg;
+  border-radius: @radius-md;
+  background: @color-bg-elevated;
+  border: 1px solid @color-border-light;
+  .flex-center();
+  gap: @spacing-sm;
+  font-size: @font-size-sm;
+  font-weight: @font-weight-medium;
+  color: @color-text-secondary;
+  cursor: pointer;
+  transition: all @transition-base;
+  white-space: nowrap;
+  
+  &:hover {
+    border-color: @color-primary;
+    color: @color-primary;
+  }
+}
+
+// Status Badge
+.badge-status(@color) {
+  padding: @spacing-xs @spacing-md;
+  border-radius: @radius-sm;
+  background: fade(@color, 10%);
+  color: @color;
+  font-size: @font-size-xs;
+  font-weight: @font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================
+   ANIMATION MIXINS
+   ======================================== */
+
+// Pulse Animation
+.animation-pulse() {
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+  animation: pulse 2s infinite;
+}
+
+// Fade In
+.animation-fade-in(@duration: 0.3s) {
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  animation: fadeIn @duration ease;
+}
+
+// Slide Up
+.animation-slide-up(@duration: 0.3s) {
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  animation: slideUp @duration ease;
+}
+
+/* ========================================
+   UTILITY MIXINS
+   ======================================== */
+
+// Truncate Text
+.truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Line Clamp
+.line-clamp(@lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Scrollbar Styling
+.scrollbar-custom() {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: @color-bg-subtle;
+    border-radius: @radius-full;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: @color-border-strong;
+    border-radius: @radius-full;
+    
+    &:hover {
+      background: @color-text-quaternary;
+    }
+  }
+}
+
+// Dark Theme Support
+.dark-theme-support(@property, @light-value, @dark-value) {
+  @{property}: @light-value;
+  
+  :global(.dark-theme) & {
+    @{property}: @dark-value;
+  }
+}
+
+/* ========================================
+   COMPONENT MIXINS
+   ======================================== */
+
+// Logo Mixin
+.ds-logo() {
+  width: @logo-size-base;
+  height: @logo-size-base;
+  border-radius: @logo-border-radius;
+  .flex-center();
+  box-shadow: @shadow-primary-lg;
+  flex-shrink: 0;
+  transition: transform @transition-bounce;
+  
+  &:hover {
+    transform: scale(1.05) rotate(-3deg);
+  }
+}
+
+// User Profile Mixin
+.ds-user-profile() {
+  display: flex;
+  align-items: center;
+  gap: @spacing-md;
+  
+  .avatar {
+    width: @avatar-size-sm;
+    height: @avatar-size-sm;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .user-info {
+    .flex-column();
+    gap: 2px;
+    
+    .name {
+      font-size: @font-size-sm;
+      font-weight: @font-weight-semibold;
+      color: @color-text-primary;
+      line-height: @line-height-tight;
+      
+      :global(.dark-theme) & {
+        color: @color-dark-text-primary;
+      }
+    }
+    
+    .role {
+      font-size: @font-size-xs;
+      font-weight: @font-weight-medium;
+      color: @color-text-quaternary;
+      line-height: @line-height-tight;
+      
+      :global(.dark-theme) & {
+        color: @color-dark-text-tertiary;
+      }
+    }
+  }
+}

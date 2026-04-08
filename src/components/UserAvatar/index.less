@@ -1,0 +1,18 @@
+.feishu-user-avatar {
+  display: inline-block;
+  border-radius: var(--border-radius-circle);
+  color: var(--color-text-inverse);
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+  user-select: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #37C474 0%, #1E9AFF 100%);
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  transition: opacity var(--transition-fast);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

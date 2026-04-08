@@ -1,0 +1,203 @@
+.boss-excel-modal {
+  .boss-modal-content {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .excel-preview-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: transparent;
+
+    .excel-header-actions {
+      padding: 12px 24px 0;
+      border-bottom: 1px solid var(--border-lighter, #f0f0f0);
+
+      .tabs-container {
+        flex: 1;
+        overflow: hidden;
+
+        :global(.ant-tabs-nav) {
+          margin-bottom: 0;
+        }
+
+        :global(.ant-tabs-tab) {
+          padding: 8px 16px !important;
+          font-size: 14px;
+        }
+      }
+
+      .download-btn {
+        flex-shrink: 0;
+        margin-left: 24px;
+      }
+    }
+
+    .excel-content-area {
+      flex: 1;
+      overflow: auto;
+      position: relative;
+      background: transparent;
+      padding: 0 16px;
+
+      .loading-wrapper {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 10;
+
+        :global(.dark-theme) & {
+          background: rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      .html-table-wrapper {
+        background: var(--kpi-card-bg, #ffffff);
+        display: inline-block;
+        min-width: 100%;
+
+        :global(.dark-theme) & {
+          background: #111827;
+        }
+
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: max-content;
+          min-width: 100%;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          font-size: 12px; /* 字体稍微改小一点，适应小屏幕 */
+          color: var(--text-primary, #333);
+          table-layout: fixed;
+
+          :global(.dark-theme) & {
+            color: #e2e8f0;
+          }
+
+          td, th {
+            border: 1px solid #d9d9d9;
+            padding: 6px 4px; /* 更紧凑的内边距 */
+            white-space: nowrap;
+            text-align: center;
+            empty-cells: show;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            :global(.dark-theme) & {
+              border-color: #434343;
+            }
+          }
+
+          /* 为特定的短列设置较小的固定宽度 */
+          td:first-child, th:first-child {
+            width: 90px;
+          }
+
+          /* 去除表头固定 */
+          tr:first-child td, tr:first-child th,
+          tr:nth-child(2) td, tr:nth-child(2) th,
+          tr:nth-child(3) td, tr:nth-child(3) th {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.85);
+            font-size: 13px;
+            white-space: normal;
+            word-wrap: break-word;
+
+            :global(.dark-theme) & {
+              color: rgba(255,255,255,0.85);
+            }
+          }
+
+          tr:first-child td, tr:first-child th {
+            font-size: 14px;
+            font-weight: bold;
+            padding: 12px 8px;
+          }
+
+          /* 斑马纹与悬浮效果 */
+          tr:nth-child(even) td {
+            background-color: transparent;
+          }
+
+          tr:hover td {
+            background-color: #f0f7ff !important;
+            :global(.dark-theme) & { background-color: rgba(24,144,255,0.1) !important; }
+          }
+
+          /* 核心数据列高亮 */
+          td[data-v*="%"], td:contains("%") {
+            font-family: tabular-nums;
+          }
+
+          /* 负数或报警数据标红 */
+          td[data-v^="-"] {
+            color: #ff4d4f;
+            font-family: tabular-nums;
+          }
+
+          /* 合计行加粗 */
+          tr:last-child td,
+          td[data-v*="合计"], td[data-v*="总计"],
+          td:contains("合计"), td:contains("总计") {
+            font-weight: bold;
+          }
+          /* 为空行（表格之间的间隙）添加明显的边框和背景分隔 */
+          tr.table-gap-row td {
+            height: 32px !important;
+            background: var(--dashboard-bg, #f0f2f5) !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-top: none !important;
+            border-bottom: none !important;
+            padding: 0 !important;
+
+            :global(.dark-theme) & {
+              background: #0f172a !important;
+            }
+          }
+
+          /* 为大的分块表头添加醒目的顶边框 */
+          tr.section-header-row td {
+            font-size: 13px;
+            font-weight: bold;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            background: #f2f7e6 !important; /* 统一使用浅绿色背景 */
+            white-space: normal;
+            word-wrap: break-word;
+
+            :global(.dark-theme) & {
+              background: rgba(255,255,255,0.08) !important;
+            }
+          }
+
+          /* 点击定位的高亮样式 */
+          td.excel-highlight-target {
+            background-color: #ffeb3b !important;
+            color: #000 !important;
+            font-weight: bold !important;
+            box-shadow: inset 0 0 0 2px #f5222d !important; /* 目标单元格加红框 */
+            z-index: 2;
+            position: relative;
+            transition: all 0.3s ease;
+          }
+
+          td.excel-highlight-related {
+            background-color: rgba(255, 235, 59, 0.4) !important;
+            transition: all 0.3s ease;
+
+            :global(.dark-theme) & {
+              background-color: rgba(255, 235, 59, 0.2) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

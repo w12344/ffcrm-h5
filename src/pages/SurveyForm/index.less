@@ -1,0 +1,1222 @@
+/* SurveyForm 页面样式 */
+.survey-form {
+  min-height: calc(100vh - 56px); /* 减去header高度 */
+  background: linear-gradient(
+    135deg,
+    #fffef7 0%,
+    #fff8dc 20%,
+    #fffacd 40%,
+    #ffffe0 60%,
+    #fffacd 80%,
+    #fff8dc 100%
+  );
+  position: relative;
+  overflow-x: hidden;
+  
+  @media (max-width: 768px) {
+    min-height: calc(100vh - 52px); /* 移动端header高度 */
+  }
+}
+
+/* 顶部装饰背景 */
+.survey-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: url("https://gd-pub.jinshujufiles.com/hi/2awB7mqIHE/20250830094433_fb97f3@hixlargeRetina")
+    no-repeat center top;
+  background-size: 100%;
+  background-position: center top;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 添加渐变遮罩 */
+.survey-form::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 254, 247, 0.3) 0%,
+    rgba(255, 248, 220, 0.4) 25%,
+    rgba(255, 250, 205, 0.3) 50%,
+    rgba(255, 255, 224, 0.4) 75%,
+    rgba(255, 250, 205, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 表单内容区域 */
+.survey-form-content {
+  padding: 230px 20px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 头部区域样式 */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #8b4513;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(25px);
+  border-radius: 28px;
+  padding: 40px 32px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 25px 80px rgba(255, 215, 0, 0.15),
+    0 10px 40px rgba(230, 126, 34, 0.1),
+    0 1px 0px rgba(255, 255, 255, 0.9) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.1),
+    transparent
+  );
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.welcome-badge {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    #ffd700 0%,
+    #f39c12 30%,
+    #e67e22 70%,
+    #d35400 100%
+  );
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+  margin-bottom: 24px;
+}
+
+.description p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #8b4513;
+  margin-bottom: 12px;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.notes,
+.diagnosis-info {
+  background: rgba(255, 250, 205, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.note-title,
+.info-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8b4513;
+  margin-bottom: 8px;
+}
+
+.notes ul,
+.diagnosis-info ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.notes li,
+.diagnosis-info li {
+  font-size: 12px;
+  color: #8b4513;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.privacy-note {
+  font-size: 12px;
+  color: #a0522d;
+  font-weight: 500;
+  text-align: center;
+  margin: 16px 0 0 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  line-height: 1.6;
+}
+
+.advisor-info {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 250, 205, 0.2) 0%,
+    rgba(255, 255, 224, 0.15) 50%,
+    rgba(255, 248, 220, 0.2) 100%
+  );
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.1);
+}
+
+.advisor-info span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #8b4513;
+}
+
+/* 表单容器 */
+.survey-form-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 16px;
+}
+
+/* 表单项样式 */
+.form-item {
+  margin-bottom: 32px;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+  letter-spacing: 0.3px;
+}
+
+/* 必填字段星号样式 */
+.form-label::before {
+  content: "*";
+  color: #ff4d4f;
+  margin-right: 4px;
+  font-size: 16px;
+}
+
+/* 错误提示样式 */
+.error-hint {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* 输入框包装器样式 */
+.input-wrapper {
+  position: relative;
+  margin-top: 8px;
+}
+
+/* 原生 input 样式 */
+.input-wrapper input {
+  width: 100% !important;
+  padding: 12px 16px 12px 44px !important;
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  font-size: 16px !important;
+  color: #333 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  min-height: 48px !important;
+  box-sizing: border-box !important;
+}
+
+.input-wrapper input:focus {
+  outline: none !important;
+  border-color: #ffd700 !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.15) !important;
+}
+
+.input-wrapper input::placeholder {
+  color: #999 !important;
+  font-size: 16px !important;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  z-index: 1;
+}
+
+/* 输入框样式 */
+.arco-input-wrapper {
+  border-radius: 8px !important;
+  border: 2px solid #e5e5e5 !important;
+  background: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.arco-input-wrapper:focus-within {
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* 输入框错误状态 */
+.arco-input-wrapper.arco-input-error {
+  border-color: #ff4d4f !important;
+}
+
+.arco-input {
+  font-size: 16px !important;
+  color: #333 !important;
+  padding: 16px 16px 16px 48px !important;
+  border: none !important;
+  background: transparent !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  min-height: 52px !important;
+}
+
+.arco-input::placeholder {
+  color: #999 !important;
+  opacity: 1 !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+/* 单选框包装器样式 */
+.radio-wrapper {
+  margin-top: 8px;
+}
+
+/* 单选框组样式 - 纵向排列 */
+.arco-radio-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.survey-form .arco-radio-group .arco-radio-wrapper,
+.arco-radio-wrapper {
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  padding: 14px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #d9d9d9 !important;
+  background: #ffffff !important;
+  transition: all 0.3s ease !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  flex: none !important;
+}
+
+.survey-form .arco-radio-group .arco-radio-wrapper:hover,
+.arco-radio-wrapper:hover {
+  border-color: #ffd700 !important;
+  background: #fffbf0 !important;
+}
+
+.survey-form .arco-radio-group .arco-radio-wrapper.arco-radio-checked,
+.arco-radio-wrapper.arco-radio-checked {
+  border-color: #ffd700 !important;
+  background: #fffbe6 !important;
+  border-width: 2px !important;
+}
+
+.arco-radio-wrapper .arco-radio-label {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #333 !important;
+  margin-left: 12px !important;
+  line-height: 1.4 !important;
+  flex: 1 !important;
+}
+
+/* 下拉框包装器样式 */
+.select-wrapper {
+  margin-top: 8px;
+}
+
+/* 自定义下拉框样式 - 模仿Radio卡片样式 */
+.custom-select {
+  width: 100% !important;
+  min-height: 48px !important;
+  padding: 14px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #d9d9d9 !important;
+  background: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #333 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  outline: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  /* 自定义下拉箭头 */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+  background-size: 16px !important;
+  padding-right: 48px !important;
+}
+
+.custom-select:hover {
+  border-color: #ffd700 !important;
+  background-color: #fffbf0 !important;
+}
+
+.custom-select:focus {
+  border-color: #ffd700 !important;
+  background-color: #fffbe6 !important;
+  border-width: 2px !important;
+}
+
+.custom-select option {
+  padding: 8px 12px !important;
+  font-size: 16px !important;
+  color: #333 !important;
+  background: #ffffff !important;
+}
+
+/* 多选框包装器样式 */
+.checkbox-wrapper {
+  margin-top: 8px;
+}
+
+/* 强制应用边框样式 */
+.survey-form-container .checkbox-wrapper .arco-checkbox-group > *,
+.survey-form-container .radio-wrapper .arco-radio-group > * {
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  margin-bottom: 8px !important;
+  padding: 14px 16px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.survey-form-container .checkbox-wrapper .arco-checkbox-group > *:hover,
+.survey-form-container .radio-wrapper .arco-radio-group > *:hover {
+  border-color: #ffd700 !important;
+  background: #fffbf0 !important;
+}
+
+.survey-form-container
+  .checkbox-wrapper
+  .arco-checkbox-group
+  > *.arco-checkbox-checked,
+.survey-form-container .radio-wrapper .arco-radio-group > *.arco-radio-checked {
+  border-color: #ffd700 !important;
+  background: #fffbe6 !important;
+  border-width: 2px !important;
+}
+
+/* 多选框组样式 - 纵向排列 */
+.arco-checkbox-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.survey-form .arco-checkbox-group .arco-checkbox-wrapper,
+.arco-checkbox-wrapper {
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  padding: 14px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #d9d9d9 !important;
+  background: #ffffff !important;
+  transition: all 0.3s ease !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  flex: none !important;
+}
+
+.survey-form .arco-checkbox-group .arco-checkbox-wrapper:hover,
+.arco-checkbox-wrapper:hover {
+  border-color: #ffd700 !important;
+  background: #fffbf0 !important;
+}
+
+.survey-form .arco-checkbox-group .arco-checkbox-wrapper.arco-checkbox-checked,
+.arco-checkbox-wrapper.arco-checkbox-checked {
+  border-color: #ffd700 !important;
+  background: #fffbe6 !important;
+  border-width: 2px !important;
+}
+
+.arco-checkbox-wrapper .arco-checkbox-label {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #333 !important;
+  margin-left: 12px !important;
+  line-height: 1.4 !important;
+  flex: 1 !important;
+}
+
+/* 顾问显示样式 */
+.advisor-display {
+  padding: 12px 16px;
+  background: rgba(255, 250, 205, 0.3);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 8px;
+  color: #8b4513;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.arco-radio {
+  flex-shrink: 0 !important;
+}
+
+.arco-radio .arco-radio-inner {
+  border-color: #ffd700 !important;
+  border-width: 2px !important;
+}
+
+.arco-radio.arco-radio-checked .arco-radio-inner {
+  background-color: #ffd700 !important;
+  border-color: #ffd700 !important;
+}
+
+.arco-radio.arco-radio-checked .arco-radio-inner::after {
+  background-color: #fff !important;
+  width: 6px !important;
+  height: 6px !important;
+}
+
+/* Checkbox 样式 */
+.arco-checkbox {
+  flex-shrink: 0 !important;
+}
+
+.arco-checkbox .arco-checkbox-inner {
+  border-color: #ffd700 !important;
+  border-width: 2px !important;
+}
+
+.arco-checkbox.arco-checkbox-checked .arco-checkbox-inner {
+  background-color: #ffd700 !important;
+  border-color: #ffd700 !important;
+}
+
+.arco-checkbox.arco-checkbox-checked .arco-checkbox-inner::after {
+  border-color: #fff !important;
+}
+
+/* DatePicker包装器样式 */
+.date-picker-wrapper {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.date-picker-wrapper .arco-picker {
+  width: 100% !important;
+  margin-top: 0 !important;
+}
+
+/* 日期选择器触发器样式 */
+.date-input-trigger {
+  width: 100% !important;
+  min-height: 48px !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #d9d9d9 !important;
+  background: #ffffff !important;
+  font-size: 16px !important;
+  color: #333 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  outline: none !important;
+  pointer-events: auto !important;
+  z-index: 999 !important;
+  position: relative !important;
+  touch-action: manipulation !important;
+  user-select: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  
+  &::after {
+    content: '📅';
+    font-size: 18px;
+    opacity: 0.6;
+  }
+}
+
+/* 原生日期输入框样式（保留作为备用） */
+.date-input {
+  width: 100% !important;
+  min-height: 48px !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #d9d9d9 !important;
+  background: #ffffff !important;
+  font-size: 16px !important;
+  color: #333 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  outline: none !important;
+  pointer-events: auto !important;
+  z-index: 999 !important;
+  position: relative !important;
+  touch-action: manipulation !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: textfield !important;
+  user-select: none !important;
+}
+
+.date-input-trigger:hover {
+  border-color: #ffd700 !important;
+  background: #fffbf0 !important;
+}
+
+.date-input:hover {
+  border-color: #ffd700 !important;
+  background: #fffbf0 !important;
+}
+
+.date-input:focus {
+  border-color: #ffd700 !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.15) !important;
+}
+
+/* Picker样式 */
+.arco-picker {
+  width: 100% !important;
+  margin-top: 4px !important;
+}
+
+.arco-picker-view {
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  color: #8b4513 !important;
+  font-weight: 500 !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.arco-picker-view:focus-within {
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.25),
+    0 10px 30px rgba(255, 215, 0, 0.25) !important;
+  background: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 表单分组样式 */
+.form-section {
+  margin-bottom: 20px;
+  background: rgba(255, 250, 205, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  position: relative;
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.form-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ffd700, #f39c12, #e67e22);
+  border-radius: 20px 20px 0 0;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #8b4513;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.3px;
+}
+
+/* 提交按钮容器 */
+.submit-container {
+  margin-top: 32px;
+}
+
+/* 提交按钮样式 */
+.submit-button {
+  width: 100% !important;
+  height: 52px !important;
+  line-height: 52px!important;
+  border-radius: 8px !important;
+  background: linear-gradient(
+    135deg,
+    #ffe135 0%,
+    #ffc107 25%,
+    #ff9800 50%,
+    #ff8f00 75%,
+    #ffa000 100%
+  ) !important;
+  border: none !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3) !important;
+  .arco-button-text{
+    font-size: 18px!important;
+  }
+}
+
+.submit-button:hover {
+  background: linear-gradient(
+    135deg,
+    #ffe54c 0%,
+    #ffd54f 25%,
+    #ffa726 50%,
+    #ff9800 75%,
+    #ff8f00 100%
+  ) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.4) !important;
+}
+
+.submit-button:active {
+  background: linear-gradient(
+    135deg,
+    #ffd600 0%,
+    #ffb300 25%,
+    #ff8f00 50%,
+    #e65100 75%,
+    #bf360c 100%
+  ) !important;
+  transform: translateY(0px) !important;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3) !important;
+}
+
+/* 加载和禁用状态 */
+.submit-button:disabled {
+  opacity: 0.7 !important;
+  transform: none !important;
+  cursor: not-allowed !important;
+}
+
+/* 进入动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.survey-form-container {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.header {
+  animation: fadeInUp 1s ease-out;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .survey-form-content {
+    padding: 300px 16px 40px;
+  }
+
+  .survey-form::before {
+    height: 280px;
+  }
+
+  .survey-form::after {
+    height: 280px;
+  }
+
+  .header {
+    padding: 32px 24px;
+  }
+
+  .welcome-badge {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .description p {
+    font-size: 17px;
+  }
+
+  .note-title,
+  .info-title {
+    font-size: 17px;
+  }
+
+  .notes li,
+  .diagnosis-info li {
+    font-size: 12px;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+  }
+
+  .advisor-info span {
+    font-size: 17px;
+  }
+
+  .survey-form-container {
+    padding: 20px;
+  }
+
+  .form-section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .form-label {
+    font-size: 16px;
+  }
+
+  .arco-input {
+    font-size: 14px !important;
+    padding: 12px 16px 12px 44px !important;
+    min-height: 44px !important;
+  }
+
+  .input-icon {
+    left: 12px;
+    font-size: 17px;
+  }
+
+  .arco-input::placeholder {
+    font-size: 13px !important;
+  }
+
+  .arco-radio-wrapper {
+    padding: 12px 16px !important;
+    min-height: 44px !important;
+  }
+
+  .arco-radio-wrapper .arco-radio-label {
+    font-size: 14px !important;
+  }
+
+  .arco-picker-view {
+    font-size: 14px !important;
+    padding: 12px 16px !important;
+    min-height: 44px !important;
+  }
+
+  .submit-button {
+    height: 50px !important;
+    font-size: 17px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-form-content {
+    padding: 230px 12px 40px;
+  }
+
+  .survey-form::before {
+    height: 210px;
+  }
+
+  .survey-form::after {
+    height: 260px;
+  }
+
+  .header {
+    padding: 28px 20px;
+  }
+
+  .welcome-badge {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .description p {
+    font-size: 17px;
+  }
+
+  .note-title,
+  .info-title {
+    font-size: 17px;
+  }
+
+  .notes li,
+  .diagnosis-info li {
+    font-size: 12px;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+  }
+
+  .advisor-info span {
+    font-size: 17px;
+  }
+
+  .survey-form-container {
+    padding: 16px;
+  }
+
+  .form-section {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .form-label {
+    font-size: 15px;
+  }
+
+  .arco-input {
+    font-size: 14px !important;
+    padding: 12px 16px 12px 40px !important;
+    min-height: 42px !important;
+  }
+
+  .input-icon {
+    left: 10px;
+    font-size: 13px;
+  }
+
+  .arco-input::placeholder {
+    font-size: 13px !important;
+  }
+
+  .arco-radio-group {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .arco-radio-wrapper {
+    padding: 12px 16px !important;
+    min-height: 42px !important;
+  }
+
+  .arco-radio-wrapper .arco-radio-label {
+    font-size: 14px !important;
+  }
+
+  .arco-picker-view {
+    font-size: 14px !important;
+    padding: 12px 16px !important;
+    min-height: 42px !important;
+  }
+
+  .submit-button {
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* 桌面端适配：内容区域居中并限制宽度，贴近PC视觉 */
+@media (min-width: 1024px) {
+  .survey-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .survey-form-content {
+    width: 860px;
+    max-width: 860px;
+    padding: 80px 0 60px;
+    margin: 0 auto 60px;
+    padding-top:376px;
+  }
+
+  .header {
+    padding: 48px 40px;
+    border-radius: 0px;
+    margin-bottom: 0;
+
+  }
+
+  .submit-container{
+    .btn-text{
+      justify-content: center;
+    }
+  }
+
+  .survey-form-container {
+    padding: 28px;
+    margin-top: 0px;
+    border-radius: 0;
+  }
+
+  /* 将顶部装饰背景限制为与内容同宽并居中，而非全屏 */
+  .survey-form::before,
+  .survey-form::after {
+    left: 50%;
+    right: auto;
+    width: 860px;
+    border-radius: 0px;
+    transform: translateX(-50%);
+    background-size: 100%;
+  }
+
+  .survey-form::after {
+     height: 10rem !important;
+  }
+
+  .survey-form::before {
+    height: 10rem !important;
+  }
+}
+
+/* 高分辨率屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .survey-form-container {
+    border-width: 0.5px;
+  }
+
+  .arco-input-wrapper {
+    border-width: 1.5px !important;
+  }
+
+  .arco-radio-wrapper {
+    border-width: 1.5px !important;
+  }
+
+  .arco-picker-view {
+    border-width: 1.5px !important;
+  }
+}
+/* 最终兜底样式 - 确保所有选项都有统一边框 */
+.survey-form [class*="arco-checkbox-wrapper"],
+.survey-form [class*="arco-radio-wrapper"] {
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  margin-bottom: 8px !important;
+  padding: 14px 16px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  flex: none !important;
+}
+
+.survey-form [class*="arco-checkbox-wrapper"]:hover,
+.survey-form [class*="arco-radio-wrapper"]:hover {
+  border-color: #ffd700 !important;
+  background: #fffbf0 !important;
+}
+
+.survey-form [class*="arco-checkbox-wrapper"][class*="checked"],
+.survey-form [class*="arco-radio-wrapper"][class*="checked"] {
+  border-color: #ffd700 !important;
+  background: #fffbe6 !important;
+  border-width: 2px !important;
+}
+
+/* 强制统一所有选项的宽度和边框 */
+.survey-form .radio-wrapper .arco-radio-group > *,
+.survey-form .checkbox-wrapper .arco-checkbox-group > * {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  display: flex !important;
+  box-sizing: border-box !important;
+}
+
+/* "其他"选项卡片样式 */
+.other-option-card {
+  width: 100% !important;
+  min-height: 48px !important;
+  padding: 14px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #d9d9d9 !important;
+  background: #ffffff !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  margin-top: 8px !important;
+}
+
+.other-option-card:hover {
+  border-color: #ffd700 !important;
+  background: #fffbf0 !important;
+}
+
+.other-option-card.selected {
+  border-color: #ffd700 !important;
+  background: #fffbe6 !important;
+  border-width: 2px !important;
+  padding: 13px 15px !important; /* 减少1px padding来补偿边框增加 */
+}
+
+.other-option-header {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  cursor: pointer !important;
+}
+
+.other-option-header .arco-checkbox {
+  margin-right: 8px !important;
+}
+
+.other-input-container {
+  margin-top: 12px !important;
+  width: 100% !important;
+}
+
+.other-input {
+  width: 100% !important;
+  min-height: 40px !important;
+  padding: 10px 12px !important;
+  border-radius: 6px !important;
+  border: 1px solid #e5e5e5 !important;
+  background: #f8f8f8 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: #333 !important;
+  box-sizing: border-box !important;
+  transition: all 0.3s ease !important;
+  outline: none !important;
+}
+
+.other-input:hover {
+  border-color: #ccc !important;
+  background: #f0f0f0 !important;
+}
+
+.other-input:focus {
+  border-color: #ffd700 !important;
+  background: #ffffff !important;
+  border-width: 1px !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.1) !important;
+}
+
+.other-input::placeholder {
+  color: #999 !important;
+  font-size: 14px !important;
+}
+
+/* 其他选项卡片内的select样式 */
+.other-input.custom-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 16px !important;
+  padding-right: 40px !important;
+  cursor: pointer !important;
+}
+
+.other-input.custom-select:hover {
+  border-color: #ccc !important;
+  background-color: #f0f0f0 !important;
+}
+
+.other-input.custom-select:focus {
+  border-color: #ffd700 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.1) !important;
+}
+/* 体验项目选择器包装器样式 */
+.experience-projects-wrapper {
+  margin-top: 8px;
+}

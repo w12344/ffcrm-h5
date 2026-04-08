@@ -1,0 +1,334 @@
+/**
+ * 主題演示頁面樣式
+ */
+.theme-demo {
+  min-height: 100vh;
+  background-color: var(--color-background-page);
+  color: var(--color-text-primary);
+  padding: var(--spacing-large);
+}
+
+.theme-demo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-large);
+  border-bottom: 1px solid var(--color-border-base);
+  
+  h1 {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xxl);
+    font-weight: 600;
+  }
+}
+
+.theme-demo-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* 主題信息卡片 */
+.theme-info-card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-base);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-large);
+  box-shadow: var(--shadow-light);
+  
+  h2 {
+    margin: 0 0 var(--spacing-medium) 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xl);
+  }
+  
+  .theme-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-medium);
+    
+    p {
+      margin: 0;
+      color: var(--color-text-regular);
+      font-size: var(--font-size-medium);
+      
+      strong {
+        color: var(--color-text-primary);
+      }
+    }
+  }
+}
+
+/* 顏色展示 */
+.color-showcase {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-base);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-large);
+  box-shadow: var(--shadow-light);
+  
+  h2 {
+    margin: 0 0 var(--spacing-large) 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xl);
+  }
+  
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-large);
+  }
+  
+  .color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-small);
+    padding: var(--spacing-medium);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-medium);
+    background-color: var(--color-background-container);
+  }
+  
+  .color-swatch {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--border-radius-circle);
+    border: 2px solid var(--color-border-base);
+    box-shadow: var(--shadow-light);
+  }
+  
+  .color-name {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-small);
+  }
+  
+  .color-value {
+    font-family: monospace;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-mini);
+    background-color: var(--color-background);
+    padding: 2px 6px;
+    border-radius: var(--border-radius-small);
+  }
+}
+
+/* 組件展示 */
+.component-showcase {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-base);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-large);
+  box-shadow: var(--shadow-light);
+  
+  h2 {
+    margin: 0 0 var(--spacing-large) 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xl);
+  }
+  
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+  }
+  
+  .component-section {
+    h3 {
+      margin: 0 0 var(--spacing-medium) 0;
+      color: var(--color-text-primary);
+      font-size: var(--font-size-large);
+    }
+  }
+  
+  .button-group {
+    display: flex;
+    gap: var(--spacing-medium);
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    padding: var(--spacing-small) var(--spacing-medium);
+    border: none;
+    border-radius: var(--border-radius-medium);
+    cursor: pointer;
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    &.btn-primary {
+      background-color: var(--color-primary);
+      color: white;
+      
+      &:hover {
+        background-color: var(--color-primary-hover);
+      }
+    }
+    
+    &.btn-success {
+      background-color: var(--color-success);
+      color: white;
+      
+      &:hover {
+        background-color: var(--color-success-hover);
+      }
+    }
+    
+    &.btn-warning {
+      background-color: var(--color-warning);
+      color: white;
+      
+      &:hover {
+        background-color: var(--color-warning-hover);
+      }
+    }
+    
+    &.btn-error {
+      background-color: var(--color-error);
+      color: white;
+      
+      &:hover {
+        background-color: var(--color-error-hover);
+      }
+    }
+  }
+  
+  .card {
+    border: 1px solid var(--color-border-base);
+    border-radius: var(--border-radius-large);
+    background-color: var(--color-background);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    
+    .card-header {
+      padding: var(--spacing-medium);
+      background-color: var(--color-background-container);
+      border-bottom: 1px solid var(--color-border-light);
+      
+      h4 {
+        margin: 0;
+        color: var(--color-text-primary);
+        font-size: var(--font-size-medium);
+      }
+    }
+    
+    .card-body {
+      padding: var(--spacing-medium);
+      
+      p {
+        margin: 0 0 var(--spacing-small) 0;
+        color: var(--color-text-regular);
+        font-size: var(--font-size-small);
+        line-height: var(--line-height-base);
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+    .card-footer {
+      padding: var(--spacing-medium);
+      background-color: var(--color-background-container);
+      border-top: 1px solid var(--color-border-light);
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: var(--spacing-medium);
+    
+    label {
+      display: block;
+      margin-bottom: var(--spacing-small);
+      color: var(--color-text-primary);
+      font-size: var(--font-size-small);
+      font-weight: 500;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: var(--spacing-small) var(--spacing-medium);
+      border: 1px solid var(--color-border-base);
+      border-radius: var(--border-radius-medium);
+      background-color: var(--color-background);
+      color: var(--color-text-primary);
+      font-size: var(--font-size-small);
+      transition: border-color 0.3s ease;
+      
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+      }
+      
+      &::placeholder {
+        color: var(--color-text-secondary);
+      }
+    }
+  }
+}
+
+/* 漸變色展示 */
+.gradient-showcase {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-base);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-large);
+  box-shadow: var(--shadow-light);
+  
+  h2 {
+    margin: 0 0 var(--spacing-large) 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xl);
+  }
+  
+  .gradient-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-large);
+  }
+  
+  .gradient-item {
+    height: 100px;
+    border-radius: var(--border-radius-large);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: var(--font-size-medium);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-medium);
+  }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .theme-demo {
+    padding: var(--spacing-medium);
+  }
+  
+  .theme-demo-header {
+    flex-direction: column;
+    gap: var(--spacing-medium);
+    align-items: flex-start;
+  }
+  
+  .color-grid,
+  .component-grid,
+  .gradient-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}

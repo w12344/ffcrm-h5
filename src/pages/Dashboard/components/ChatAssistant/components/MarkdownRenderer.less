@@ -1,0 +1,230 @@
+.markdown-renderer {
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.6;
+  color: var(--text-primary);
+
+  // 标题样式
+  .md-heading {
+    margin: 0.233rem 0 0.12rem 0;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-primary);
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .md-h1 {
+    font-size: 0.64rem;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 0.213rem;
+  }
+
+  .md-h2 {
+    font-size: 0.56rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.05rem;
+  }
+
+  .md-h3 {
+    font-size: 0.48rem;
+  }
+
+  .md-h4 {
+    font-size: 0.427rem;
+  }
+
+  .md-h5 {
+    font-size: 0.4rem;
+  }
+
+  .md-h6 {
+    font-size: 0.373rem;
+    color: var(--text-secondary);
+  }
+
+  // 段落样式
+  .md-paragraph {
+    margin: 0.32rem 0;
+    font-size: 0.373rem;
+    line-height: 1.6;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // 粗体
+  .md-bold {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  // 斜体
+  .md-italic {
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  // 删除线
+  .md-strikethrough {
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  // 行内代码
+  .md-inline-code {
+    background: var(--code-bg, rgba(255, 255, 255, 0.1));
+    color: var(--code-color, #e06c75);
+    padding: 0.053rem 0.16rem;
+    border-radius: 0.107rem;
+    font-size: 0.9em;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    border: 1px solid var(--code-border, rgba(255, 255, 255, 0.15));
+  }
+
+  // 代码块
+  .md-code-block {
+    background: var(--code-bg, rgba(0, 0, 0, 0.3));
+    border: 1px solid var(--code-border, rgba(255, 255, 255, 0.1));
+    border-radius: 0.213rem;
+    padding: 0.427rem;
+    margin: 0.427rem 0;
+    overflow-x: auto;
+    
+    code {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.347rem;
+      line-height: 1.5;
+      color: var(--code-color, #abb2bf);
+      display: block;
+    }
+    
+    &::-webkit-scrollbar {
+      height: 0.107rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 0.107rem;
+    }
+  }
+
+  // 列表样式
+  .md-list {
+    margin: 0;
+    padding: 0rem;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    li {
+      font-size: 0.373rem;
+      line-height: 1.6;
+      
+      &::marker {
+        color: var(--text-secondary);
+      }
+    }
+    
+    // 嵌套列表
+    &.md-list-level-1 {
+      padding-left: 0.3rem;
+    }
+    
+    &.md-list-level-2 {
+      padding-left: 0.5rem;
+    }
+  }
+
+  // 引用
+  .md-blockquote {
+    margin: 0.427rem 0;
+    padding: 0.32rem 0.533rem;
+    border-left: 0.107rem solid var(--color-purple-primary);
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 0 0.213rem 0.213rem 0;
+    font-size: 0.373rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  // 分隔线
+  .md-hr {
+    margin: 0.533rem 0;
+    border: none;
+    border-top: 1px solid var(--border-light);
+  }
+
+  // 链接
+  .md-link {
+    color: var(--color-purple-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      border-bottom-color: var(--color-purple-primary);
+    }
+  }
+}
+
+// 浅色主题适配
+.light-theme .markdown-renderer {
+  .md-inline-code {
+    background: rgba(0, 0, 0, 0.05);
+    color: #e06c75;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .md-code-block {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    
+    code {
+      color: #383a42;
+    }
+  }
+
+  .md-blockquote {
+    background: rgba(139, 92, 246, 0.08);
+  }
+}
+
+// 暗色主题适配
+.dark-theme .markdown-renderer {
+  .md-inline-code {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e06c75;
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .md-code-block {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+    
+    code {
+      color: #abb2bf;
+    }
+  }
+
+  .md-blockquote {
+    background: rgba(139, 92, 246, 0.05);
+  }
+}

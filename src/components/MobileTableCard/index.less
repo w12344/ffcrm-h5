@@ -1,0 +1,250 @@
+/**
+ * 移动端表格卡片组件样式
+ */
+@import "../../pages/Dashboard/styles/themes.less";
+
+.mobile-table-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.533rem;
+  width: 100%;
+
+  /* 加载状态 */
+  .mobile-table-loading {
+    text-align: center;
+    padding: 1.333rem 0;
+    color: var(--text-secondary);
+    font-size: 0.373rem;
+  }
+
+  /* 空状态 */
+  .mobile-table-empty {
+    text-align: center;
+    padding: 1.333rem 0;
+    
+    .ant-empty-description {
+      color: var(--text-secondary);
+      font-size: 0.373rem;
+    }
+  }
+
+  /* 卡片样式 */
+  .mobile-table-card {
+    background: var(--kpi-card-bg);
+    backdrop-filter: blur(0.267rem);
+    border-radius: 0.4rem;
+    padding: 0.533rem;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-container);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.98);
+      box-shadow: var(--shadow-light);
+    }
+
+    /* 卡片头部 */
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border-lighter);
+
+      .card-title {
+        width: 100%;
+        margin-bottom: 0.4rem;
+
+        .primary-text {
+          font-size: 0.48rem;
+          font-weight: 600;
+          color: var(--text-primary);
+          margin-bottom: 0.133rem;
+          line-height: 1.4;
+          word-break: break-word;
+          display: block;
+        }
+
+        .secondary-text {
+          font-size: 0.373rem;
+          color: var(--text-secondary);
+          line-height: 1.3;
+          word-break: break-word;
+        }
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 0.267rem;
+        flex-shrink: 0;
+        align-self: flex-end;
+
+        .action-btn {
+          width: 0.8rem;
+          height: 0.8rem;
+          border-radius: 0.2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(139, 92, 246, 0.1);
+          border: 1px solid rgba(139, 92, 246, 0.3);
+          color: var(--color-purple-primary);
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:active {
+            transform: scale(0.9);
+            background: rgba(139, 92, 246, 0.2);
+          }
+
+          .anticon {
+            font-size: 0.427rem;
+          }
+        }
+      }
+    }
+
+    /* 卡片主体 */
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.32rem;
+
+      .card-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-size: 0.373rem;
+        line-height: 1.5;
+
+        .label {
+          color: var(--text-secondary);
+          flex-shrink: 0;
+          margin-right: 0.4rem;
+          min-width: fit-content;
+        }
+
+        .value {
+          color: var(--text-primary);
+          text-align: right;
+          flex: 1;
+          font-weight: 500;
+          word-break: break-word;
+
+          /* 高亮字段 */
+          &.highlight {
+            color: var(--color-purple-primary);
+            font-weight: 600;
+          }
+
+          /* 金额字段 */
+          &.money {
+            color: var(--color-success);
+            font-family: 'DIN Alternate', 'Arial', sans-serif;
+            font-weight: 600;
+          }
+
+          /* 退款字段 */
+          &.refund {
+            color: var(--color-error);
+            font-family: 'DIN Alternate', 'Arial', sans-serif;
+            font-weight: 600;
+          }
+
+          /* 状态标签 */
+          &.status {
+            display: inline-block;
+            padding: 0.133rem 0.267rem;
+            border-radius: 0.133rem;
+            font-size: 0.347rem;
+            font-weight: 500;
+
+            &.status-success {
+              background: rgba(16, 185, 129, 0.1);
+              color: var(--color-success);
+              border: 1px solid rgba(16, 185, 129, 0.3);
+            }
+
+            &.status-warning {
+              background: rgba(245, 158, 11, 0.1);
+              color: var(--color-warning);
+              border: 1px solid rgba(245, 158, 11, 0.3);
+            }
+
+            &.status-error {
+              background: rgba(239, 68, 68, 0.1);
+              color: var(--color-error);
+              border: 1px solid rgba(239, 68, 68, 0.3);
+            }
+
+            &.status-info {
+              background: rgba(139, 92, 246, 0.1);
+              color: var(--color-purple-primary);
+              border: 1px solid rgba(139, 92, 246, 0.3);
+            }
+          }
+        }
+      }
+    }
+
+    /* 卡片底部 */
+    .card-footer {
+      margin-top: 0.4rem;
+      padding-top: 0.4rem;
+      border-top: 1px solid var(--border-lighter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.347rem;
+
+      .footer-info {
+        color: var(--text-tertiary);
+      }
+
+      .footer-actions {
+        display: flex;
+        gap: 0.267rem;
+      }
+    }
+  }
+}
+
+/* 浅色主题适配 */
+.light-theme {
+  .mobile-table-card-list {
+    .mobile-table-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+      &:active {
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+      }
+
+      .card-header {
+        border-bottom-color: rgba(0, 0, 0, 0.06);
+      }
+
+      .card-body {
+        .card-row {
+          .label {
+            color: rgba(0, 0, 0, 0.65);
+          }
+
+          .value {
+            color: rgba(0, 0, 0, 0.85);
+          }
+        }
+      }
+
+      .card-footer {
+        border-top-color: rgba(0, 0, 0, 0.06);
+
+        .footer-info {
+          color: rgba(0, 0, 0, 0.45);
+        }
+      }
+    }
+  }
+}

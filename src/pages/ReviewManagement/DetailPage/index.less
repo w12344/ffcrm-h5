@@ -1,0 +1,391 @@
+/* 审核详情页面样式 */
+.review-detail-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #fffef7 0%,
+    #fff8dc 20%,
+    #fffacd 40%,
+    #ffffe0 60%,
+    #fffacd 80%,
+    #fff8dc 100%
+  );
+  position: relative;
+  overflow-x: hidden;
+
+  .has-divider{
+    border-bottom: 0px!important;
+}
+
+  .loading, .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #8b4513;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    border-radius: 28px;
+    margin: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 25px 80px rgba(255, 215, 0, 0.15);
+  }
+}
+
+
+
+/* 顶部装饰背景 */
+.review-detail-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: url("https://gd-pub.jinshujufiles.com/hi/2awB7mqIHE/20250830094433_fb97f3@hixlargeRetina")
+    no-repeat center top;
+  background-size: 100%;
+  background-position: center top;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 添加渐变遮罩 */
+.review-detail-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 254, 247, 0.3) 0%,
+    rgba(255, 248, 220, 0.4) 25%,
+    rgba(255, 250, 205, 0.3) 50%,
+    rgba(255, 255, 224, 0.4) 75%,
+    rgba(255, 250, 205, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 页面内容区域 */
+.review-detail-content {
+  padding: 230px 20px 60px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 可拖拽的浮动返回按钮 */
+.floating-back-button {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700 0%, #f39c12 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4), 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  user-select: none;
+  
+  &:hover {
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  &.dragging {
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.6), 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: none;
+  }
+  
+  svg {
+  }
+  
+}
+
+
+/* 页面标题 */
+.page-title {
+  padding: 0 20px 20px;
+  text-align: center;
+  
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #8b4513;
+    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    margin: 0;
+  }
+}
+
+/* 状态标签样式 */
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  &.pending {
+    background: linear-gradient(135deg, #ffd700 0%, #f39c12 100%);
+  }
+
+  &.approved {
+    background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+  }
+
+  &.rejected {
+    background: linear-gradient(135deg, #ff4d4f 0%, #d32f2f 100%);
+  }
+}
+
+
+
+/* 信息卡片 */
+.info-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 25px 80px rgba(255, 215, 0, 0.15),
+    0 10px 40px rgba(230, 126, 34, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  color: #8b4513;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    margin-right: 12px;
+    font-size: 20px;
+  }
+}
+
+.card-content {
+  .info-item {
+    margin-bottom: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .label {
+      font-size: 14px;
+      color: #8b4513;
+      margin-bottom: 8px;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .value {
+      font-size: 16px;
+      color: #333;
+      font-weight: 500;
+      word-break: break-all;
+      line-height: 1.5;
+      background: rgba(255, 250, 205, 0.3);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+  }
+}
+
+
+/* 进入动画 */
+
+
+
+
+/* 桌面端适配：内容区域居中并限制宽度 */
+@media (min-width: 1024px) {
+  .review-detail-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 0;
+  }
+
+  .review-detail-content {
+    width: 860px;
+    max-width: 860px;
+    padding: 80px 48px 80px;
+    margin: 0 auto 60px;
+  }
+
+  .info-card {
+    padding: 28px;
+  }
+
+  /* 将顶部装饰背景限制为与内容同宽并居中，而非全屏 */
+  .review-detail-page::before,
+  .review-detail-page::after {
+    left: 50%;
+    right: auto;
+    width: 860px;
+    transform: translateX(-50%);
+    background-size: cover;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+}
+
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .review-detail-content {
+    padding: 300px 16px 60px;
+  }
+
+  .review-detail-page::before {
+    height: 280px;
+  }
+
+  .review-detail-page::after {
+    height: 280px;
+  }
+
+  .header {
+    padding: 20px 24px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .status-card {
+    padding: 20px;
+  }
+
+  .status-badge {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .info-card {
+    padding: 20px;
+  }
+
+  .card-header {
+    font-size: 16px;
+  }
+
+  .card-content .info-item .value {
+    font-size: 14px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .review-detail-content {
+    padding: 230px 12px 60px;
+  }
+
+  .review-detail-page::before {
+    height: 260px;
+  }
+
+  .review-detail-page::after {
+    height: 260px;
+  }
+
+  .header {
+    padding: 16px 20px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .status-card {
+    padding: 16px;
+  }
+
+  .status-badge {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .update-time {
+    font-size: 12px;
+  }
+
+  .info-card {
+    padding: 16px;
+  }
+
+  .card-header {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .card-content .info-item {
+    margin-bottom: 12px;
+    padding: 8px 0;
+
+    .label {
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .value {
+      font-size: 13px;
+      padding: 6px 10px;
+    }
+  }
+
+  .action-buttons {
+    padding: 12px;
+    gap: 10px;
+
+    .reject-button,
+    .approve-button {
+      height: 44px;
+      font-size: 14px;
+    }
+  }
+}
+
+/* 高分辨率屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .info-card,
+  .status-card,
+  .header {
+    border-width: 0.5px;
+  }
+
+  .action-buttons .reject-button {
+    border-width: 1.5px;
+  }
+}

@@ -1,0 +1,383 @@
+/**
+ * 付款记录弹窗样式
+ */
+.payment-records-modal {
+  // PC端最大高度和滚动
+  @media (min-width: 768px) {
+    .ant-modal-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ant-modal-body {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  // 深色主题弹窗样式（默认）
+  &.ant-modal {
+    .ant-modal-content {
+      background: rgba(31, 31, 31, 0.95) !important;
+      backdrop-filter: blur(0.267rem);
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .ant-modal-header {
+      background: transparent !important;
+      border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+
+      .ant-modal-title {
+        color: #ffffff !important;
+        font-size: 0.48rem;
+        font-weight: 600;
+      }
+    }
+
+    .ant-modal-body {
+      padding: 0.533rem 0.167rem;
+
+      // 表格容器样式 - 确保只有表格区域滚动
+      .ant-table-wrapper {
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        
+        .ant-spin-nested-loading,
+        .ant-spin-container {
+          flex: 1;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .ant-table {
+          flex: 1;
+          overflow: hidden;
+        }
+        
+        .ant-table-container {
+          flex: 1;
+          overflow: auto;
+        }
+      }
+
+      // 表格样式
+      .ant-table {
+        background: transparent !important;
+
+        .ant-table-thead > tr > th {
+          background: rgba(255, 255, 255, 0.05) !important;
+          color: rgba(255, 255, 255, 0.85) !important;
+          border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+          font-weight: 600;
+        }
+
+        .ant-table-tbody > tr {
+          background: transparent !important;
+
+          &:hover > td {
+            background: rgba(255, 255, 255, 0.05) !important;
+          }
+
+          > td {
+            border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+            color: rgba(255, 255, 255, 0.85) !important;
+          }
+        }
+      }
+
+      .ant-empty-description {
+        color: rgba(255, 255, 255, 0.45) !important;
+      }
+
+      // Image 预览样式
+      .ant-image {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: var(--color-purple-primary);
+          transform: scale(1.05);
+        }
+      }
+
+      // 分页组件样式
+      .ant-pagination {
+        .ant-pagination-item {
+          background: rgba(255, 255, 255, 0.05) !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+          
+          a {
+            color: rgba(255, 255, 255, 0.85) !important;
+          }
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: var(--color-purple-primary) !important;
+            
+            a {
+              color: #ffffff !important;
+            }
+          }
+
+          &.ant-pagination-item-active {
+            background: var(--color-purple-primary) !important;
+            border-color: var(--color-purple-primary) !important;
+            
+            a {
+              color: #ffffff !important;
+            }
+          }
+        }
+
+        .ant-pagination-prev,
+        .ant-pagination-next {
+          .ant-pagination-item-link {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: rgba(255, 255, 255, 0.85) !important;
+          }
+
+          &:hover .ant-pagination-item-link {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: var(--color-purple-primary) !important;
+            color: #ffffff !important;
+          }
+
+          &.ant-pagination-disabled .ant-pagination-item-link {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border-color: rgba(255, 255, 255, 0.05) !important;
+            color: rgba(255, 255, 255, 0.25) !important;
+          }
+        }
+
+        .ant-pagination-options {
+          .ant-select {
+            .ant-select-selector {
+              background: rgba(255, 255, 255, 0.05) !important;
+              border-color: rgba(255, 255, 255, 0.1) !important;
+              color: rgba(255, 255, 255, 0.85) !important;
+            }
+
+            &:hover .ant-select-selector {
+              border-color: var(--color-purple-primary) !important;
+            }
+          }
+
+          .ant-pagination-options-quick-jumper {
+            color: rgba(255, 255, 255, 0.65) !important;
+
+            input {
+              background: rgba(255, 255, 255, 0.05) !important;
+              border-color: rgba(255, 255, 255, 0.1) !important;
+              color: rgba(255, 255, 255, 0.85) !important;
+
+              &:hover {
+                border-color: var(--color-purple-primary) !important;
+                background: rgba(255, 255, 255, 0.08) !important;
+              }
+
+              &:focus {
+                border-color: var(--color-purple-primary) !important;
+                background: rgba(255, 255, 255, 0.1) !important;
+                box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2) !important;
+              }
+            }
+          }
+        }
+
+        .ant-pagination-total-text {
+          color: rgba(255, 255, 255, 0.65) !important;
+        }
+
+        .ant-pagination-jump-prev,
+        .ant-pagination-jump-next {
+          .ant-pagination-item-container {
+            .ant-pagination-item-ellipsis {
+              color: rgba(255, 255, 255, 0.45) !important;
+            }
+            
+            .ant-pagination-item-link-icon {
+              color: var(--color-purple-primary) !important;
+            }
+          }
+        }
+      }
+    }
+
+    .ant-modal-close {
+      color: rgba(255, 255, 255, 0.6) !important;
+
+      &:hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+    }
+  }
+}
+
+// ========== 浅色主题覆盖（最高优先级） ==========
+body:has(.light-theme) {
+  .payment-records-modal.ant-modal {
+    .ant-modal-content {
+      background: #ffffff !important;
+      border: 1px solid rgba(0, 0, 0, 0.06) !important;
+      box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+        0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .ant-modal-header {
+      border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+
+      .ant-modal-title {
+        color: rgba(0, 0, 0, 0.88) !important;
+      }
+    }
+
+    .ant-modal-body {
+      .ant-table {
+        background: #ffffff !important;
+
+        .ant-table-thead > tr > th {
+          background: #fafafa !important;
+          color: rgba(0, 0, 0, 0.88) !important;
+          border-bottom-color: #f0f0f0 !important;
+        }
+
+        .ant-table-tbody > tr {
+          background: #ffffff !important;
+
+          &:hover > td {
+            background: #fafafa !important;
+          }
+
+          > td {
+            border-bottom-color: #f0f0f0 !important;
+            color: rgba(0, 0, 0, 0.88) !important;
+          }
+        }
+      }
+
+      .ant-empty-description {
+        color: rgba(0, 0, 0, 0.45) !important;
+      }
+
+      // Image 预览样式
+      .ant-image {
+        border: 1px solid #d9d9d9;
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: var(--color-purple-primary);
+          transform: scale(1.05);
+        }
+      }
+
+      // 分页样式优化
+      .ant-pagination {
+        .ant-pagination-item {
+          background: #ffffff !important;
+          border-color: #d9d9d9 !important;
+          
+          a {
+            color: rgba(0, 0, 0, 0.88) !important;
+          }
+
+          &:hover {
+            border-color: var(--color-purple-primary) !important;
+            
+            a {
+              color: var(--color-purple-primary) !important;
+            }
+          }
+
+          &.ant-pagination-item-active {
+            background: var(--color-purple-primary) !important;
+            border-color: var(--color-purple-primary) !important;
+            
+            a {
+              color: #ffffff !important;
+            }
+          }
+        }
+
+        .ant-pagination-prev,
+        .ant-pagination-next {
+          .ant-pagination-item-link {
+            background: #ffffff !important;
+            border-color: #d9d9d9 !important;
+            color: rgba(0, 0, 0, 0.88) !important;
+          }
+
+          &:hover .ant-pagination-item-link {
+            border-color: var(--color-purple-primary) !important;
+            color: var(--color-purple-primary) !important;
+          }
+
+          &.ant-pagination-disabled .ant-pagination-item-link {
+            background: #f5f5f5 !important;
+            border-color: #d9d9d9 !important;
+            color: rgba(0, 0, 0, 0.25) !important;
+          }
+        }
+
+        .ant-pagination-options {
+          .ant-select-selector {
+            background: #ffffff !important;
+            border-color: #d9d9d9 !important;
+            color: rgba(0, 0, 0, 0.88) !important;
+          }
+
+          .ant-pagination-options-quick-jumper {
+            color: rgba(0, 0, 0, 0.88) !important;
+
+            input {
+              background: #ffffff !important;
+              border-color: #d9d9d9 !important;
+              color: rgba(0, 0, 0, 0.88) !important;
+
+              &:hover {
+                border-color: var(--color-purple-primary) !important;
+              }
+
+              &:focus {
+                border-color: var(--color-purple-primary) !important;
+                box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+              }
+            }
+          }
+        }
+
+        .ant-pagination-total-text {
+          color: rgba(0, 0, 0, 0.65) !important;
+        }
+
+        .ant-pagination-jump-prev,
+        .ant-pagination-jump-next {
+          .ant-pagination-item-container {
+            .ant-pagination-item-ellipsis {
+              color: rgba(0, 0, 0, 0.45) !important;
+            }
+            
+            .ant-pagination-item-link-icon {
+              color: var(--color-purple-primary) !important;
+            }
+          }
+        }
+      }
+    }
+
+    .ant-modal-close {
+      color: rgba(0, 0, 0, 0.45) !important;
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.88) !important;
+        background: rgba(0, 0, 0, 0.06) !important;
+      }
+    }
+  }
+}

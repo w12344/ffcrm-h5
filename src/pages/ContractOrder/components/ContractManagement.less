@@ -1,0 +1,497 @@
+@import "../../Dashboard/styles/themes.less";
+
+.contract-management {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  // 统计卡片区域
+  .stats-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.533rem;
+    margin-bottom: 0.533rem;
+    flex-shrink: 0;
+
+    // PC端显示4列
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(5.333rem, 1fr));
+    }
+
+    .stat-card {
+      background: var(--kpi-card-bg);
+      backdrop-filter: blur(0.267rem);
+      border-radius: 0.4rem;
+      padding: 0.4rem 0.533rem;
+      border: 1px solid var(--border-lighter);
+      box-shadow: var(--shadow-container);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      overflow: hidden;
+      position: relative;
+
+      &:hover {
+        transform: translateY(-0.053rem);
+        box-shadow: var(--shadow-heavy);
+        border-color: var(--color-purple-primary);
+      }
+
+      .stat-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 0.32rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 0.56rem;
+        color: #ffffff;
+        box-shadow: 0 0.107rem 0.427rem rgba(0, 0, 0, 0.15);
+
+        .anticon {
+          font-size: 0.56rem;
+        }
+      }
+
+      .stat-content {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.107rem;
+
+        .stat-label {
+          font-size: 0.347rem;
+          color: var(--text-secondary);
+          font-weight: 400;
+          line-height: 1.2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .stat-value {
+          font-size: 0.587rem;
+          color: var(--text-primary);
+          font-weight: 600;
+          line-height: 1.2;
+          font-family: "DIN Alternate", "Arial", sans-serif;
+          letter-spacing: -0.013rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  .contract-management-content {
+    min-height: 10.667rem;
+    background: var(--kpi-card-bg);
+    backdrop-filter: blur(0.267rem);
+    border-radius: 0.4rem;
+    border: 1px solid var(--border-lighter);
+    padding: 0.533rem;
+    transition: all 0.3s ease;
+
+    // 表格头部按钮区域
+    .table-header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.4rem;
+      gap: 0.267rem;
+      flex-shrink: 0;
+
+      .ant-btn {
+        height: 0.853rem;
+        padding: 0 0.4rem;
+        font-size: 0.373rem;
+        border-radius: 0.213rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.133rem;
+
+        &:not(.ant-btn-primary) {
+          color: var(--text-primary);
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 0.133rem 0.267rem rgba(0, 0, 0, 0.2);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+
+        &.ant-btn-primary {
+          background: linear-gradient(
+            135deg,
+            var(--color-purple-primary) 0%,
+            var(--color-purple-gradient-end) 100%
+          );
+          border: 1px solid var(--color-purple-primary);
+          color: #ffffff;
+          box-shadow: 0 0.133rem 0.267rem rgba(139, 92, 246, 0.3);
+
+          &:hover {
+            background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 0.213rem 0.4rem rgba(139, 92, 246, 0.4);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+
+    // Spin容器样式
+    .ant-spin-nested-loading,
+    .ant-spin-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    // 表格容器样式
+    .contract-management-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    // 表格样式优化
+    .ant-table-wrapper {
+      flex: 1;
+      overflow: auto;
+
+      .ant-table {
+        background: transparent;
+
+        .ant-table-thead > tr > th {
+          background: var(--kpi-metric-bg) !important;
+          border-bottom: 1px solid var(--border-lighter);
+          color: rgba(255, 255, 255, 0.85) !important;
+          font-weight: 600;
+          font-size: 0.373rem;
+          padding: 0.4rem 0.427rem;
+
+          &::before {
+            display: none;
+          }
+        }
+
+        .ant-table-tbody > tr {
+          background: transparent !important;
+          transition: all 0.2s ease;
+
+          > td {
+            border-bottom: 1px solid var(--border-lighter);
+            background: transparent !important;
+            color: var(--text-primary) !important;
+            font-size: 0.373rem;
+            padding: 0.4rem 0.427rem;
+          }
+
+          &:hover > td {
+            background: rgba(255, 255, 255, 0.05) !important;
+          }
+        }
+
+        .ant-table-cell {
+          border-bottom-color: var(--border-lighter);
+        }
+
+        // 固定列背景色（防止文字重叠）
+        .ant-table-cell-fix-right {
+          background: var(--kpi-card-bg) !important;
+        }
+      }
+
+      .ant-table-pagination {
+        margin: 0.533rem 0 0;
+      }
+    }
+
+    // 分页样式
+    .ant-pagination {
+      justify-content: flex-end;
+      margin-top: 0.427rem;
+    }
+
+    // Tag 样式
+    .ant-tag {
+      border-radius: 0.533rem;
+      padding: 0.053rem 0.267rem;
+      font-size: 0.32rem;
+      border: none;
+      font-weight: 500;
+    }
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 10.667rem;
+    color: var(--text-secondary);
+    font-size: 0.373rem;
+    gap: 0.267rem;
+
+    .anticon {
+      font-size: 1.6rem;
+      color: var(--text-disabled);
+      opacity: 0.5;
+    }
+  }
+}
+
+// 深色主题特定样式
+.dark-theme {
+  .contract-management {
+    .contract-management-content {
+      .ant-pagination,.ant-pagination-item-link{
+         color: rgba(255, 255, 255, 0.85) !important;
+      }
+      .ant-table-wrapper {
+        .ant-table {
+          .ant-table-thead > tr > th {
+            background: var(--kpi-metric-bg) !important;
+            color: rgba(255, 255, 255, 0.85) !important;
+          }
+
+          .ant-table-tbody > tr {
+            > td {
+              color: var(--text-primary) !important;
+            }
+
+            &:hover > td {
+              background: rgba(255, 255, 255, 0.05) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 浅色主题特定样式
+.light-theme {
+  .contract-management {
+    .contract-management-content {
+      background: rgba(255, 255, 255, 0.95);
+
+      .ant-table-wrapper {
+        .ant-table {
+          .ant-table-thead > tr > th {
+            background: rgba(139, 92, 246, 0.1) !important;
+            color: rgba(0, 0, 0, 0.88) !important;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2) !important;
+          }
+
+          .ant-table-tbody > tr {
+            > td {
+              color: rgba(0, 0, 0, 0.88) !important;
+              border-bottom: 1px solid rgba(139, 92, 246, 0.08) !important;
+            }
+
+            &:hover > td {
+              background: rgba(139, 92, 246, 0.05) !important;
+            }
+          }
+
+          // 固定列背景色（防止文字重叠）
+          .ant-table-cell-fix-right {
+            background: rgba(255, 255, 255, 0.95) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 移动端样式
+@media (max-width: 768px) {
+
+  .contract-management-content{
+    padding:0.233rem!important;
+  }
+  .contract-management {
+    max-width: 100%;
+    overflow-x: hidden;
+
+    // 筛选区域移动端布局
+    .table-filter {
+      padding: 0.4rem !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      max-width: 100%;
+
+      .filter-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.3rem;
+        width: 100%;
+        box-sizing: border-box;
+
+        /* 所有输入框和选择器默认各占一列 */
+        > .ant-input,
+        > .ant-select {
+          grid-column: span 1;
+          width: 100% !important;
+          height: 0.9rem !important;
+          font-size: 0.35rem !important;
+          border-radius: 0.22rem !important;
+        }
+
+        /* 输入框通用样式 */
+        .ant-input,.ant-input-affix-wrapper{
+          width: 100% !important;
+          height: 0.9rem !important;
+          font-size: 0.35rem !important;
+          border-radius: 0.22rem !important;
+
+          &::placeholder {
+            font-size: 0.35rem !important;
+          }
+        }
+
+        /* 选择器通用样式 */
+        .ant-select {
+          .ant-select-selector {
+            height: 0.9rem !important;
+            border-radius: 0.22rem !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+
+            .ant-select-selection-placeholder,
+            .ant-select-selection-item {
+              line-height: 0.9rem !important;
+              font-size: 0.35rem !important;
+            }
+          }
+
+          .ant-select-arrow {
+            font-size: 0.32rem;
+          }
+        }
+
+        /* 按钮区域 - 占两列，独立一行 */
+        .button-group {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.3rem;
+
+          .ant-btn {
+            height: 0.9rem !important;
+            font-size: 0.35rem !important;
+            border-radius: 0.22rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.15rem;
+            padding: 0 0.32rem !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+
+            .anticon {
+              font-size: 0.35rem;
+            }
+          }
+        }
+      }
+    }
+
+    // 分页移动端样式（与成交报单保持一致）
+    .ant-pagination {
+      display: flex;
+      justify-content: center!important;
+      align-items: center;
+      padding: 0.533rem 0;
+      margin-top: 0.4rem;
+
+      .ant-pagination-item-link{
+        color:#fff;
+        border-color: var(--border-lighter) !important;
+      }
+
+      .ant-pagination-total-text {
+        display: none;
+      }
+
+      .ant-pagination-item,
+      .ant-pagination-prev,
+      .ant-pagination-next {
+        min-width: 0.853rem;
+        height: 0.853rem;
+        line-height: 0.853rem;
+        font-size: 0.373rem;
+        margin: 0 0.133rem;
+        border-radius: 0.213rem;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+        a {
+          color: rgba(255, 255, 255, 0.85);
+        }
+
+        &:hover:not(.ant-pagination-disabled) {
+          background: rgba(255, 255, 255, 0.08) !important;
+          border-color: rgba(139, 92, 246, 0.5) !important;
+        }
+      }
+
+      .ant-pagination-item-active {
+        background: linear-gradient(135deg, var(--color-purple-primary) 0%, rgba(6, 182, 212, 0.8) 100%) !important;
+        border-color: var(--color-purple-primary) !important;
+        box-shadow: 0 0.107rem 0.267rem rgba(139, 92, 246, 0.4);
+
+        a {
+          color: #fff !important;
+          font-weight: 600;
+        }
+      }
+
+      .ant-pagination-disabled {
+        background: rgba(255, 255, 255, 0.02) !important;
+        border-color: rgba(255, 255, 255, 0.05) !important;
+        opacity: 0.5;
+        cursor: not-allowed;
+
+        a {
+          color: rgba(255, 255, 255, 0.3);
+        }
+      }
+
+      .ant-pagination-jump-prev,
+      .ant-pagination-jump-next {
+        min-width: 0.853rem;
+        height: 0.853rem;
+        line-height: 0.853rem;
+        margin: 0 0.107rem;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .ant-pagination-options {
+        display: none;
+      }
+    }
+  }
+}

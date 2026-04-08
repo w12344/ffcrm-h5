@@ -1,0 +1,634 @@
+/**
+ * 回款弹窗样式
+ */
+.payment-collection-modal {
+  // PC端居中显示
+  @media (min-width: 768px) {
+    .ant-modal {
+      top: 50%;
+      transform: translateY(-50%);
+      padding-bottom: 0;
+    }
+
+    .ant-modal-content {
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ant-modal-body {
+      max-height: calc(90vh - 3.2rem);
+      overflow-y: auto;
+    }
+  }
+
+  // 移动端适配
+  @media (max-width: 767px) {
+    &.ant-modal {
+      max-width: 95vw !important;
+      margin: 0.267rem auto !important;
+
+      .ant-modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .ant-modal-body {
+        padding: 0.4rem 0.267rem !important;
+      }
+    }
+  }
+
+  // 付款项目区域
+  .payment-items-section {
+    margin-bottom: 0.4rem;
+
+    .section-title {
+      font-size: 0.373rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.32rem;
+    }
+
+    .payment-items-grid {
+      display: grid;
+      gap: 0.32rem;
+
+      // PC端：每行2个
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      // 移动端：每行1个
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-item-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.32rem 0.4rem;
+        background: var(--kpi-card-bg);
+        border: 1px solid var(--border-light);
+        border-radius: 0.213rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: var(--color-purple-primary);
+          background: rgba(139, 92, 246, 0.05);
+        }
+
+        .ant-checkbox-wrapper {
+          flex: 1;
+          color: var(--text-primary);
+          font-size: 0.373rem;
+
+          .ant-checkbox {
+            .ant-checkbox-inner {
+              border-color: var(--border-light);
+              background: transparent;
+            }
+
+            &.ant-checkbox-checked {
+              .ant-checkbox-inner {
+                background: var(--color-purple-primary);
+                border-color: var(--color-purple-primary);
+              }
+            }
+          }
+        }
+
+        .ant-input-number {
+          width: 120px;
+          
+          .ant-input-number-input {
+            color: var(--text-primary);
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  // 深色主题弹窗样式（默认）
+  &.ant-modal {
+    .ant-modal-content {
+      background: rgba(31, 31, 31, 0.95) !important;
+      backdrop-filter: blur(0.267rem);
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .ant-input-affix-wrapper{
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .ant-modal-header {
+      background: transparent !important;
+      border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+
+      .ant-modal-title {
+        color: #ffffff !important;
+        font-size: 0.48rem;
+        font-weight: 600;
+      }
+    }
+
+    .ant-modal-body {
+      .ant-form-item-label > label {
+        color: #ffffff !important;
+        font-size: 0.373rem;
+
+        &.ant-form-item-required::before {
+          color: #ff4d4f !important;
+        }
+      }
+
+      .ant-input,
+      .ant-input-number,
+      .ant-input-textarea {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        transition: all 0.2s ease;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        &:hover {
+          border-color: var(--color-purple-primary) !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        &:focus,
+        &.ant-input-number-focused,
+        &.ant-input-textarea-focused {
+          border-color: var(--color-purple-primary) !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+          box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.2) !important;
+        }
+      }
+
+      // TextArea 特殊处理
+      .ant-input-textarea,
+      textarea.ant-input {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        &:hover {
+          border-color: var(--color-purple-primary) !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        &:focus,
+        &.ant-input-textarea-focused {
+          border-color: var(--color-purple-primary) !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+          box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.2) !important;
+        }
+      }
+
+      .ant-input-textarea {
+        .ant-input-textarea-show-count::after {
+          color: rgba(255, 255, 255, 0.45) !important;
+        }
+      }
+
+      // InputNumber 组件特殊处理
+      .ant-input-number-affix-wrapper {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        transition: all 0.2s ease;
+
+        .ant-input-number-prefix {
+          color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        .ant-input-number {
+          background: transparent !important;
+          border: none !important;
+          box-shadow: none !important;
+
+          input {
+            color: #ffffff !important;
+            background: transparent !important;
+
+            &::placeholder {
+              color: rgba(255, 255, 255, 0.3) !important;
+            }
+          }
+
+          .ant-input-number-handler-wrap {
+            border-left-color: rgba(255, 255, 255, 0.1) !important;
+
+            .ant-input-number-handler {
+              border-top-color: rgba(255, 255, 255, 0.1) !important;
+              color: rgba(255, 255, 255, 0.6) !important;
+
+              &:hover {
+                color: var(--color-purple-primary) !important;
+                background: rgba(255, 255, 255, 0.1) !important;
+              }
+            }
+          }
+
+          &.ant-input-number-focused {
+            border: none !important;
+            box-shadow: none !important;
+          }
+        }
+
+        &:hover {
+          border-color: var(--color-purple-primary) !important;
+          background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        &.ant-input-number-affix-wrapper-focused {
+          border-color: var(--color-purple-primary) !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+          box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.2) !important;
+        }
+      }
+
+      // Checkbox 样式
+      .ant-checkbox-wrapper {
+        color: rgba(255, 255, 255, 0.85) !important;
+
+        .ant-checkbox {
+          .ant-checkbox-inner {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+          }
+
+          &.ant-checkbox-checked {
+            .ant-checkbox-inner {
+              background: var(--color-purple-primary) !important;
+              border-color: var(--color-purple-primary) !important;
+            }
+          }
+
+          &:hover .ant-checkbox-inner {
+            border-color: var(--color-purple-primary) !important;
+          }
+        }
+      }
+
+      .ant-form-item-extra {
+        color: rgba(255, 255, 255, 0.45) !important;
+        font-size: 0.32rem;
+      }
+
+      // Upload 组件样式
+      .ant-upload-wrapper {
+        .ant-btn {
+          background: rgba(255, 255, 255, 0.1) !important;
+          border-color: rgba(255, 255, 255, 0.2) !important;
+          color: rgba(255, 255, 255, 0.85) !important;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: #ffffff !important;
+          }
+
+          .anticon {
+            color: rgba(255, 255, 255, 0.65) !important;
+          }
+        }
+
+        .ant-upload.ant-upload-select {
+          background: rgba(255, 255, 255, 0.05) !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+
+          &:hover {
+            border-color: var(--color-purple-primary) !important;
+          }
+        }
+
+        .ant-upload-list-item {
+          background: rgba(255, 255, 255, 0.05) !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.08) !important;
+          }
+        }
+
+        .anticon {
+          color: rgba(255, 255, 255, 0.65) !important;
+        }
+      }
+    }
+
+    .ant-modal-footer {
+      border-top-color: rgba(255, 255, 255, 0.1) !important;
+      background: transparent !important;
+      padding: 0.4rem 0rem !important;
+
+      .ant-btn {
+        height: 0.853rem;
+        padding: 0 0.533rem;
+        font-size: 0.373rem;
+        border-radius: 0.213rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        min-width: 2rem;
+
+        &.ant-btn-primary {
+          background: linear-gradient(
+            135deg,
+            var(--color-purple-primary) 0%,
+            var(--color-purple-gradient-end) 100%
+          ) !important;
+          border: 1px solid var(--color-purple-primary) !important;
+          color: #ffffff !important;
+          box-shadow: 0 0.133rem 0.267rem rgba(139, 92, 246, 0.3) !important;
+
+          &:hover:not(:disabled) {
+            background: linear-gradient(
+              135deg,
+              #7c3aed 0%,
+              #0891b2 100%
+            ) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 0.213rem 0.4rem rgba(139, 92, 246, 0.4) !important;
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        &:not(.ant-btn-primary) {
+          color: rgba(255, 255, 255, 0.85) !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+
+          &:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+
+    .ant-modal-close {
+      color: rgba(255, 255, 255, 0.6) !important;
+
+      &:hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+    }
+  }
+}
+
+// ========== 浅色主题覆盖（最高优先级） ==========
+body:has(.light-theme) {
+  .payment-collection-modal {
+    // 移动端适配
+    @media (max-width: 768px) {
+      &.ant-modal {
+        max-width: 95vw !important;
+        margin: 0.267rem auto !important;
+
+        .ant-modal-content {
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+
+        .ant-modal-body {
+          padding: 0.4rem 0.267rem !important;
+        }
+      }
+    }
+  }
+
+  .payment-collection-modal.ant-modal {
+    .ant-modal-content {
+      background: #ffffff !important;
+      border: 1px solid rgba(0, 0, 0, 0.06) !important;
+      box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+        0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .ant-modal-header {
+      border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+
+      .ant-modal-title {
+        color: rgba(0, 0, 0, 0.88) !important;
+      }
+    }
+
+    .ant-modal-body {
+      .ant-form-item-label > label {
+        color: rgba(0, 0, 0, 0.88) !important;
+      }
+
+      .ant-input,
+      .ant-input-number,
+      .ant-input-textarea {
+        background: #ffffff !important;
+        border-color: #d9d9d9 !important;
+        color: rgba(0, 0, 0, 0.88) !important;
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+
+        &:hover {
+          border-color: var(--color-purple-primary) !important;
+        }
+
+        &:focus,
+        &.ant-input-number-focused,
+        &.ant-input-textarea-focused {
+          border-color: var(--color-purple-primary) !important;
+          box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.1) !important;
+        }
+      }
+
+      // TextArea 特殊处理
+      .ant-input-textarea {
+        textarea {
+          background: transparent !important;
+          color: rgba(0, 0, 0, 0.88) !important;
+
+          &::placeholder {
+            color: rgba(0, 0, 0, 0.45) !important;
+          }
+        }
+
+        .ant-input-textarea-show-count::after {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+      }
+
+      .ant-input-number-affix-wrapper {
+        background: #ffffff !important;
+        border-color: #d9d9d9 !important;
+
+        .ant-input-number-prefix {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+
+        .ant-input-number {
+          background: transparent !important;
+          border: none !important;
+          box-shadow: none !important;
+
+          input {
+            color: rgba(0, 0, 0, 0.88) !important;
+          }
+
+          .ant-input-number-handler-wrap {
+            border-left-color: #d9d9d9 !important;
+
+            .ant-input-number-handler {
+              border-top-color: #d9d9d9 !important;
+              color: rgba(0, 0, 0, 0.45) !important;
+
+              &:hover {
+                color: var(--color-purple-primary) !important;
+              }
+            }
+          }
+
+          &.ant-input-number-focused {
+            border: none !important;
+            box-shadow: none !important;
+          }
+        }
+
+        &:hover {
+          border-color: var(--color-purple-primary) !important;
+        }
+
+        &.ant-input-number-affix-wrapper-focused {
+          border-color: var(--color-purple-primary) !important;
+          box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.1) !important;
+        }
+      }
+
+      // Checkbox 样式
+      .ant-checkbox-wrapper {
+        color: rgba(0, 0, 0, 0.88) !important;
+
+        .ant-checkbox {
+          .ant-checkbox-inner {
+            background: #ffffff !important;
+            border-color: #d9d9d9 !important;
+          }
+
+          &.ant-checkbox-checked {
+            .ant-checkbox-inner {
+              background: var(--color-purple-primary) !important;
+              border-color: var(--color-purple-primary) !important;
+            }
+          }
+
+          &:hover .ant-checkbox-inner {
+            border-color: var(--color-purple-primary) !important;
+          }
+        }
+      }
+
+      .ant-form-item-extra {
+        color: rgba(0, 0, 0, 0.45) !important;
+      }
+
+      // Upload 组件样式
+      .ant-upload-wrapper {
+        .ant-upload.ant-upload-select {
+          background: #ffffff !important;
+          border-color: #d9d9d9 !important;
+
+          &:hover {
+            border-color: var(--color-purple-primary) !important;
+          }
+        }
+
+        .ant-upload-list-item {
+          background: #ffffff !important;
+          border-color: #d9d9d9 !important;
+
+          &:hover {
+            background: #fafafa !important;
+          }
+        }
+
+        .anticon {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+      }
+    }
+
+    .ant-modal-footer {
+      border-top-color: rgba(0, 0, 0, 0.06) !important;
+      padding: 0.4rem 0rem !important;
+
+      .ant-btn {
+        &.ant-btn-primary {
+          background: linear-gradient(
+            135deg,
+            var(--color-purple-primary) 0%,
+            var(--color-purple-gradient-end) 100%
+          ) !important;
+          border: 1px solid var(--color-purple-primary) !important;
+          color: #ffffff !important;
+          box-shadow: 0 0.133rem 0.267rem rgba(139, 92, 246, 0.3) !important;
+
+          &:hover:not(:disabled) {
+            background: linear-gradient(
+              135deg,
+              #7c3aed 0%,
+              #0891b2 100%
+            ) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 0.213rem 0.4rem rgba(139, 92, 246, 0.4) !important;
+          }
+        }
+
+        &:not(.ant-btn-primary) {
+          background: #ffffff !important;
+          border-color: #d9d9d9 !important;
+          color: rgba(0, 0, 0, 0.88) !important;
+
+          &:hover:not(:disabled) {
+            border-color: var(--color-purple-primary) !important;
+            color: var(--color-purple-primary) !important;
+            background: #fafafa !important;
+          }
+        }
+      }
+    }
+
+    .ant-modal-close {
+      color: rgba(0, 0, 0, 0.45) !important;
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.88) !important;
+        background: rgba(0, 0, 0, 0.06) !important;
+      }
+    }
+  }
+}

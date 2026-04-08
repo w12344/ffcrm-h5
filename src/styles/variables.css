@@ -1,0 +1,169 @@
+/* 多主題CSS變量配置 */
+/* 支持動態主題切換 */
+
+:root {
+  /* 基礎字號 */
+  --base-font-size: 37.5px;
+
+  /* 主題顏色變量 - 將由JavaScript動態設置 */
+  --color-primary: #165dff;
+  --color-primary-hover: #4080ff;
+  --color-primary-active: #0e42d2;
+  --color-success: #00b42a;
+  --color-success-hover: #23c343;
+  --color-success-active: #009a29;
+  --color-warning: #ff7d00;
+  --color-warning-hover: #ff9a2e;
+  --color-warning-active: #d25f00;
+  --color-error: #f53f3f;
+  --color-error-hover: #f76965;
+  --color-error-active: #cb2634;
+  --color-text-primary: #1d2129;
+  --color-text-regular: #4e5969;
+  --color-text-secondary: #86909c;
+  --color-text-disabled: #c9cdd4;
+  --color-background: #ffffff;
+  --color-background-container: #f7f8fa;
+  --color-background-page: #f2f3f5;
+  --color-background-overlay: rgba(29, 33, 41, 0.6);
+  --color-border-light: #f2f3f5;
+  --color-border-base: #e5e6eb;
+  --color-border-dark: #c9cdd4;
+  --color-gradient-1: #165dff;
+  --color-gradient-2: #00b42a;
+  --color-gradient-3: #ff7d00;
+  --color-gradient-4: #f53f3f;
+  --color-gradient-5: #722ed1;
+
+  /* 主題樣式變量 */
+  --border-radius-small: 2px;
+  --border-radius-medium: 4px;
+  --border-radius-large: 8px;
+  --border-radius-circle: 50%;
+  --shadow-light: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --spacing-mini: 4px;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xl: 32px;
+  --font-size-mini: 12px;
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+  --line-height-base: 1.5;
+  --line-height-heading: 1.2;
+
+  /* z-index層級 */
+  --z-index-popup: 1000;
+  --z-index-modal: 1050;
+  --z-index-toast: 1100;
+  --z-index-loading: 1150;
+}
+
+/* 向後兼容的別名 */
+:root {
+  --primary-color: var(--color-primary);
+  --primary-color-hover: var(--color-primary-hover);
+  --primary-color-active: var(--color-primary-active);
+  --success-color: var(--color-success);
+  --success-color-hover: var(--color-success-hover);
+  --success-color-active: var(--color-success-active);
+  --warning-color: var(--color-warning);
+  --warning-color-hover: var(--color-warning-hover);
+  --warning-color-active: var(--color-warning-active);
+  --error-color: var(--color-error);
+  --error-color-hover: var(--color-error-hover);
+  --error-color-active: var(--color-error-active);
+  --text-color-primary: var(--color-text-primary);
+  --text-color-regular: var(--color-text-regular);
+  --text-color-secondary: var(--color-text-secondary);
+  --text-color-disabled: var(--color-text-disabled);
+  --bg-color-white: var(--color-background);
+  --bg-color-container: var(--color-background-container);
+  --bg-color-page: var(--color-background-page);
+  --bg-color-overlay: var(--color-background-overlay);
+  --border-color-light: var(--color-border-light);
+  --border-color-base: var(--color-border-base);
+  --border-color-dark: var(--color-border-dark);
+  --border-radius-small: var(--border-radius-small);
+  --border-radius-medium: var(--border-radius-medium);
+  --border-radius-large: var(--border-radius-large);
+  --border-radius-circle: var(--border-radius-circle);
+  --shadow-light: var(--shadow-light);
+  --shadow-medium: var(--shadow-medium);
+  --shadow-heavy: var(--shadow-heavy);
+  --spacing-mini: var(--spacing-mini);
+  --spacing-small: var(--spacing-small);
+  --spacing-medium: var(--spacing-medium);
+  --spacing-large: var(--spacing-large);
+  --spacing-xl: var(--spacing-xl);
+  --font-size-mini: var(--font-size-mini);
+  --font-size-small: var(--font-size-small);
+  --font-size-medium: var(--font-size-medium);
+  --font-size-large: var(--font-size-large);
+  --font-size-xl: var(--font-size-xl);
+  --font-size-xxl: var(--font-size-xxl);
+  --line-height-base: var(--line-height-base);
+  --line-height-heading: var(--line-height-heading);
+}
+
+/* 主題特定樣式 */
+.light-theme,
+.theme-light {
+  /* 淺色主題特定樣式 */
+}
+
+.dark-theme,
+.theme-dark {
+  /* 深色主題特定樣式 */
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.blue-theme,
+.theme-blue {
+  /* 藍色主題特定樣式 */
+}
+
+.green-theme,
+.theme-green {
+  /* 綠色主題特定樣式 */
+}
+
+.purple-theme,
+.theme-purple {
+  /* 紫色主題特定樣式 */
+}
+
+/* 主題切換動畫 */
+html,
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  :root {
+    --spacing-medium: 12px;
+    --spacing-large: 18px;
+    --spacing-xl: 24px;
+  }
+}
+
+/* 打印樣式 */
+@media print {
+  :root {
+    --color-background: #ffffff;
+    --color-text-primary: #000000;
+    --color-text-regular: #333333;
+  }
+}

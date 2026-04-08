@@ -1,0 +1,1124 @@
+@import "./styles/themes.less";
+
+.light-theme {
+  .chat-section {
+    border: 1px solid var(--border-lighter) !important;
+  }
+
+  .chart-section {
+    border: none !important;
+    background: transparent !important;
+  }
+}
+
+/* 拖动时禁用过渡动画，提升性能 */
+body.resizing-chat {
+  .chat-section {
+    transition: none !important;
+  }
+
+  /* 拖动时禁用指针事件，避免干扰流式输出 */
+  .chat-assistant {
+    pointer-events: none;
+  }
+
+  /* 但保持拖动手柄可交互 */
+  .resize-handle {
+    pointer-events: auto;
+  }
+}
+
+.dashboard {
+  height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  padding: 0 0.8rem;
+  padding-top: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--dashboard-bg);
+
+  &.dark-theme,
+  &.light-theme {
+    color: var(--text-primary);
+  }
+
+  &.light-theme {
+    background: url("@/assets/images/bg.png") center center/cover no-repeat fixed !important;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Main Content Layout */
+.main-content {
+  display: flex;
+  gap: 0.8rem;
+  height: calc(100% - 3.467rem);
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Left Side - Dashboard Content */
+.dashboard-content {
+  /* 固定宽度，不受右侧聊天助手影响 */
+  flex: 0 0 calc(76.8% - 0.8rem);
+  /* 100% - 23.2% - gap */
+  max-width: calc(76.8% - 0.8rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 0;
+  transition: none;
+  /* 不需要过渡效果 */
+  box-sizing: border-box;
+
+  /* 确保宽度不会因为聊天助手的状态而改变 */
+  width: calc(76.8% - 0.8rem) !important;
+  height: 100%; // 确保左侧列填满父容器垂直空间
+}
+
+/* KPI Section */
+.kpi-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 默认3列 */
+  gap: 0.8rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Override: Remove 3D effect from KPI card chart containers to match Boss page */
+.kpi-card .chart-container {
+  box-shadow: none;
+  border: none;
+  backdrop-filter: none;
+  animation: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.chart-section {
+  border-radius: var(--border-radius-sm);
+  // padding: 0.693rem 0.8rem;
+  padding-top: 0;
+  // overflow: hidden;
+  flex: 1; // 让他填满剩余空间，从而对齐右侧侧边栏底部
+  background: transparent;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.chat-section {
+  width: 23.2%;
+  max-width: 100%;
+  min-width: 10rem !important;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 2px;
+  background: var(--container-bg-glass);
+  // border: var(--chat-box-border);
+  backdrop-filter: var(--chat-backdrop-filter);
+  position: relative;
+  /* 移除 transition，改用 transform 实现流畅动画 */
+  transition: none;
+  /* 优化动画性能 - 只使用 transform 和 opacity */
+  will-change: transform;
+
+  /* 展开悬浮模式 */
+  &.expanded {
+    position: fixed;
+    right: 0.8rem;
+    /* top 和 height 由内联样式控制，以实现动态高度调整 */
+    z-index: 10001;
+    /* 在蒙层上方 */
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
+    /* 展开时背景色更深，增加透明度和模糊效果 */
+    background: var(--chat-section-expanded-bg);
+    backdrop-filter: blur(20px);
+    /* 使用 transform 实现流畅的宽度变化 */
+    transition: box-shadow 0.3s ease;
+  }
+}
+
+/* 拖动手柄样式 */
+.resize-handle {
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 100px;
+  cursor: ew-resize;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  .resize-icon {
+    width: 24px;
+    height: 60px;
+    background: var(--container-bg-glass);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-medium);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-secondary);
+    position: relative;
+
+    /* 添加微妙的渐变效果 */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 50%,
+          rgba(0, 0, 0, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    svg {
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  /* 添加提示文字 */
+  &::after {
+    content: "拖动调整宽度";
+    position: absolute;
+    left: 50%;
+    top: -30px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+
+    .resize-icon {
+      background: var(--button-hover-bg);
+      border-color: var(--border-strong);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+      transform: scale(1.1);
+      color: var(--text-primary);
+
+      &::before {
+        opacity: 1;
+      }
+
+      svg {
+        opacity: 1;
+        transform: scaleX(1.2);
+      }
+    }
+  }
+
+  &.resizing {
+    &::after {
+      opacity: 0;
+    }
+
+    .resize-icon {
+      background: linear-gradient(135deg,
+          var(--color-purple-primary) 0%,
+          var(--color-purple-gradient-end) 100%);
+      border-color: var(--color-purple-primary);
+      box-shadow: 0 0 24px rgba(139, 92, 246, 0.6),
+        0 4px 16px rgba(0, 0, 0, 0.3);
+      transform: scale(1.15);
+      color: #fff;
+
+      &::before {
+        opacity: 0;
+      }
+
+      svg {
+        animation: resizePulse 0.6s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+/* 拖动时的脉冲动画 */
+@keyframes resizePulse {
+
+  0%,
+  100% {
+    transform: scaleX(1.2);
+  }
+
+  50% {
+    transform: scaleX(1.4);
+  }
+}
+
+/* 浅色主题下的拖动手柄 */
+.light-theme .resize-handle {
+  .resize-icon {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+
+    &::before {
+      background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(0, 0, 0, 0.02) 50%,
+          rgba(0, 0, 0, 0.05) 100%);
+    }
+  }
+
+  &::after {
+    background: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:hover .resize-icon {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+
+  &.resizing .resize-icon {
+    background: linear-gradient(135deg,
+        var(--color-purple-primary) 0%,
+        var(--color-purple-gradient-end) 100%);
+    border-color: var(--color-purple-primary);
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.5), 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* 透明蒙层样式 - 在顾问助手背后 */
+.chat-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  /* 比顾问助手低，在其背后 */
+  animation: fadeIn 0.3s ease-out;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* 浅色主题下的蒙层 */
+.light-theme .chat-overlay {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+/* Responsive Design - 使用rem单位，会自动跟随根字号缩放 */
+/* 针对常见笔记本屏幕（1366-1440px）的优化 */
+@media (max-width: 1440px) {
+  .dashboard {
+    padding: 0 0.6rem;
+    padding-top: 0.6rem;
+  }
+
+  .main-content {
+    gap: 0.6rem;
+    height: calc(100vh - 3.5rem);
+  }
+
+  .dashboard-content {
+    gap: 0.6rem;
+  }
+
+  .kpi-section {
+    gap: 0.6rem;
+  }
+}
+
+/* 针对中大屏幕（1500-1600px）的优化 */
+@media (max-width: 1600px) and (min-width: 1500px) {
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3列布局 */
+    gap: 0.65rem;
+  }
+
+  .dashboard {
+    padding: 0 0.65rem;
+    padding-top: 0.65rem;
+  }
+
+  .main-content {
+    gap: 0.65rem;
+  }
+
+  .dashboard-content {
+    gap: 0.65rem;
+  }
+
+  .chat-section {
+    width: 22%;
+  }
+}
+
+/* 针对1480-1499px的优化 */
+@media (max-width: 1499px) and (min-width: 1480px) {
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.55rem;
+  }
+
+  .dashboard {
+    padding: 0 0.55rem;
+    padding-top: 0.55rem;
+  }
+
+  .main-content {
+    gap: 0.55rem;
+  }
+
+  .dashboard-content {
+    gap: 0.55rem;
+  }
+
+  .chat-section {
+    width: 21.5%;
+  }
+}
+
+/* 针对1440-1479px的优化 */
+@media (max-width: 1479px) and (min-width: 1440px) {
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .dashboard {
+    padding: 0 0.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .main-content {
+    gap: 0.5rem;
+  }
+
+  .dashboard-content {
+    gap: 0.5rem;
+  }
+
+  .chat-section {
+    width: 21%;
+  }
+}
+
+/* 针对1400-1439px的优化 */
+@media (max-width: 1439px) and (min-width: 1400px) {
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.48rem;
+  }
+
+  .dashboard {
+    padding: 0 0.48rem;
+    padding-top: 0.48rem;
+  }
+
+  .main-content {
+    gap: 0.48rem;
+  }
+
+  .dashboard-content {
+    gap: 0.48rem;
+  }
+
+  .chat-section {
+    width: 20%;
+  }
+}
+
+/* 针对1371-1399px的优化 */
+@media (max-width: 1399px) and (min-width: 1371px) {
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.45rem;
+  }
+
+  .dashboard {
+    padding: 0 0.45rem;
+    padding-top: 0.45rem;
+  }
+
+  .main-content {
+    gap: 0.45rem;
+  }
+
+  .dashboard-content {
+    gap: 0.45rem;
+  }
+
+  .chat-section {
+    width: 19%;
+  }
+}
+
+/* 针对1520-1550px的特殊优化（专门为1528px优化） */
+@media (max-width: 1550px) and (min-width: 1520px) {
+  .kpi-section {
+    gap: 0.58rem;
+  }
+
+  .main-content {
+    gap: 0.58rem;
+  }
+
+  .dashboard {
+    padding: 0 0.58rem;
+    padding-top: 0.58rem;
+  }
+
+  .dashboard-content {
+    gap: 0.58rem;
+  }
+
+  .chat-section {
+    width: 22%;
+  }
+}
+
+/* 针对中等屏幕（1280-1370px）的优化 */
+@media (max-width: 1370px) and (min-width: 1281px) {
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr) !important;
+    /* 保持3列布局，因为聊天区域会隐藏 */
+    gap: 0.6rem;
+  }
+
+  .chat-section {
+    width: 28%;
+  }
+}
+
+/* 1370px以下启用移动端模式的基础样式 */
+@media (max-width: 1370px) {
+  .chat-section {
+    /* 默认隐藏 */
+    display: none;
+
+    /* 展开时显示为悬浮层 - 只占右侧50%宽度 */
+    &.mobile-expanded {
+      display: flex;
+      position: fixed;
+      top: 0.8rem;
+      right: 0.8rem;
+      bottom: 0.8rem;
+      left: 50%;
+      /* 从屏幕中间开始 */
+      width: auto !important;
+      height: auto !important;
+      max-width: none;
+      z-index: 10001;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      background: var(--chat-section-expanded-bg);
+      backdrop-filter: blur(20px);
+      animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  /* 隐藏拖动手柄 */
+  .resize-handle {
+    display: none;
+  }
+
+  /* 移动端蒙层样式 - 只覆盖左侧50%区域 */
+  .chat-overlay {
+    right: 50%;
+    /* 只覆盖左侧50% */
+  }
+
+  /* 移动端收回按钮样式 - 固定在50%位置左侧 */
+  .mobile-collapse-hint {
+    right: calc(50% + 2rem) !important;
+    /* 固定在50%位置左侧 */
+  }
+
+  /* 左侧内容占满全宽 */
+  .dashboard-content {
+    flex: 1;
+    max-width: 100%;
+    /* 确保宽度不受之前的 width: calc(...) 影响 */
+    width: 100% !important;
+  }
+
+  /* KPI保持3列布局，因为有足够空间 */
+  .kpi-section {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* 900px以下改为垂直布局和2列KPI */
+@media (max-width: 900px) {
+  .main-content {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .dashboard {
+    padding: 0 0.6rem;
+    padding-top: 0.6rem;
+  }
+
+  .main-content {
+    gap: 0.6rem;
+  }
+
+  .kpi-section {
+    grid-template-columns: repeat(2, 1fr) !important;
+    /* 2列布局 */
+    gap: 0.6rem;
+  }
+
+  .chart-section {
+    min-height: 12rem;
+    // padding: 0.6rem;
+  }
+}
+
+/* 768px以下手机端深度优化 */
+@media (max-width: 768px) {
+  .dashboard {
+    height: auto !important;
+    min-height: 100vh;
+    overflow-y: auto !important;
+    padding: 0.4rem !important;
+    /* 减小边距，增加内容区域 */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .main-content {
+    flex-direction: column;
+    height: auto !important;
+    overflow: visible !important;
+    gap: 0.4rem !important;
+    /* 减小模块间距 */
+  }
+
+  .dashboard-content {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    gap: 0.4rem !important;
+  }
+
+  .kpi-section {
+    grid-template-columns: 1fr !important;
+    /* 恢复单列布局，防止内容挤压 */
+    gap: 0.5rem !important;
+  }
+
+  /* 移动端隐藏客户升级池 */
+  .chart-section {
+    display: none !important;
+  }
+
+  /* 移动端全屏聊天框 */
+  .chat-section {
+    display: none !important;
+
+    &.mobile-expanded {
+      display: flex !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0;
+      border-radius: 0;
+      z-index: 10000;
+    }
+  }
+
+  .chat-overlay {
+    right: 0;
+    /* 全屏蒙层 */
+  }
+
+  .mobile-chat-trigger {
+    bottom: 1rem !important;
+    right: 1rem !important;
+
+    .chat-icon {
+      width: 50px !important;
+      height: 50px !important;
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4) !important;
+    }
+
+    .chat-label {
+      font-size: 11px !important;
+      padding: 4px 10px !important;
+    }
+  }
+}
+
+/* 480px以下小屏优化 */
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 0.32rem !important;
+  }
+
+  .kpi-section {
+    gap: 0.32rem !important;
+  }
+}
+
+/* 小屏下的AI聊天图标按钮 */
+.mobile-chat-trigger {
+  display: none;
+  /* 默认隐藏 */
+
+  @media (max-width: 1370px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 1.5rem;
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.3s ease-out, aiFloatAnimation 4s ease-in-out infinite;
+
+    &.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.8) translateY(20px);
+    }
+
+    .chat-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* 主题适配背景 */
+      background: var(--ai-icon-bg, linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%));
+      box-shadow: var(--ai-icon-shadow,
+          0 8px 32px rgba(79, 70, 229, 0.3),
+          0 4px 16px rgba(124, 58, 237, 0.2),
+          0 2px 8px rgba(236, 72, 153, 0.1));
+
+      /* 神经网络脉冲效果 */
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg,
+            transparent 0deg,
+            var(--ai-pulse-color, rgba(79, 70, 229, 0.4)) 60deg,
+            var(--ai-pulse-color, rgba(124, 58, 237, 0.4)) 120deg,
+            var(--ai-pulse-color, rgba(236, 72, 153, 0.4)) 180deg,
+            transparent 240deg,
+            transparent 360deg);
+        animation: aiPulseRotate 3s linear infinite;
+        opacity: 0.8;
+        z-index: -1;
+      }
+
+      /* 内层光晕 */
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center,
+            var(--ai-glow-color, rgba(255, 255, 255, 0.2)) 0%,
+            transparent 70%);
+        animation: aiGlowPulse 2s ease-in-out infinite alternate;
+        z-index: 0;
+      }
+
+      svg {
+        position: relative;
+        z-index: 1;
+        color: var(--ai-icon-color, #ffffff);
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+        transition: all 0.3s ease;
+      }
+    }
+
+    .chat-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ai-label-color, #ffffff);
+      background: var(--ai-label-bg, linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%));
+      padding: 6px 14px;
+      border-radius: 16px;
+      white-space: nowrap;
+      box-shadow: var(--ai-label-shadow, 0 4px 16px rgba(79, 70, 229, 0.25));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--ai-label-border, rgba(255, 255, 255, 0.1));
+    }
+
+    &:hover {
+      animation: none;
+      /* 悬停时停止浮动动画 */
+      transform: translateY(-6px) scale(1.02);
+
+      .chat-icon {
+        background: var(--ai-icon-bg-hover, linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #4f46e5 100%));
+        box-shadow: var(--ai-icon-shadow-hover,
+            0 12px 48px rgba(79, 70, 229, 0.4),
+            0 8px 24px rgba(124, 58, 237, 0.3),
+            0 4px 12px rgba(236, 72, 153, 0.2));
+        transform: scale(1.08) rotate(2deg);
+
+        &::before {
+          animation-duration: 1.5s;
+          opacity: 1;
+        }
+
+        svg {
+          transform: scale(1.1);
+        }
+      }
+
+      .chat-label {
+        background: var(--ai-label-bg-hover, linear-gradient(135deg, #7c3aed 0%, #ec4899 100%));
+        box-shadow: var(--ai-label-shadow-hover, 0 6px 24px rgba(124, 58, 237, 0.35));
+        transform: translateY(-3px) scale(1.05);
+      }
+    }
+
+    &:active {
+      transform: translateY(-2px) scale(0.98);
+
+      .chat-icon {
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+/* 浅色主题下的移动端聊天按钮 */
+.light-theme .mobile-chat-trigger {
+  .chat-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 4px 20px rgba(79, 172, 254, 0.4),
+      0 8px 32px rgba(0, 242, 254, 0.3);
+  }
+
+  .chat-label {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 2px 8px rgba(79, 172, 254, 0.3);
+  }
+
+  &:hover {
+    .chat-icon {
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      box-shadow: 0 6px 24px rgba(79, 172, 254, 0.5),
+        0 12px 40px rgba(0, 242, 254, 0.4);
+    }
+
+    .chat-label {
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      box-shadow: 0 4px 12px rgba(79, 172, 254, 0.4);
+    }
+  }
+}
+
+/* 浮动动画 */
+@keyframes floatAnimation {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 光泽动画 */
+@keyframes shimmer {
+  0% {
+    transform: rotate(45deg) translateX(-100%);
+  }
+
+  100% {
+    transform: rotate(45deg) translateX(100%);
+  }
+}
+
+/* 滑入动画 */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 收回提示按钮样式 */
+.collapse-hint {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.3s ease-out, pulse 2s ease-in-out infinite;
+  will-change: transform;
+
+  .collapse-hint-icon {
+    width: 56px;
+    height: 56px;
+    /* 醒目的渐变背景 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4),
+      0 8px 32px rgba(118, 75, 162, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.2);
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    /* 确保内容完全居中 */
+    padding: 0;
+    margin: 0;
+
+    /* 添加光泽效果 */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent);
+      transition: left 0.5s ease;
+    }
+
+    svg {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      position: relative;
+      z-index: 1;
+      /* 确保 SVG 完美居中 */
+      display: block;
+      margin: auto;
+    }
+  }
+
+  .collapse-hint-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 6px 14px;
+    border-radius: 14px;
+    white-space: nowrap;
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    animation: none;
+    /* 悬停时停止脉冲动画 */
+
+    .collapse-hint-icon {
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      box-shadow: 0 6px 24px rgba(102, 126, 234, 0.5),
+        0 12px 40px rgba(118, 75, 162, 0.4),
+        0 0 0 2px rgba(255, 255, 255, 0.3);
+      transform: scale(1.15) rotate(-5deg);
+
+      &::before {
+        left: 100%;
+      }
+
+      svg {
+        transform: translateX(-3px);
+      }
+    }
+
+    .collapse-hint-text {
+      opacity: 1;
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    }
+  }
+
+  &:active {
+    .collapse-hint-icon {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* 浅色主题下的收回提示 - 使用不同的渐变色 */
+.light-theme .collapse-hint {
+  .collapse-hint-icon {
+    /* 浅色主题使用蓝色到青色的渐变 */
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 4px 20px rgba(79, 172, 254, 0.4),
+      0 8px 32px rgba(0, 242, 254, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+
+  .collapse-hint-text {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+  }
+
+  &:hover .collapse-hint-icon {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    box-shadow: 0 6px 24px rgba(79, 172, 254, 0.5),
+      0 12px 40px rgba(0, 242, 254, 0.4),
+      0 0 0 2px rgba(255, 255, 255, 0.6);
+  }
+
+  &:hover .collapse-hint-text {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    box-shadow: 0 6px 16px rgba(79, 172, 254, 0.4);
+  }
+}
+
+/* 脉冲动画 - 吸引注意力 */
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
+/* AI浮动动画 - 更自然的浮动效果 */
+@keyframes aiFloatAnimation {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-4px) rotate(1deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+}
+
+/* AI脉冲旋转动画 */
+@keyframes aiPulseRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* AI光晕脉冲动画 */
+@keyframes aiGlowPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* 神经网络节点闪烁动画 */
+@keyframes neuralNodePulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}

@@ -1,0 +1,231 @@
+.sales-metrics-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .smm-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+
+    .smm-tab {
+      padding: 6px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      :global(.dark-theme) & {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      &.active {
+        background: var(--primary-color, #1890ff);
+        color: #fff;
+        box-shadow: 0 2px 6px rgba(24, 144, 255, 0.3);
+
+        :global(.dark-theme) & {
+          background: #1890ff;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .smm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    /* 固定网格内容区域的高度，防止切换Tab时弹窗高度跳动 */
+    height: 560px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    &.workload-grid {
+      /* 工作量维度：上面一行1个（跨2列），下面一行2个 */
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      .smm-card:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  .smm-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 16px;
+    /* 让卡片在 grid 中自适应拉伸高度 */
+    height: 100%;
+
+    :global(.dark-theme) & {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .smm-card-header {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+      /* 防止标题被挤压 */
+      flex-shrink: 0;
+
+      :global(.dark-theme) & {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+    }
+
+    .smm-card-body {
+      flex: 1;
+      min-height: 200px; /* 修改为200px让三个图表能更好地分配空间 */
+      height: 100%; /* 确保body能撑满剩余空间 */
+    }
+  }
+
+  .funnel-card {
+    .smm-card-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .four-rates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .rate-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+
+    :global(.dark-theme) & {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    &.warning {
+      background: rgba(255, 77, 79, 0.05);
+      border-color: rgba(255, 77, 79, 0.3);
+
+      :global(.dark-theme) & {
+        background: rgba(255, 77, 79, 0.1);
+        border-color: rgba(255, 77, 79, 0.4);
+      }
+    }
+
+    .rate-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+
+      .rate-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .warning-badge {
+        font-size: 10px;
+        color: #ff4d4f;
+        background: rgba(255, 77, 79, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 77, 79, 0.2);
+      }
+    }
+
+    .rate-value-container {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+
+      .rate-value {
+        font-size: 24px;
+        font-weight: bold;
+        font-family: DIN Alternate, -apple-system, BlinkMacSystemFont, sans-serif;
+
+        &.text-red { color: #ff4d4f; }
+        &.text-green { color: #52c41a; }
+      }
+
+      .rate-threshold {
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+    }
+
+    .rate-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .rate-warning-msg {
+      font-size: 12px;
+      color: #ff4d4f;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 77, 79, 0.2);
+    }
+  }
+
+  .secondary-rates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .secondary-rate-card {
+    background: rgba(0, 0, 0, 0.01);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    :global(.dark-theme) & {
+      background: rgba(255, 255, 255, 0.01);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .rate-title {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .rate-value {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--text-primary);
+      font-family: DIN Alternate, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .rate-desc {
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+  }
+}

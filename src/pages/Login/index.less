@@ -1,0 +1,373 @@
+/* 登录页重构 - 苹果 (Apple) 增强型版面设计风格 */
+@import '../Dashboard/styles/themes.less';
+
+.login-page {
+  --apple-bg: #ffffff;
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #86868b;
+  --apple-text-tertiary: #b0b0b5;
+  --apple-accent: #0066cc;
+  --apple-gray-light: #f5f5f7;
+  --apple-border: #d2d2d7;
+  
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background: var(--apple-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  color: var(--apple-text-primary);
+  -webkit-font-smoothing: antialiased;
+
+  .login-split-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* --- 左侧：设计增强型排版区 --- */
+  .login-side--left {
+    width: 45%;
+    min-width: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 80px;
+    background: #fff;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+
+    /* 装饰性背景数字 */
+    .design-decorative-bg {
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 240px;
+      font-weight: 900;
+      color: rgba(0,0,0,0.02);
+      line-height: 1;
+      pointer-events: none;
+      z-index: -1;
+      font-family: serif; /* 使用衬线体增加版式感 */
+    }
+
+    .login-form-content {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      height: 80%; /* 保持内容比例 */
+      justify-content: space-between;
+      animation: appleSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* 增强版头部 */
+    .login-header-v2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+
+      .brand-marker {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "SF Mono", Menlo, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        
+        .marker-num { color: #000; }
+        .marker-sep { color: var(--apple-border); }
+        .marker-text { color: var(--apple-text-secondary); }
+      }
+
+      .brand-dot-logo {
+        width: 10px;
+        height: 10px;
+        background: #000;
+        border-radius: 50%;
+      }
+    }
+
+    /* 增强版欢迎语 */
+    .apple-greeting-v2 {
+      margin-bottom: 56px;
+      .greeting-sub {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--apple-accent);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+      }
+      .greeting-main {
+        font-size: 56px;
+        font-weight: 900;
+        letter-spacing: -2.5px;
+        color: var(--apple-text-primary);
+        margin: 0 0 16px;
+        line-height: 1.1;
+        span { color: var(--apple-border); }
+      }
+      .description-text {
+        font-size: 18px;
+        color: var(--apple-text-secondary);
+        font-weight: 400;
+        letter-spacing: -0.2px;
+        line-height: 1.6;
+      }
+    }
+
+    /* 通用按钮 - 在 .apple-form 和 .apple-qr-flow 中均可使用 */
+    .apple-button {
+      width: 100%;
+      height: 56px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      
+      &--primary {
+        background: #000;
+        color: #fff;
+        &:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+        &:active { transform: translateY(0); }
+        &:disabled { background: #d2d2d7; cursor: not-allowed; }
+      }
+
+      &--secondary {
+        background: #fff;
+        border: 1.5px solid #eee;
+        color: var(--apple-text-primary);
+        gap: 12px;
+        &:hover { background: #fafafa; border-color: #ddd; }
+        .lark-icon-mini {
+          width: 22px;
+          height: 22px;
+          background: url('https://lf3-static.bytednsdoc.com/obj/eden-cn/p_u_nhvl_lp/lark/favicon.ico') no-repeat center;
+          background-size: contain;
+        }
+      }
+
+      &--ghost {
+        background: transparent;
+        color: var(--apple-accent);
+        font-size: 15px;
+        font-weight: 600;
+        height: auto;
+        padding: 12px 0;
+        &:hover { text-decoration: underline; }
+      }
+    }
+
+    /* 苹果风格表单 */
+    .apple-form {
+      .apple-input-field {
+        position: relative;
+        margin-bottom: 24px;
+        
+        input {
+          width: 100%;
+          height: 60px;
+          padding: 24px 18px 8px;
+          border: 1.5px solid #eee;
+          border-radius: 14px;
+          font-size: 17px;
+          font-weight: 500;
+          background: #fafafa;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          outline: none;
+
+          &:focus {
+            border-color: #000;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+          }
+
+          &:focus + label,
+          &:valid + label {
+            transform: translateY(-14px) scale(0.8);
+            color: #000;
+            font-weight: 700;
+          }
+        }
+
+        label {
+          position: absolute;
+          left: 19px;
+          top: 19px;
+          font-size: 16px;
+          color: var(--apple-text-secondary);
+          pointer-events: none;
+          transition: all 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+          transform-origin: left top;
+        }
+      }
+
+      .apple-primary-actions {
+        margin-top: 12px;
+        margin-bottom: 28px;
+      }
+
+      .apple-secondary-bridge {
+        display: flex;
+        align-items: center;
+        margin: 28px 0;
+        span { padding: 0 20px; font-size: 13px; color: var(--apple-text-tertiary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .apple-divider { flex: 1; height: 1px; background: #f0f0f0; }
+      }
+    }
+
+    .apple-secondary-bridge {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 16px 0;
+      span { padding: 0 20px; font-size: 13px; color: var(--apple-text-tertiary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+      .apple-divider { flex: 1; height: 1px; background: #f0f0f0; }
+    }
+
+    .apple-qr-flow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      .apple-qr-wrapper {
+        position: relative;
+        padding: 6px;
+        background: #fff;
+        border: 1.5px solid #f0f0f0;
+        border-radius: 14px;
+        margin-bottom: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        width: fit-content;
+        max-width: 100%;
+        #feishu_login_container {
+          width: 280px !important;
+          height: 280px !important;
+          iframe { width: 280px !important; height: 280px !important; border: none !important; }
+        }
+      }
+      .qr-guide { font-size: 15px; color: var(--apple-text-secondary); margin-bottom: 16px; font-weight: 500; }
+    }
+
+    /* 增强版底部 Slogan */
+    .design-footer {
+      .slogan-block {
+        border-top: 1px solid #f5f5f7;
+        padding-top: 32px;
+        .slogan-line {
+          font-family: "SF Mono", monospace;
+          font-size: 10px;
+          color: var(--apple-text-tertiary);
+          letter-spacing: 3px;
+          margin-bottom: 6px;
+        }
+        .slogan-brand {
+          font-size: 13px;
+          font-weight: 800;
+          color: #000;
+          letter-spacing: 0.5px;
+          span { font-weight: 400; color: var(--apple-text-secondary); margin-left: 8px; font-size: 11px; }
+        }
+      }
+    }
+  }
+
+  /* --- 右侧：沉浸式大图区 --- */
+  .login-side--right {
+    flex: 1;
+    position: relative;
+    background: #000;
+    
+    .apple-visual-wrapper {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: appleScaleIn 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+      
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+      }
+    }
+  }
+
+  /* 登录过渡遮罩 */
+  .login-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: appleSlideUp 0.3s ease;
+
+    .transition-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .transition-spinner {
+      .spinner-ring {
+        width: 44px;
+        height: 44px;
+        border: 3px solid #f0f0f0;
+        border-top-color: #000;
+        border-radius: 50%;
+        animation: spinRing 0.8s linear infinite;
+      }
+    }
+
+    .transition-check {
+      font-size: 48px;
+      color: #22c55e;
+    }
+
+    .transition-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--apple-text-primary);
+      letter-spacing: -0.3px;
+    }
+  }
+}
+
+@keyframes spinRing {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes appleSlideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes appleScaleIn {
+  from { transform: scale(1.1); filter: grayscale(0.5); }
+  to { transform: scale(1); filter: grayscale(0); }
+}
+
+/* 响应式适配 */
+@media (max-width: 1200px) {
+  .login-page .login-side--left { width: 50%; padding: 0 50px; }
+}
+
+@media (max-width: 1024px) {
+  .login-page .login-side--right { display: none; }
+  .login-page .login-side--left { width: 100%; min-width: 0; padding: 60px 30px; }
+  .login-page .login-side--left .design-decorative-bg { display: none; }
+}

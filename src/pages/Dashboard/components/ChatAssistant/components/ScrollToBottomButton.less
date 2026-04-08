@@ -1,0 +1,115 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-to-bottom-button {
+  position: fixed;
+  bottom: 2.533rem; // 距离容器底部的距离
+  right: 0.533rem;
+  width: 1.173rem; // 44px 转换为 rem
+  height: 1.173rem;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  animation: fadeIn 0.3s ease;
+
+  // 箭头图标
+  .arrow-icon {
+    color: #666;
+    transition: color 0.3s ease;
+  }
+
+  // 加载圈容器
+  .loading-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.96rem; // 36px 转换为 rem
+    height: 0.96rem;
+    transform: translate(-50%, -50%);
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      animation: spin 1.2s linear infinite;
+      
+      circle {
+        stroke: #1677ff;
+        stroke-dasharray: 95, 126; // 75% 的圆周
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+      }
+    }
+  }
+
+  // 加载状态
+  &.loading {
+    .arrow-icon {
+      color: #1677ff;
+    }
+  }
+
+  // 悬浮效果
+  &:hover {
+    box-shadow: 0 0.107rem 0.32rem rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.053rem);
+
+    .arrow-icon {
+      color: #1677ff;
+    }
+  }
+
+  // 点击效果
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 0.053rem 0.16rem rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 暗色主题适配
+.dark-theme {
+  .scroll-to-bottom-button {
+    background: #2c2c2c;
+    box-shadow: 0 0.053rem 0.213rem rgba(0, 0, 0, 0.3);
+
+    .arrow-icon {
+      color: #b3b3b3;
+    }
+
+    &:hover {
+      box-shadow: 0 0.107rem 0.32rem rgba(0, 0, 0, 0.4);
+      
+      .arrow-icon {
+        color: #1677ff;
+      }
+    }
+
+    &:active {
+      box-shadow: 0 0.053rem 0.16rem rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+

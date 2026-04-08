@@ -1,0 +1,51 @@
+@import "@/pages/Dashboard/styles/themes.less";
+
+.glass-search {
+  background: #f0f2f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  border-radius: 22px;
+  height: 44px;
+  color: var(--current-text, #1e293b);
+  box-shadow:
+    inset 2px 2px 5px rgba(166, 171, 189, 0.4),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.8),
+    0 2px 4px rgba(0, 0, 0, 0.02) !important;
+  padding-left: 12px;
+  transition: all 0.3s ease;
+
+  .ant-input {
+    background: transparent !important;
+    color: var(--current-text, #1e293b);
+    font-size: 14px;
+    &::placeholder {
+      color: var(--current-text-secondary, #64748b);
+    }
+  }
+
+  .ant-input-prefix {
+    background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 50%, #f43f5e 100%);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 8px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);
+  }
+
+  &:hover {
+    background: #eef0f3 !important;
+  }
+
+  &:focus-within, &.ant-input-affix-wrapper-focused {
+    background: #f8fafc !important;
+    border-color: rgba(139, 92, 246, 0.4) !important;
+    box-shadow:
+      inset 1px 1px 3px rgba(166, 171, 189, 0.3),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.9),
+      0 0 0 2px rgba(139, 92, 246, 0.15) !important;
+  }
+}

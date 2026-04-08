@@ -1,0 +1,50 @@
+/**
+ * 客户列表及选择分配弹窗样式 - 极简主义、高端大盘风格
+ */
+
+.customer-list-dialog-premium {
+  /* Hide old BossModal header if any residual wrapper is left */
+  .bcc-header {
+    display: none !important;
+  }
+
+  .bcc-body {
+    padding: 0 !important;
+    height: 100%;
+  }
+
+  .boss-modal-content-inner {
+    height: 100%;
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Table Customization (Inherits from PremiumModal base now) */
+  .premium-customer-table {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .ant-spin-nested-loading,
+    .ant-spin-container,
+    .ant-table {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ant-table-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .ant-table-body {
+      flex: 1;
+      overflow-y: auto !important;
+    }
+  }
+}

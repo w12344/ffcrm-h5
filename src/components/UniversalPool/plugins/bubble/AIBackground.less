@@ -1,0 +1,192 @@
+.ai-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+// ============ 网格背景 ============
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.15;
+
+  .grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &.horizontal {
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 49px,
+        rgba(100, 200, 255, 0.3) 49px,
+        rgba(100, 200, 255, 0.3) 50px
+      );
+      animation: gridSlideY 20s linear infinite;
+    }
+
+    &.vertical {
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 49px,
+        rgba(100, 200, 255, 0.3) 49px,
+        rgba(100, 200, 255, 0.3) 50px
+      );
+      animation: gridSlideX 20s linear infinite;
+    }
+  }
+}
+
+// ============ 光晕效果 ============
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  animation: orbFloat 15s ease-in-out infinite;
+
+  &.glow-orb-1 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(100, 150, 255, 0.6), transparent);
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  &.glow-orb-2 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(200, 100, 255, 0.6), transparent);
+    top: 60%;
+    right: 15%;
+    animation-delay: 3s;
+    animation-duration: 18s;
+  }
+
+  &.glow-orb-3 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(100, 200, 255, 0.6), transparent);
+    bottom: 30%;
+    left: 50%;
+    animation-delay: 6s;
+    animation-duration: 20s;
+  }
+}
+
+// ============ 数据流动效果 ============
+.data-streams {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .data-stream {
+    position: absolute;
+    top: -20px;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(100, 200, 255, 0.8) 50%,
+      transparent
+    );
+    box-shadow: 0 0 6px rgba(100, 200, 255, 0.6);
+    animation: dataStreamFlow 5s ease-in infinite;
+    opacity: 0;
+  }
+}
+
+// ============ 动画定义 ============
+
+@keyframes gridSlideY {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+@keyframes gridSlideX {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50px);
+  }
+}
+
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(30px, -20px) scale(1.1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(0.9);
+    opacity: 0.12;
+  }
+  75% {
+    transform: translate(20px, 20px) scale(1.05);
+    opacity: 0.18;
+  }
+}
+
+@keyframes dataStreamFlow {
+  0% {
+    top: -60px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% + 60px);
+    opacity: 0;
+  }
+}
+
+// ============ 响应式调整 ============
+@media (max-width: 768px) {
+  .glow-orb {
+    filter: blur(40px);
+    
+    &.glow-orb-1 {
+      width: 200px;
+      height: 200px;
+    }
+
+    &.glow-orb-2 {
+      width: 150px;
+      height: 150px;
+    }
+
+    &.glow-orb-3 {
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
+

@@ -1,0 +1,370 @@
+/**
+ * 表格筛选组件样式
+ * 复用成交报单的筛选样式
+ */
+@import "../../pages/Dashboard/styles/themes.less";
+
+.table-filter {
+  background: var(--kpi-card-bg);
+  backdrop-filter: blur(0.267rem);
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.533rem;
+  margin-bottom: 0.533rem;
+  border: 1px solid var(--border-lighter);
+  transition: all 0.3s ease;
+
+  .filter-row {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 0.267rem;
+  }
+
+  // Input 样式
+  .ant-input {
+    height: 0.853rem !important;
+    font-size: 0.373rem !important;
+    border-radius: 0.133rem !important;
+    border: 1px solid var(--border-lighter) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease !important;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+
+  // 带前缀的Input样式
+  .ant-input-affix-wrapper {
+    height: 0.853rem !important;
+    font-size: 0.373rem !important;
+    border-radius: 0.133rem !important;
+    border: 1px solid var(--border-lighter) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 0 0.32rem !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important;
+
+    input {
+      color: #ffffff !important;
+      background: transparent !important;
+      height: 100% !important;
+      border: none !important;
+      box-shadow: none !important;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+      }
+    }
+
+    .ant-input-prefix {
+      color: rgba(255, 255, 255, 0.6) !important;
+      margin-right: 0.213rem !important;
+    }
+
+    &:hover {
+      border-color: var(--color-purple-primary) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    &:focus,
+    &.ant-input-affix-wrapper-focused {
+      border-color: var(--color-purple-primary) !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+      box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.2) !important;
+      outline: none !important;
+    }
+  }
+
+  // Select 样式
+  .ant-select {
+    height: 0.853rem;
+    font-size: 0.373rem;
+
+    .ant-select-selector {
+      height: 0.853rem !important;
+      border-radius: 0.133rem !important;
+      border: 1px solid var(--border-lighter) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      padding: 0 0.32rem !important;
+      transition: all 0.2s ease;
+      display: flex !important;
+      align-items: center !important;
+      box-shadow: none !important;
+
+      .ant-select-selection-wrap {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        min-height: auto !important;
+      }
+
+      .ant-select-selection-search {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin: 0 !important;
+      }
+
+      .ant-select-selection-search-input {
+        color: #ffffff !important;
+        height: 100% !important;
+        line-height: normal !important;
+      }
+
+      .ant-select-selection-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+        line-height: normal !important;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 !important;
+      }
+
+      .ant-select-selection-item {
+        color: #ffffff !important;
+        line-height: normal !important;
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+    }
+
+    .ant-select-arrow {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    &:hover .ant-select-selector {
+      border-color: var(--color-purple-primary) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      box-shadow: none !important;
+    }
+
+    &.ant-select-focused .ant-select-selector,
+    &.ant-select-open .ant-select-selector {
+      border-color: var(--color-purple-primary) !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+      box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.2) !important;
+    }
+  }
+
+  // DatePicker 和 RangePicker 样式
+  .ant-picker {
+    height: 0.853rem !important;
+    font-size: 0.373rem !important;
+    border-radius: 0.133rem !important;
+    border: 1px solid var(--border-lighter) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 0 0.32rem !important;
+    transition: all 0.2s ease !important;
+
+    input {
+      color: #ffffff !important;
+      font-size: 0.373rem !important;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+      }
+    }
+
+    .ant-picker-suffix,
+    .ant-picker-separator {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    &:hover {
+      border-color: var(--color-purple-primary) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    &.ant-picker-focused {
+      border-color: var(--color-purple-primary) !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+      box-shadow: 0 0 0 0.053rem rgba(139, 92, 246, 0.2) !important;
+    }
+  }
+
+  // Button 样式
+  .ant-btn {
+    height: 0.853rem;
+    padding: 0 0.4rem;
+    font-size: 0.373rem;
+    border-radius: 0.213rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.133rem;
+
+    &:not(.ant-btn-primary) {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        box-shadow: 0 0.133rem 0.267rem rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    &.ant-btn-primary {
+      background: linear-gradient(
+        135deg,
+        var(--color-purple-primary) 0%,
+        var(--color-purple-gradient-end) 100%
+      );
+      border: 1px solid var(--color-purple-primary);
+      color: #ffffff;
+      box-shadow: 0 0.133rem 0.267rem rgba(139, 92, 246, 0.3);
+
+      &:hover {
+        background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 0.213rem 0.4rem rgba(139, 92, 246, 0.4);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // 紧凑模式：用于弹窗内，移除背景、边框和padding
+  &.table-filter-compact {
+    background: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+}
+
+// 浅色主题样式
+.light-theme {
+  .table-filter {
+    .ant-input {
+      background: #ffffff !important;
+      color: rgba(0, 0, 0, 0.88) !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.45) !important;
+      }
+
+      &:hover {
+        background: #ffffff !important;
+      }
+
+      &:focus {
+        background: #ffffff !important;
+      }
+    }
+
+    .ant-input-affix-wrapper {
+      background: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+
+      input {
+        color: rgba(0, 0, 0, 0.88) !important;
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+      }
+
+      .ant-input-prefix {
+        color: rgba(0, 0, 0, 0.45) !important;
+      }
+
+      &:hover {
+        background: #ffffff !important;
+      }
+
+      &:focus,
+      &.ant-input-affix-wrapper-focused {
+        background: #ffffff !important;
+      }
+    }
+
+    .ant-select {
+      .ant-select-selector {
+        background: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.15) !important;
+
+        .ant-select-selection-search-input {
+          color: rgba(0, 0, 0, 0.88) !important;
+        }
+
+        .ant-select-selection-placeholder {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+
+        .ant-select-selection-item {
+          color: rgba(0, 0, 0, 0.88) !important;
+        }
+      }
+
+      .ant-select-arrow {
+        color: rgba(0, 0, 0, 0.45) !important;
+      }
+
+      &:hover .ant-select-selector {
+        background: #ffffff !important;
+      }
+
+      &.ant-select-focused .ant-select-selector {
+        background: #ffffff !important;
+      }
+    }
+
+    .ant-picker {
+      background: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.15) !important;
+
+      input {
+        color: rgba(0, 0, 0, 0.88) !important;
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.45) !important;
+        }
+      }
+
+      .ant-picker-suffix,
+      .ant-picker-separator {
+        color: rgba(0, 0, 0, 0.45) !important;
+      }
+
+      &:hover {
+        background: #ffffff !important;
+      }
+
+      &.ant-picker-focused {
+        background: #ffffff !important;
+      }
+    }
+
+    .ant-btn:not(.ant-btn-primary) {
+      color: rgba(0, 0, 0, 0.88);
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.15);
+
+      &:hover {
+        color: var(--color-purple-primary);
+        border-color: var(--color-purple-primary);
+        background: #ffffff;
+      }
+    }
+  }
+}

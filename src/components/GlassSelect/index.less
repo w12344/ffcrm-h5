@@ -1,0 +1,88 @@
+@import "@/pages/Dashboard/styles/themes.less";
+
+.glass-select-dropdown {
+  --current-text: #1e293b;
+  --current-text-secondary: #64748b;
+
+  :global(.dark-theme) & {
+    --current-text: rgba(255, 255, 255, 0.9);
+    --current-text-secondary: rgba(255, 255, 255, 0.45);
+  }
+
+  .ant-select{
+    height: 44px !important;
+  }
+
+   .ant-select-selector {
+    background: #f0f2f5 !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 22px !important;
+    height: 44px !important;
+    padding: 0 16px !important;
+    color: var(--current-text, #1e293b) !important;
+    box-shadow:
+      inset 2px 2px 5px rgba(166, 171, 189, 0.4),
+      inset -3px -3px 7px rgba(255, 255, 255, 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.3s ease;
+
+    :global(.dark-theme) & {
+      background: rgba(30, 41, 59, 0.5) !important;
+      border-color: rgba(255, 255, 255, 0.05) !important;
+      box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.3),
+        inset -1px -1px 3px rgba(255, 255, 255, 0.05),
+        0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+
+  & :global(.ant-select:not(.ant-select-disabled):hover .ant-select-selector) {
+    background: #eef0f3 !important;
+    box-shadow:
+      inset 2px 2px 5px rgba(166, 171, 189, 0.4),
+      inset -3px -3px 7px rgba(255, 255, 255, 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.02) !important;
+
+    :global(.dark-theme) & {
+      background: rgba(30, 41, 59, 0.6) !important;
+    }
+  }
+
+  & :global(.ant-select-open .ant-select-selector),
+  & :global(.ant-select-focused .ant-select-selector) {
+    background: #f8fafc !important;
+    border-color: rgba(139, 92, 246, 0.4) !important;
+    box-shadow:
+      inset 1px 1px 3px rgba(166, 171, 189, 0.3),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.9),
+      0 0 0 2px rgba(139, 92, 246, 0.15) !important;
+
+    :global(.dark-theme) & {
+      background: rgba(30, 41, 59, 0.7) !important;
+      box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.4),
+        inset -1px -1px 3px rgba(255, 255, 255, 0.05),
+        0 0 0 2px rgba(139, 92, 246, 0.25) !important;
+    }
+  }
+
+  & :global(.ant-select-selection-item),
+  & :global(.ant-select-selection-placeholder) {
+    font-weight: 500;
+    line-height: 42px !important;
+    display: flex;
+    align-items: center;
+    color: var(--current-text, #1e293b) !important;
+  }
+
+  & :global(.ant-select-arrow),
+  & :global(.ant-select-clear) {
+    color: var(--current-text-secondary, #64748b);
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-top: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

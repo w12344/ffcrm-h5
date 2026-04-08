@@ -1,0 +1,642 @@
+.kpi-card {
+  border-radius: 0.8rem;
+  padding: 0.427rem 0.8rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.907rem;
+  background: var(--container-bg-glass);
+  box-sizing: border-box;
+  min-width: 0;
+  &:hover {
+    transform: translateY(-0.053rem);
+    box-shadow: var(--shadow-heavy);
+  }
+  cursor: pointer;
+}
+
+.light-theme {
+  .kpi-card {
+    border: 1px solid var(--border-lighter);
+  }
+}
+
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.427rem;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.main-metric {
+  margin-bottom: 0;
+  padding: 0.16rem 0.32rem;
+  background: var(--kpi-metric-bg);
+  border-radius: 0.16rem 0.16rem 0.16rem 0.16rem;
+  border: 1px solid var(--kpi-metric-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    background: var(--kpi-metric-hover-bg, rgba(139, 92, 246, 0.05));
+    border-color: var(--color-purple);
+  }
+  .main-value-title {
+    font-size: 0.373rem;
+    color: var(--text-primary);
+    line-height: 1.2;
+    font-family: PingFang SC, PingFang SC;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .main-value-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.213rem;
+    justify-content: space-between;
+    white-space: nowrap;
+    min-width: 0;
+
+    .main-value-group {
+      display: flex;
+      align-items: baseline;
+      gap: 0.15rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .main-target-inline {
+      display: flex;
+      align-items: baseline;
+      gap: 0.08rem;
+      color: var(--text-tertiary);
+      font-size: 0.32rem;
+      opacity: 0.8;
+
+      .separator {
+        color: var(--text-quaternary);
+        margin: 0 0.04rem;
+        opacity: 0.5;
+      }
+
+      .target-label {
+        font-size: 0.293rem;
+        color: var(--text-quaternary);
+      }
+
+      .target-value {
+        font-weight: 600;
+        color: var(--color-purple);
+        font-family: 'Din Condensed', sans-serif;
+        font-size: 0.373rem;
+      }
+    }
+
+    .status-group {
+      display: flex;
+      align-items: center;
+      gap: 0.213rem;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .main-value {
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 0.373rem;
+      color: var(--text-primary);
+      text-align: right;
+      font-style: normal;
+      text-transform: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    .change {
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 0.373rem;
+      color: var(--text-disabled);
+      text-align: right;
+      font-style: normal;
+      text-transform: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.107rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+
+    .percent {
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 0.373rem;
+      color: var(--text-disabled);
+      text-align: right;
+      font-style: normal;
+      text-transform: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.107rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 0;
+
+      .trend-icon {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 0.187rem solid transparent;
+        border-right: 0.187rem solid transparent;
+
+        &.up {
+          border-bottom: 0.213rem solid var(--trend-up-color);
+        }
+
+        &.down {
+          border-top: 0.213rem solid var(--trend-down-color);
+        }
+      }
+    }
+
+    .yesterday-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0.48rem;
+      height: 0.48rem;
+      padding: 0 0.107rem;
+      font-size: 0.293rem;
+      font-weight: 500;
+      color: var(--yesterday-badge-color);
+      background: var(--yesterday-badge-bg);
+      border: 1px solid var(--yesterday-badge-border);
+      border-radius: 0.107rem;
+      line-height: 1;
+      font-family: PingFang SC, -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 0.008rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+  }
+}
+
+.sub-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+
+  &.columns-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 0.427rem;
+    column-gap: 0.32rem;
+
+    .sub-metric {
+      width: 100%;
+    }
+  }
+}
+
+.sub-metric {
+  display: flex;
+  padding: 0.16rem 0.32rem;
+  background: var(--kpi-metric-bg);
+  border-radius: 0.16rem 0.16rem 0.16rem 0.16rem;
+  border: 1px solid var(--kpi-metric-border);
+  align-items: flex-start;
+  gap: 0.213rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    background: var(--kpi-metric-hover-bg, rgba(139, 92, 246, 0.05));
+    border-color: var(--color-purple);
+  }
+
+  .metric-icon {
+    width: 0.267rem;
+    height: 0.267rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 0.107rem;
+
+    &.blue {
+      background: linear-gradient( 135deg, #06D7F6 0%, #4807EA 100%);
+    }
+
+    &.orange {
+      background: #ffa94d;
+    }
+  }
+
+  .metric-content {
+    flex: 1;
+
+    .sub-title {
+      font-family: PingFang SC, PingFang SC;
+      font-weight: 400;
+      font-size: 0.32rem;
+      color: var(--text-disabled);
+      line-height: 0.533rem;
+      text-align: left;
+      font-style: normal;
+      text-transform: none;
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      flex: 1;
+
+      > div:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+        min-width: 0;
+      }
+    }
+
+    .sub-value {
+      display: flex;
+      align-items: center;
+      gap: 0.213rem;
+      justify-content: space-between;
+      min-width: 0;
+      flex-shrink: 0;
+
+      .sub-status-group {
+        display: flex;
+        align-items: center;
+        gap: 0.213rem;
+        flex-shrink: 0;
+      }
+
+      .value, .change {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 0.373rem;
+        color: var(--text-disabled);
+        text-align: right;
+        font-style: normal;
+        text-transform: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.107rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex-shrink: 0;
+        min-width: 0;
+      }
+
+      .percent {
+        font-family: PingFang SC, PingFang SC;
+        font-weight: 400;
+        font-size: 0.373rem;
+        color: var(--text-disabled);
+        text-align: right;
+        font-style: normal;
+        text-transform: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.107rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex-shrink: 0;
+        min-width: 0;
+
+        .trend-icon {
+          display: inline-block;
+          width: 0;
+          height: 0;
+          border-left: 0.187rem solid transparent;
+          border-right: 0.187rem solid transparent;
+
+          &.up {
+            border-bottom: 0.213rem solid var(--trend-up-color);
+          }
+
+          &.down {
+            border-top: 0.213rem solid var(--trend-down-color);
+          }
+        }
+      }
+
+      .yesterday-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0.48rem;
+        height: 0.48rem;
+        padding: 0 0.107rem;
+        font-size: 0.293rem;
+        font-weight: 500;
+        color: var(--yesterday-badge-color);
+        background: var(--yesterday-badge-bg);
+        border: 1px solid var(--yesterday-badge-border);
+        border-radius: 0.107rem;
+        line-height: 1;
+        font-family: PingFang SC, -apple-system, BlinkMacSystemFont, sans-serif;
+        letter-spacing: 0.008rem;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  /* 使用固定宽度，保持圆形 */
+  width: 4rem; /* 约150px */
+  height: 4rem; /* 约150px */
+  max-width: 4rem;
+  max-height: 4rem;
+  min-width: 3rem; /* 最小尺寸 */
+  min-height: 3rem;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  /* 确保容器始终是正方形 */
+  aspect-ratio: 1 / 1;
+}
+
+.chart-area-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.circular-chart {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  /* 确保图表容器始终是正方形 */
+  aspect-ratio: 1 / 1;
+}
+
+.center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+
+  .center-title {
+    font-size: 0.32rem;
+    color: var(--text-quaternary);
+    margin-bottom: 0.107rem;
+    font-weight: 400;
+  }
+
+  .center-value {
+    font-size: 0.533rem;
+    color: var(--text-primary);
+    font-weight: bold;
+    line-height: 1;
+  }
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.5s ease-in-out;
+  stroke-linecap: round;
+}
+
+.chart-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  .chart-value {
+    font-size: 0.64rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.107rem;
+    line-height: 1.2;
+  }
+
+  .chart-label {
+    font-size: 0.32rem;
+    color: var(--text-tertiary);
+    line-height: 1.2;
+  }
+}
+
+/* Responsive Design - 响应式设计 */
+/* 針對1500-1600px的優化 */
+@media (max-width: 1600px) and (min-width: 1500px) {
+  .kpi-card {
+    padding: 0.3rem 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .chart-container {
+    width: 3.6rem;
+    height: 3.6rem;
+    max-width: 3.6rem;
+    max-height: 3.6rem;
+  }
+}
+
+/* 針對1520-1550px的特殊優化（專門為1528px優化） */
+@media (max-width: 1550px) and (min-width: 1520px) {
+  .kpi-card {
+    padding: 0.28rem 0.55rem;
+    gap: 0.55rem;
+  }
+
+  .chart-container {
+    width: 3.5rem;
+    height: 3.5rem;
+    max-width: 3.5rem;
+    max-height: 3.5rem;
+  }
+}
+
+/* 針對1480-1519px的優化 */
+@media (max-width: 1519px) and (min-width: 1480px) {
+  .kpi-card {
+    padding: 0.27rem 0.52rem;
+    gap: 0.52rem;
+  }
+
+  .chart-container {
+    width: 3.4rem;
+    height: 3.4rem;
+    max-width: 3.4rem;
+    max-height: 3.4rem;
+  }
+}
+
+/* 針對1440-1479px的優化 */
+@media (max-width: 1479px) and (min-width: 1440px) {
+  .kpi-card {
+    padding: 0.26rem 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .chart-container {
+    width: 3.3rem;
+    height: 3.3rem;
+    max-width: 3.3rem;
+    max-height: 3.3rem;
+  }
+}
+
+/* 針對1400-1439px的優化 */
+@media (max-width: 1439px) and (min-width: 1400px) {
+  .kpi-card {
+    padding: 0.24rem 0.42rem;
+    gap: 0.42rem;
+  }
+
+  .chart-container {
+    width: 3.0rem;
+    height: 3.0rem;
+    max-width: 3.0rem;
+    max-height: 3.0rem;
+  }
+
+  .title {
+    font-size: 0.25rem;
+  }
+
+  .metric-value {
+    font-size: 0.5rem;
+  }
+}
+
+/* 針對1371-1399px的優化 */
+@media (max-width: 1399px) and (min-width: 1371px) {
+  .kpi-card {
+    padding: 0.22rem 0.4rem;
+    gap: 0.4rem;
+  }
+
+  .chart-container {
+    width: 2.9rem;
+    height: 2.9rem;
+    max-width: 2.9rem;
+    max-height: 2.9rem;
+  }
+
+  .title {
+    font-size: 0.24rem;
+  }
+
+  .metric-value {
+    font-size: 0.48rem;
+  }
+
+  .change-value {
+    font-size: 0.22rem;
+  }
+}
+
+@media (max-width: 1370px) {
+  .kpi-card {
+    padding: 0.32rem 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .chart-container {
+    width: 3.5rem;
+    height: 3.5rem;
+    max-width: 3.5rem;
+    max-height: 3.5rem;
+  }
+
+  .main-metric,
+  .sub-metric {
+    padding: 0.12rem 0.24rem;
+  }
+
+  .main-metric .main-value-title,
+  .main-metric .main-value,
+  .main-metric .change-value,
+  .main-metric .change-percent,
+  .sub-metric .sub-title,
+  .sub-metric .value,
+  .sub-metric .change,
+  .sub-metric .percent {
+    font-size: 0.32rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .chart-container {
+    width: 3rem;
+    height: 3rem;
+    max-width: 3rem;
+    max-height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .kpi-card {
+    gap: 0.533rem;
+  }
+
+  .chart-container {
+    width: 2.8rem;
+    height: 2.8rem;
+    max-width: 2.8rem;
+    max-height: 2.8rem;
+    min-width: 2.8rem;
+    min-height: 2.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-card {
+    gap: 0.4rem;
+    padding: 0.32rem 0.533rem;
+  }
+
+  .chart-container {
+    width: 2.5rem;
+    height: 2.5rem;
+    max-width: 2.5rem;
+    max-height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+}

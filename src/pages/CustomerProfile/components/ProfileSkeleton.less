@@ -1,0 +1,437 @@
+/**
+ * 客户档案页面骨架屏样式
+ * 修复向右飘动问题：确保所有元素宽度受限，防止溢出
+ */
+@import '../../Dashboard/styles/themes.less';
+
+.profile-skeleton {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* 防止内容溢出导致飘动 */
+  box-sizing: border-box;
+
+  /* 页面头部骨架屏 */
+  .skeleton-header {
+    display: flex;
+    align-items: center;
+    gap: 0.533rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.533rem;
+    border-bottom: 1px solid var(--border-light);
+    width: 100%;
+    box-sizing: border-box;
+
+    .skeleton-title {
+      height: 0.64rem;
+      width: 12rem;
+      max-width: 60%; /* 防止宽度过大 */
+      border-radius: 0.267rem;
+      background: var(--kpi-metric-bg);
+    }
+  }
+
+  /* 主内容区域骨架屏 */
+  .skeleton-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.533rem;
+    box-sizing: border-box;
+  }
+
+  /* 通用区块骨架屏 */
+  .skeleton-section {
+    width: 100%;
+    background: var(--kpi-card-bg);
+    backdrop-filter: blur(0.267rem);
+    border-radius: 0.533rem;
+    padding: 0.533rem 0.667rem;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-container);
+    box-sizing: border-box;
+
+    .skeleton-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.533rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .skeleton-section-title {
+      height: 0.533rem;
+      width: 8rem;
+      max-width: 40%; /* 防止宽度过大 */
+      border-radius: 0.267rem;
+      background: var(--kpi-metric-bg);
+      margin-bottom: 0.533rem;
+    }
+
+    .skeleton-button {
+      height: 0.8rem;
+      width: 2.4rem;
+      border-radius: 0.267rem;
+      background: var(--kpi-metric-bg);
+    }
+
+    .skeleton-button-full {
+      height: 1.067rem;
+      width: 100%;
+      border-radius: 0.267rem;
+      background: var(--kpi-metric-bg);
+      margin-top: 0.533rem;
+    }
+  }
+
+  /* 基本信息网格骨架屏 */
+  .skeleton-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.533rem 0.8rem;
+    background: var(--kpi-metric-bg);
+    padding: 0.533rem;
+    border-radius: 0.267rem;
+    border: 1px solid var(--kpi-metric-border);
+    width: 100%;
+    box-sizing: border-box;
+
+    .skeleton-info-item {
+      display: flex;
+      gap: 0.333rem;
+      align-items: center;
+      padding: 0.2rem 0;
+      width: 100%;
+      box-sizing: border-box;
+
+      .skeleton-label {
+        height: 0.427rem;
+        width: 2.4rem;
+        border-radius: 0.133rem;
+        background: var(--container-bg-darker);
+        flex-shrink: 0;
+      }
+
+      .skeleton-value {
+        height: 0.427rem;
+        flex: 1;
+        max-width: 100%; /* 防止宽度过大 */
+        border-radius: 0.133rem;
+        background: var(--container-bg-darker);
+      }
+    }
+  }
+
+  /* 综合评估骨架屏 */
+  .skeleton-evaluation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--kpi-metric-bg);
+    padding: 0.533rem 0.667rem;
+    border-radius: 0.267rem;
+    border: 1px solid var(--kpi-metric-border);
+    width: 100%;
+    box-sizing: border-box;
+
+    .skeleton-score {
+      height: 0.8rem;
+      width: 4rem;
+      border-radius: 0.267rem;
+      background: var(--container-bg-darker);
+      flex-shrink: 0;
+    }
+
+    .skeleton-tag {
+      height: 0.8rem;
+      width: 3.2rem;
+      border-radius: 0.267rem;
+      background: var(--container-bg-darker);
+      flex-shrink: 0;
+    }
+
+    .skeleton-link {
+      height: 0.533rem;
+      width: 2.667rem;
+      border-radius: 0.133rem;
+      background: var(--container-bg-darker);
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+  }
+
+  /* 时间轴骨架屏 */
+  .skeleton-timeline {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1.333rem 0.533rem 0.533rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    box-sizing: border-box;
+
+    /* 隐藏滚动条 */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    .skeleton-timeline-line {
+      position: absolute;
+      top: 1.867rem;
+      left: 1.067rem;
+      right: 1.067rem;
+      height: 2px;
+      background: linear-gradient(90deg, var(--border-medium), var(--border-light));
+    }
+
+    .skeleton-timeline-node {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 4rem;
+      flex-shrink: 0;
+
+      .skeleton-node-dot {
+        width: 0.64rem;
+        height: 0.64rem;
+        border-radius: 50%;
+        background: var(--kpi-metric-bg);
+        border: 2px solid var(--border-medium);
+        z-index: 1;
+        margin-bottom: 0.4rem;
+      }
+
+      .skeleton-node-label {
+        height: 0.427rem;
+        width: 2.667rem;
+        border-radius: 0.133rem;
+        background: var(--kpi-metric-bg);
+        margin-bottom: 0.267rem;
+      }
+
+      .skeleton-node-date {
+        height: 0.373rem;
+        width: 2.133rem;
+        border-radius: 0.133rem;
+        background: var(--kpi-metric-bg);
+      }
+    }
+  }
+
+  /* AI 总结骨架屏 */
+  .skeleton-summary {
+    background: var(--kpi-metric-bg);
+    padding: 0.533rem 0.667rem;
+    border-radius: 0.267rem;
+    border: 1px solid var(--kpi-metric-border);
+    width: 100%;
+    box-sizing: border-box;
+
+    .skeleton-summary-line {
+      height: 0.48rem;
+      width: 100%;
+      border-radius: 0.133rem;
+      background: var(--container-bg-darker);
+      margin-bottom: 0.4rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  /* 异议标签骨架屏 */
+  .skeleton-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.267rem;
+    margin-bottom: 0.533rem;
+    background: var(--kpi-metric-bg);
+    padding: 0.533rem;
+    border-radius: 0.267rem;
+    border: 1px solid var(--kpi-metric-border);
+    width: 100%;
+    box-sizing: border-box;
+
+    .skeleton-tag {
+      height: 0.8rem;
+      width: 4rem;
+      border-radius: 0.267rem;
+      background: var(--container-bg-darker);
+    }
+  }
+
+  /* 人工补充笔记骨架屏 */
+  .skeleton-note {
+    background: var(--kpi-metric-bg);
+    padding: 0.533rem 0.667rem;
+    border-radius: 0.267rem;
+    margin-bottom: 0.533rem;
+    border: 1px solid var(--kpi-metric-border);
+    width: 100%;
+    box-sizing: border-box;
+
+    .skeleton-note-line {
+      height: 0.48rem;
+      width: 100%;
+      border-radius: 0.133rem;
+      background: var(--container-bg-darker);
+      margin-bottom: 0.4rem;
+
+      &:nth-child(2) {
+        width: 85%;
+      }
+    }
+
+    .skeleton-note-meta {
+      height: 0.373rem;
+      width: 12rem;
+      max-width: 60%; /* 防止宽度过大 */
+      border-radius: 0.133rem;
+      background: var(--container-bg-darker);
+    }
+  }
+
+  /* 联系人信息骨架屏 */
+  .skeleton-contact {
+    display: flex;
+    align-items: center;
+    gap: 0.533rem;
+    padding: 0.533rem 0.667rem;
+    background: var(--kpi-metric-bg);
+    border-radius: 0.533rem;
+    border: 1px solid var(--kpi-metric-border);
+    width: 100%;
+    box-sizing: border-box;
+
+    .skeleton-avatar {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--container-bg-darker);
+      flex-shrink: 0;
+    }
+
+    .skeleton-contact-info {
+      flex: 1;
+      min-width: 0; /* 防止文本溢出 */
+
+      .skeleton-contact-name {
+        height: 0.533rem;
+        width: 4rem;
+        max-width: 80%; /* 防止宽度过大 */
+        border-radius: 0.133rem;
+        background: var(--container-bg-darker);
+        margin-bottom: 0.267rem;
+      }
+
+      .skeleton-contact-detail {
+        height: 0.373rem;
+        width: 6rem;
+        max-width: 100%; /* 防止宽度过大 */
+        border-radius: 0.133rem;
+        background: var(--container-bg-darker);
+        margin-bottom: 0.267rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .skeleton-relation-tag {
+      height: 0.8rem;
+      width: 4rem;
+      border-radius: 0.267rem;
+      background: var(--container-bg-darker);
+      flex-shrink: 0;
+    }
+  }
+
+  /* 骨架屏动画 - 修复飘动问题 */
+  .skeleton-animate {
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%; /* 从左侧开始 */
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 100%
+      );
+      animation: skeleton-loading 1.5s ease-in-out infinite;
+    }
+  }
+
+  /* 骨架屏加载动画 - 只在元素内部移动，不会导致整体飘动 */
+  @keyframes skeleton-loading {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .profile-skeleton {
+    .skeleton-header {
+      margin-bottom: 0.533rem;
+
+      .skeleton-title {
+        height: 0.533rem;
+        width: 10rem;
+        max-width: 70%;
+      }
+    }
+
+    .skeleton-content {
+      padding: 0 0.427rem;
+    }
+
+    .skeleton-info-grid {
+      grid-template-columns: 1fr;
+      gap: 0.427rem;
+    }
+
+    .skeleton-timeline {
+      padding: 1.067rem 0.4rem 0.4rem;
+
+      .skeleton-timeline-node {
+        min-width: 3.2rem;
+      }
+    }
+
+    .skeleton-contact {
+      flex-direction: column;
+      text-align: center;
+
+      .skeleton-contact-info {
+        text-align: center;
+        width: 100%;
+
+        .skeleton-contact-name,
+        .skeleton-contact-detail {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}
+

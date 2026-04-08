@@ -1,0 +1,141 @@
+/**
+ * 右键菜单样式
+ * 模拟系统原生右键菜单的外观和交互
+ */
+
+.context-menu {
+  position: fixed;
+  z-index: 9999;
+  min-width: 160px;
+  background: rgba(40, 44, 52, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 6px;
+  user-select: none;
+  animation: contextMenuFadeIn 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .context-menu-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .context-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #e8e8e8;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    white-space: nowrap;
+
+    .menu-item-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-size: 16px;
+      color: #b0b0b0;
+    }
+
+    .menu-item-label {
+      flex: 1;
+    }
+
+    // 悬停效果
+    &:hover:not(.disabled) {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    // 禁用状态
+    &.disabled {
+      color: #bfbfbf;
+      cursor: not-allowed;
+
+      .menu-item-icon {
+        color: #d9d9d9;
+      }
+    }
+
+    // 危险操作样式
+    &.danger:not(.disabled) {
+      color: #ff4d4f;
+
+      .menu-item-icon {
+        color: #ff4d4f;
+      }
+
+      &:hover {
+        background-color: #fff1f0;
+      }
+    }
+  }
+
+  .context-menu-divider {
+    height: 1px;
+    margin: 4px 0;
+    background-color: #f0f0f0;
+    overflow: hidden;
+  }
+}
+
+// 深色主题
+.dark-theme {
+  .context-menu {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+
+    .context-menu-item {
+      color: #e0e0e0;
+
+      .menu-item-icon {
+        color: #999999;
+      }
+
+      &:hover:not(.disabled) {
+        background-color: #3a3a3a;
+      }
+
+      &.disabled {
+        color: #666666;
+
+        .menu-item-icon {
+          color: #555555;
+        }
+      }
+
+      &.danger:not(.disabled) {
+        color: #ff7875;
+
+        .menu-item-icon {
+          color: #ff7875;
+        }
+
+        &:hover {
+          background-color: #3a2a2a;
+        }
+      }
+    }
+
+    .context-menu-divider {
+      background-color: #3a3a3a;
+    }
+  }
+}
+
+// 动画效果
+@keyframes contextMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

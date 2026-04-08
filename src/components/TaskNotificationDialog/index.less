@@ -1,0 +1,609 @@
+/**
+ * 任务通知弹窗样式
+ * 参考客户升级池样式，支持 dark 和 light 两套主题
+ */
+
+
+ .ant-modal-body{
+  padding: 0!important;
+ }
+// Dark Theme 深色主题
+.task-notification-dialog-dark {
+  // 遮罩层样式
+  &.ant-modal-wrap {
+    background: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(4px);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  // Modal 整体样式
+  .ant-modal-content {
+    position: relative;
+    background: linear-gradient(
+      140deg,
+      rgba(20, 20, 20, 0.88) 0%,
+      rgba(15, 15, 15, 0.92) 100%
+    ) !important;
+    backdrop-filter: blur(30px) saturate(180%);
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 10px 30px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+
+    // 对角渐变边框
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 12px;
+      padding: 1px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.3) 15%,
+        rgba(255, 255, 255, 0.02) 40%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(255, 255, 255, 0.3) 85%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  }
+
+  .ant-modal-header {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 100%
+    ) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px 12px 0 0;
+    .ant-modal-title {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 17px;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .ant-modal-close {
+    color: rgba(255, 255, 255, 0.7);
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  .ant-modal-body {
+    background: transparent !important;
+  }
+
+  // 筛选表单样式
+  .ant-form {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    ) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  // 输入框样式
+  .ant-input-affix-wrapper,
+  .ant-input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.12) !important;
+      border-color: #1890ff !important;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+    }
+  }
+
+  // Select 下拉选择框样式
+  .ant-select {
+    .ant-select-selector {
+      background: rgba(255, 255, 255, 0.08) !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
+
+      .ant-select-selection-placeholder {
+        color: rgba(255, 255, 255, 0.4) !important;
+      }
+    }
+
+    &:hover .ant-select-selector {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    &.ant-select-focused .ant-select-selector {
+      background: rgba(255, 255, 255, 0.12) !important;
+      border-color: #1890ff !important;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+    }
+
+    .ant-select-arrow {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  }
+
+  // DatePicker 日期选择器样式
+  .ant-picker {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+
+    input {
+      color: rgba(255, 255, 255, 0.9) !important;
+      background: transparent !important;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.4) !important;
+      }
+    }
+
+    .ant-picker-suffix {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    &.ant-picker-focused {
+      background: rgba(255, 255, 255, 0.12) !important;
+      border-color: #1890ff !important;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+    }
+  }
+
+  // 按钮样式
+  .ant-btn {
+    &.ant-btn-default {
+      background: rgba(255, 255, 255, 0.08) !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+      color: rgba(255, 255, 255, 0.9) !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.12) !important;
+        border-color: rgba(255, 255, 255, 0.25) !important;
+        color: rgba(255, 255, 255, 1) !important;
+      }
+    }
+
+    &.ant-btn-primary {
+      background: linear-gradient(135deg, #956cff 0%, #5dc2ff 100%) !important;
+      border: none !important;
+      color: #fff !important;
+      box-shadow: 0 2px 8px rgba(149, 108, 255, 0.3) !important;
+
+      &:hover {
+        background: linear-gradient(
+          135deg,
+          #a888ff 0%,
+          #7dcdff 100%
+        ) !important;
+        box-shadow: 0 4px 12px rgba(149, 108, 255, 0.4) !important;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        background: linear-gradient(
+          135deg,
+          #8456ff 0%,
+          #4db8ff 100%
+        ) !important;
+        box-shadow: 0 1px 4px rgba(149, 108, 255, 0.3) !important;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // 表格样式
+  .ant-table {
+    background: transparent !important;
+
+    .ant-table-container {
+      background: transparent !important;
+
+      .ant-table-content {
+        background: transparent !important;
+      }
+    }
+
+    .ant-table-thead > tr > th {
+      background: rgba(255, 255, 255, 0.08) !important;
+      color: rgba(255, 255, 255, 0.95) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      font-weight: 600;
+      padding: 12px 8px !important;
+      font-size: 14px;
+
+      &::before {
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+    }
+
+    .ant-table-tbody > tr {
+      background: transparent !important;
+
+      &:hover > td {
+        background: rgba(255, 255, 255, 0.05) !important;
+      }
+
+      > td {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        background: transparent !important;
+        padding: 10px 8px !important;
+        font-size: 14px;
+      }
+    }
+
+    .ant-table-placeholder {
+      background: transparent !important;
+
+      .ant-empty-description {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
+    }
+  }
+
+  // 分页样式
+  .ant-pagination {
+    margin-top: 20px !important;
+    padding-top: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+
+    .ant-pagination-item {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      margin: 0 6px !important;
+      min-width: 36px !important;
+      height: 36px !important;
+      line-height: 34px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      a {
+        color: rgba(255, 255, 255, 0.85) !important;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+
+        a {
+          color: rgba(255, 255, 255, 1) !important;
+        }
+      }
+
+      &.ant-pagination-item-active {
+        background: linear-gradient(
+          135deg,
+          #956cff 0%,
+          #5dc2ff 100%
+        ) !important;
+        border: none !important;
+        box-shadow: 0 2px 6px rgba(149, 108, 255, 0.3) !important;
+
+        a {
+          color: #fff !important;
+        }
+
+        &:hover {
+          background: linear-gradient(
+            135deg,
+            #a888ff 0%,
+            #7dcdff 100%
+          ) !important;
+          box-shadow: 0 2px 8px rgba(149, 108, 255, 0.4) !important;
+        }
+      }
+    }
+
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      margin: 0 6px !important;
+      min-width: 36px !important;
+      height: 36px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      .ant-pagination-item-link {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.08) !important;
+          border-color: rgba(255, 255, 255, 0.2) !important;
+          color: rgba(255, 255, 255, 1) !important;
+        }
+      }
+
+      button {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.08) !important;
+          border-color: rgba(255, 255, 255, 0.2) !important;
+          color: rgba(255, 255, 255, 1) !important;
+        }
+      }
+    }
+
+    .ant-pagination-options-quick-jumper {
+      margin-left: 12px !important;
+
+      input {
+        background: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        margin: 0 8px !important;
+        width: 60px !important;
+        height: 36px !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1) !important;
+          border-color: rgba(255, 255, 255, 0.25) !important;
+        }
+
+        &:focus {
+          background: rgba(255, 255, 255, 0.12) !important;
+          border-color: #1890ff !important;
+        }
+      }
+    }
+
+    .ant-pagination-total-text {
+      color: rgba(255, 255, 255, 0.75) !important;
+      margin-right: 16px !important;
+      line-height: 36px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+
+    .ant-pagination-options {
+      color: rgba(255, 255, 255, 0.7) !important;
+      margin-left: 12px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+
+      .ant-select {
+        margin: 0 8px !important;
+      }
+
+      .ant-select-selector {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        height: 36px !important;
+        padding: 4px 11px !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+    }
+  }
+
+  // Tag 标签样式
+  .ant-tag {
+    border: 1px solid transparent;
+
+    &.ant-tag-success {
+      background: rgba(82, 196, 26, 0.15);
+      border-color: rgba(82, 196, 26, 0.3);
+      color: #95de64;
+    }
+
+    &.ant-tag-warning {
+      background: rgba(250, 173, 20, 0.15);
+      border-color: rgba(250, 173, 20, 0.3);
+      color: #ffc53d;
+    }
+
+    &.ant-tag-error {
+      background: rgba(255, 77, 79, 0.15);
+      border-color: rgba(255, 77, 79, 0.3);
+      color: #ff7875;
+    }
+
+    &.ant-tag-default {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.75);
+    }
+  }
+}
+
+// Light Theme 浅色主题
+.task-notification-dialog-light {
+  // 遮罩层样式
+  &.ant-modal-wrap {
+    background: rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(4px);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .ant-modal-content {
+    position: relative;
+    background: #fff!important;
+    backdrop-filter: blur(20px);
+    border: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 12px;
+      padding: 1px;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.15) 15%,
+        rgba(0, 0, 0, 0.02) 40%,
+        rgba(0, 0, 0, 0.02) 60%,
+        rgba(0, 0, 0, 0.15) 85%,
+        rgba(0, 0, 0, 0.15) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  }
+
+  .ant-modal-header {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    .ant-modal-title {
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 17px;
+      font-weight: 600;
+    }
+  }
+
+  .ant-modal-close {
+    color: rgba(0, 0, 0, 0.45);
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.88);
+    }
+  }
+
+  .ant-modal-body {
+    background: transparent !important;
+  }
+
+
+  .ant-table {
+    .ant-table-thead > tr > th {
+      background: #fafafa;
+      font-weight: 600;
+      padding: 12px 8px !important;
+      font-size: 14px;
+    }
+
+    .ant-table-tbody > tr {
+      &:hover > td {
+        background: #fafafa;
+      }
+
+      > td {
+        padding: 10px 8px !important;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// 下拉菜单样式（全局）
+:global {
+  .task-notification-dialog-dark-dropdown {
+    .ant-select-dropdown {
+      background: rgba(31, 31, 31, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      .ant-select-item {
+        color: rgba(255, 255, 255, 0.85);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        &.ant-select-item-option-selected {
+          background: rgba(24, 144, 255, 0.2);
+          color: #69c0ff;
+        }
+      }
+    }
+
+    .ant-picker-dropdown {
+      .ant-picker-panel-container {
+        background: rgba(31, 31, 31, 0.98);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .ant-picker-header {
+        color: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        button {
+          color: rgba(255, 255, 255, 0.7);
+
+          &:hover {
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+
+      .ant-picker-content th {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .ant-picker-cell {
+        color: rgba(255, 255, 255, 0.85);
+
+        &:hover .ant-picker-cell-inner {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        &.ant-picker-cell-selected .ant-picker-cell-inner {
+          background: #1890ff;
+        }
+
+        &.ant-picker-cell-in-view.ant-picker-cell-today
+          .ant-picker-cell-inner::before {
+          border-color: #1890ff;
+        }
+      }
+
+      .ant-picker-footer {
+        background: rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}

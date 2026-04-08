@@ -1,0 +1,89 @@
+.axis-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  // Y轴刻度线（左侧）
+  .y-axis {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0; // 延伸到底部，与X轴重叠
+    width: 60px;
+  
+    .axis-ticks {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      
+      .tick-mark {
+        position: absolute;
+        left: 0;
+        transform: translateY(50%);
+  
+        .tick-line {
+          width: 8px;
+          height: 1px;
+          background: var(--chart-axis-color);
+          box-shadow: var(--shadow-light);
+        }
+      }
+    }
+  }
+  
+  // X轴刻度线（底部）
+  .x-axis {
+    position: absolute;
+    bottom: 0;
+    left: 60px;
+    right: 0;
+    height: 40px;
+    z-index: 2; // 确保X轴在气泡上方显示
+  
+    .axis-ticks {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      
+      .tick-mark {
+        position: absolute;
+        top: 0.5rem;
+        transform: translateX(-50%);
+  
+        .tick-line {
+          width: 1px;
+          height: 8px;
+          background: var(--chart-axis-color);  
+          box-shadow: var(--shadow-light);
+        }
+      }
+    }
+  }
+  
+  // 响应式调整
+  @media (max-width: 768px) {
+    .y-axis {
+      width: 50px;
+  
+      .axis-ticks .tick-mark .tick-line {
+        width: 6px;
+        height: 1.5px;
+      }
+    }
+  
+    .x-axis {
+      left: 50px;
+      height: 35px;
+  
+      .axis-ticks .tick-mark .tick-line {
+        width: 1.5px;
+        height: 6px;
+      }
+    }
+  }
+  

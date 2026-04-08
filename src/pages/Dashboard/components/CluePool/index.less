@@ -1,0 +1,114 @@
+// Import the styles from CustomerUpgradePool to guarantee exactly the same look and feel
+@import "../CustomerUpgradePool/index.less";
+@import "../CustomerUpgradePool/components/CustomerBubble.less";
+@import "../CustomerUpgradePool/components/ChartLegend.less";
+
+.clue-pool {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  .clue-chart-wrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    
+    // Minimal abstract wave/background for clues (optional override)
+    &::before {
+      content: '';
+      position: absolute; left: 0; right: 0; bottom: 0; height: 100%;
+      background: linear-gradient(to right, rgba(241, 245, 249, 0) 0%, transparent 40%, rgba(254, 226, 226, 0.05) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  .clue-chart-area {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+    animation: none !important;
+
+    .clue-channel-center-icon {
+      z-index: 1;
+      svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      }
+    }
+
+    // ===== 气泡警示角标 =====
+    // 共同基类
+    .clue-alert-badge {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1;
+      z-index: 10;
+      pointer-events: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    // 撞单风险 & 垃圾线索：橙色角标
+    .clue-alert-orange {
+      background: #f97316;
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      animation: clueAlertPulse 1.8s ease-in-out infinite alternate;
+      
+      // 默认位置（右上角，Trash使用）
+      top: 0;
+      right: 0;
+      transform: translate(20%, -20%);
+    }
+  }
+
+  .chart-area-container, .chart-container {
+    background: transparent !important;
+    animation: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+// 工具提示框中的警示行
+.bubble-tooltip-content {
+  .alert-row {
+    margin-top: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .trash-row {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+  .collision-row {
+    background: rgba(249, 115, 22, 0.12);
+    color: #f97316;
+    border: 1px solid rgba(249, 115, 22, 0.2);
+  }
+}
+
+// Dark Theme Overrides for the abstract background
+.clue-pool.dark {
+  .clue-chart-wrapper::before {
+    background: linear-gradient(to right, rgba(15, 23, 42, 0) 0%, transparent 40%, rgba(225, 29, 72, 0.05) 100%);
+  }
+}
+
+// 垂标动画
+@keyframes clueAlertPulse {
+  0% { box-shadow: 0 1px 3px rgba(249, 115, 22, 0.3); transform: scale(1) translate(20%, -20%); }
+  100% { box-shadow: 0 0 10px rgba(249, 115, 22, 0.6); transform: scale(1.1) translate(15%, -15%); }
+}

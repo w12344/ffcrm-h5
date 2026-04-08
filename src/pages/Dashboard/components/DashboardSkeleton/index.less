@@ -1,0 +1,420 @@
+/**
+ * 看板页面骨架屏样式 - 完全匹配实际页面布局
+ * 基于 Dashboard/index.less 的布局结构
+ */
+
+.dashboard-skeleton {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 100vw;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  // 启用硬件加速
+  transform: translateZ(0);
+  will-change: transform;
+
+  // 主题样式 - 中性背景
+  &.dashboard-skeleton-dark {
+    background: linear-gradient(135deg,
+        #1a1a1a 0%,
+        #2a2a2a 25%,
+        #1f1f1f 50%,
+        #2a2a2a 75%,
+        #1a1a1a 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease-in-out infinite;
+    color: #ffffff;
+
+    // 添加微妙的光晕效果
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 20%,
+          rgba(255, 255, 255, 0.02) 0%,
+          transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  &.dashboard-skeleton-light {
+    background: linear-gradient(135deg,
+        #f8f9fa 0%,
+        #e9ecef 25%,
+        #dee2e6 50%,
+        #e9ecef 75%,
+        #f8f9fa 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease-in-out infinite;
+    color: #1a202c;
+
+    // 添加微妙的光晕效果
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 70% 80%,
+          rgba(0, 0, 0, 0.02) 0%,
+          transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  // 主内容布局 - 完全匹配 Dashboard/index.less
+  .main-content {
+    display: flex;
+    gap: 0.8rem;
+    height: calc(100vh - 4.267rem);
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  // 左侧看板内容区域
+  .dashboard-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    min-width: 0;
+  }
+
+  // KPI 卡片区域 - 网格布局，完全匹配实际页面
+  .kpi-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.533rem, 1fr));
+    gap: 0.8rem;
+    width: 100%;
+  }
+
+  // 图表区域 - 匹配客户升级池容器样式
+  .chart-section {
+    border-radius: 0.533rem;
+    padding: 0.693rem 0.8rem;
+    padding-top: 0;
+    height: 100%;
+    backdrop-filter: blur(0.267rem);
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.03) 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.03) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 0;
+    position: relative;
+    // overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg at 50% 50%,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.02) 90deg,
+          transparent 180deg,
+          rgba(255, 255, 255, 0.02) 270deg,
+          transparent 360deg);
+      animation: rotate-gradient 20s linear infinite;
+      z-index: -1;
+    }
+  }
+
+  // 聊天区域 - 匹配AI助手容器样式
+  .chat-section {
+    width: 23.2%;
+    max-width: 100%;
+    min-width: 280px !important;
+    border-radius: 0.8rem;
+    background: var(--chat-bg);
+    box-shadow: var(--chat-box-shadow);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+}
+
+/* 全局盒模型设置 */
+* {
+  box-sizing: border-box;
+}
+
+/* 骨架屏通用动画效果 */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes skeleton-pulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes skeleton-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes rotate-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide-highlight {
+
+  0%,
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+
+  50% {
+    left: 100%;
+    opacity: 1;
+  }
+}
+
+/* 骨架屏元素基础样式 */
+.skeleton-element {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.1) 37%,
+      rgba(255, 255, 255, 0.05) 63%);
+  background-size: 400px 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+
+  // 性能优化
+  transform: translateZ(0); // 启用硬件加速
+  will-change: background-position; // 提示浏览器优化
+  backface-visibility: hidden; // 隐藏背面，提升性能
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent);
+    transform: translateX(-100%) translateZ(0); // GPU加速
+    animation: skeleton-wave 2s infinite;
+    will-change: transform; // 优化transform动画
+    backface-visibility: hidden;
+  }
+}
+
+/* 深色主题骨架屏元素 */
+.dashboard-skeleton-dark .skeleton-element {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.03) 25%,
+      rgba(255, 255, 255, 0.08) 37%,
+      rgba(255, 255, 255, 0.03) 63%);
+
+  &::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.06),
+        transparent);
+  }
+}
+
+/* 浅色主题骨架屏元素 */
+.dashboard-skeleton-light .skeleton-element {
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.03) 25%,
+      rgba(0, 0, 0, 0.08) 37%,
+      rgba(0, 0, 0, 0.03) 63%);
+
+  &::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 0, 0, 0.06),
+        transparent);
+  }
+}
+
+/* 无障碍访问支持 */
+.dashboard-skeleton {
+
+  // 为屏幕阅读器提供信息
+  &[aria-label] {
+
+    // 确保屏幕阅读器能够识别加载状态
+    &::before {
+      content: attr(aria-label);
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  }
+
+  // 减少动画对敏感用户的影响
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    // 保持基本的视觉反馈，但移除动画
+    .skeleton-element {
+      background: rgba(255, 255, 255, 0.08);
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .dashboard-skeleton-dark .skeleton-element {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .dashboard-skeleton-light .skeleton-element {
+      background: rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  // 高对比度模式支持
+  @media (prefers-contrast: high) {
+    &.dashboard-skeleton-dark {
+      .skeleton-element {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    &.dashboard-skeleton-light {
+      .skeleton-element {
+        background: rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+/* 响应式设计 - 完全匹配 Dashboard/index.less 的断点和规则 */
+@media (max-width: 1600px) {
+  .dashboard-skeleton .kpi-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .dashboard-skeleton {
+    .main-content {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .kpi-section {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-section {
+      min-height: 10.667rem;
+    }
+
+    .chat-section {
+      width: 100%;
+      max-width: 100%;
+      min-height: 13.333rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-skeleton {
+    .kpi-section {
+      grid-template-columns: 1fr;
+    }
+
+    .chart-section {
+      min-height: 9.333rem;
+    }
+
+    .chat-section {
+      min-height: 12rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-skeleton {
+    .chart-section {
+      min-height: 8rem;
+    }
+
+    .chat-section {
+      min-height: 10.667rem;
+    }
+  }
+}

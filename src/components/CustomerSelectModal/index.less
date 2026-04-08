@@ -1,0 +1,234 @@
+.customer-select-modal {
+  .modal-body {
+    padding-top: 16px;
+
+    .search-section {
+      margin-bottom: 20px;
+    }
+
+    .ant-input-affix-wrapper{
+        background:#1f1f1f;
+    }
+    .customer-list {
+      min-height: 200px;
+      max-height: 400px;
+      overflow-y: auto;
+
+      .loading {
+        text-align: center;
+        color: #6b7280;
+        padding: 40px 20px;
+        font-size: 14px;
+      }
+
+      .customer-items {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .customer-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover {
+            border-color: #3b82f6;
+          }
+
+          &.selected {
+            border-color: #3b82f6;
+            // background: #eff6ff;
+          }
+
+          .customer-info {
+            flex: 1;
+
+            .customer-name {
+              font-weight: 500;
+              color: #fff;
+              margin-bottom: 4px;
+              font-size: 12px;
+            }
+
+            .customer-alias {
+              font-size: 15px;
+              color: #059669;
+              margin-bottom: 4px;
+              font-style: italic;
+              font-weight: 500;
+            }
+
+            .customer-wxid {
+              font-size: 12px;
+              color: #6b7280;
+            }
+          }
+
+          .select-indicator {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            transition: all 0.2s;
+
+            .selected-check {
+              color: white;
+              font-weight: bold;
+              font-size: 14px;
+            }
+          }
+
+          &.selected .select-indicator {
+            background: #3b82f6;
+            border-color: #3b82f6;
+          }
+        }
+      }
+    }
+  }
+
+  // 深色主题
+  &.dark-theme {
+    // Ant Design Modal 深色适配
+      .ant-modal-content {
+        background: #1f1f1f !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .ant-modal-header {
+        background: #1f1f1f !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+        .ant-modal-title {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+      }
+
+      .ant-modal-close {
+        color: rgba(255, 255, 255, 0.65) !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1) !important;
+        }
+      }
+
+      .ant-modal-footer {
+        .ant-btn {
+          &:not(.ant-btn-primary) {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.85) !important;
+
+            &:hover {
+              background: rgba(255, 255, 255, 0.15) !important;
+              border-color: rgba(255, 255, 255, 0.3) !important;
+            }
+
+            &:disabled {
+              background: rgba(255, 255, 255, 0.05) !important;
+              border-color: rgba(255, 255, 255, 0.1) !important;
+              color: rgba(255, 255, 255, 0.3) !important;
+            }
+          }
+
+          &.ant-btn-primary {
+            background: var(--color-purple-primary, #8b5cf6) !important;
+            border-color: var(--color-purple-primary, #8b5cf6) !important;
+
+            &:hover:not(:disabled) {
+              background: #7c3aed !important;
+              border-color: #7c3aed !important;
+            }
+          }
+        }
+      }
+
+      .ant-input {
+        color: rgba(255, 255, 255, 0.9) !important;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.4) !important;
+        }
+
+        &:hover {
+          border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        &:focus {
+          border-color: var(--color-purple-primary, #8b5cf6) !important;
+          box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2) !important;
+        }
+      }
+
+      .ant-input-suffix {
+        .ant-btn-text {
+          color: rgba(255, 255, 255, 0.65) !important;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+          }
+        }
+      }
+
+      .ant-empty-description {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+    }
+
+    .modal-body {
+      .loading {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .customer-list {
+      .customer-items {
+        .customer-item {
+          border-color: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
+
+          &:hover {
+            border-color: var(--color-purple-primary, #8b5cf6);
+            background: rgba(139, 92, 246, 0.1);
+          }
+
+          &.selected {
+            border-color: var(--color-purple-primary, #8b5cf6);
+            background: rgba(139, 92, 246, 0.15);
+          }
+
+          .customer-info {
+            .customer-name {
+              color: rgba(255, 255, 255, 0.9);
+            }
+
+            .customer-alias {
+              color: #10b981;
+            }
+
+            .customer-wxid {
+              color: rgba(255, 255, 255, 0.5);
+            }
+          }
+
+          .select-indicator {
+            border-color: rgba(255, 255, 255, 0.3);
+          }
+
+          &.selected .select-indicator {
+            background: var(--color-purple-primary, #8b5cf6);
+            border-color: var(--color-purple-primary, #8b5cf6);
+          }
+        }
+      }
+  }
+}
+

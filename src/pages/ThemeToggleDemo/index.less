@@ -1,0 +1,141 @@
+.theme-toggle-demo {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+  padding: 40px 20px;
+}
+
+.demo-container {
+  max-width: 800px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 60px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.demo-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.demo-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: 60px;
+  line-height: 1.6;
+}
+
+.demo-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  margin-bottom: 40px;
+}
+
+.demo-features {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.8);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      line-height: 1.6;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .demo-container {
+    padding: 40px 30px;
+  }
+
+  .demo-title {
+    font-size: 28px;
+  }
+
+  .demo-description {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .demo-content {
+    padding: 40px 0;
+  }
+
+  .demo-features {
+    padding: 24px;
+
+    h2 {
+      font-size: 18px;
+    }
+
+    ul li {
+      font-size: 14px;
+      padding: 10px 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-container {
+    padding: 30px 20px;
+  }
+
+  .demo-title {
+    font-size: 24px;
+  }
+
+  .demo-description {
+    font-size: 13px;
+  }
+
+  .demo-features {
+    padding: 20px;
+
+    h2 {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    ul li {
+      font-size: 13px;
+      padding: 8px 0;
+    }
+  }
+}
+
